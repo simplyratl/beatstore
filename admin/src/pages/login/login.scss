@@ -1,0 +1,28 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            margin: 6px 0;
+            padding: 5px;
+        }
+
+        button {
+            background-color: teal;
+            border: none;
+            color: wheat;
+            cursor: pointer;
+        }
+    }
+
+    h4 {
+        margin-top: 12px;
+    }
+}

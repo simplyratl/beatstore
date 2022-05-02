@@ -1,0 +1,43 @@
+@use '../../util/colors.scss' as *;
+
+.beat-row-container {
+    .beat-row-wrapper {
+        .title {
+            margin: 8px 0;
+            color: $text-color-bbg;
+            text-decoration: none;
+            transition: 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+
+            .icon {
+                position: relative;
+                top: 2px;
+                visibility: hidden;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: 0.2s ease-in-out;
+                color: $gray;
+                width: 20px;
+                height: 20px;
+                margin-left: 4px;
+            }
+
+            &:hover {
+                color: $gray;
+
+                .icon {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        }
+
+        .beats-container {
+            padding: 0 28px;
+            overflow: hidden;
+        }
+    }
+}

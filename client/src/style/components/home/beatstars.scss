@@ -1,0 +1,42 @@
+.beatstars-container {
+    position: relative;
+    padding: 0 4%;
+    margin-top: 60px;
+
+    .heading {
+        text-align: center;
+
+        h2 {
+            font-size: 2.4rem;
+        }
+
+        h4 {
+            font-weight: 500;
+
+            a {
+                color: #ff3842;
+                text-decoration: none;
+
+                &:hover {
+                    color: #cc343c;
+                }
+            }
+        }
+    }
+
+    .bulk-deals {
+        margin-top: 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        .icon {
+            width: 24px;
+            margin: 0 6px;
+        }
+
+        h2 {
+            color: #ff3842;
+        }
+    }
+}

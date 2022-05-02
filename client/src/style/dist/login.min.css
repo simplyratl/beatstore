@@ -1,0 +1,1 @@
+.login{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh}.login .loginForm{display:flex;flex-direction:column}.login .loginForm input{margin:6px 0;padding:5px}.login .loginForm button{background-color:teal;border:none;color:wheat;cursor:pointer}.login h4{margin-top:12px}/*# sourceMappingURL=login.min.css.map */

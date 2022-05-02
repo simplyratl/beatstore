@@ -1,0 +1,68 @@
+@use '../../util/colors.scss' as *;
+
+.category-list-container {
+    color: $text-color-bbg;
+    padding: 0 4%;
+    margin-top: 14px;
+
+    .beats-list {
+        display: grid;
+
+        .beat {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+
+            .left {
+                flex: 1;
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 120px;
+                    height: 120px;
+                    object-fit: cover;
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 12px;
+
+                    .title {
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+
+                        .play {
+                            position: absolute;
+                            font-size: 2.5rem;
+                            left: 100%;
+
+                            &:hover {
+                                color: $primary;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .middle {
+                position: relative;
+                flex: 5;
+                width: 100%;
+                height: 120px;
+                //  background-color: coral;
+                overflow: hidden;
+
+                #waveform {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    top: 7%;
+                }
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ import BeatRow from '../components/Beats/BeatRow';
 
 const Beats = () => {
     return (
-        <div style={{ marginTop: '150px' }}>
+        <div>
             <BeatRow title='Popular'/>
         </div>
     );

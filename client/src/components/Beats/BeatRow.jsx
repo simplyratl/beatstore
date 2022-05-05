@@ -8,12 +8,11 @@ import { BeatPlayingContext } from '../../context/BeatPlayContext';
 import Slider from 'react-slick';
 import SkeletonCard from './SkeletonCard';
 import { Link } from 'react-router-dom';
+import BeatCard from './BeatCard';
 
 const BeatRow = ({ title }) => {
     const [beats, setBeats] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const { setCurrentBeat, setIsPlaying } = useContext(BeatPlayingContext);
 
     var settings = {
         dots: true,
@@ -62,7 +61,7 @@ const BeatRow = ({ title }) => {
             try {
                 const res = await axios.get('http://localhost:8800/beat', {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTA1Njc3NSwiZXhwIjoxNjUxMzE1OTc1fQ.YigqQKAP1sUNi7aFj6d_h26WoGnfJaBNhbau3nqckQw',
+                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTc0NDA3NywiZXhwIjoxNjUyMDAzMjc3fQ.NMtkexWaj7AVFadQ0CngHjUmQnt20RfMj_3aORhOunY',
                     },
                 });
 
@@ -82,7 +81,11 @@ const BeatRow = ({ title }) => {
         let temp = [];
 
         for (let i = 0; i < 7; i++) {
-            temp.push(<SkeletonCard />);
+            temp.push(
+                <div key={i}>
+                    <SkeletonCard />
+                </div>
+            );
         }
 
         return temp;
@@ -102,30 +105,8 @@ const BeatRow = ({ title }) => {
                     <Slider {...settings}>
                         {!loading
                             ? beats?.map((beat, index) => (
-                                  <div className='beat-card-container' key={index}>
-                                      <div className='beat-image'>
-                                          <BsPlayFill className='play' onClick={() => setIsPlaying(false)} />
-                                          <img
-                                              src={beat?.img}
-                                              alt=''
-                                              onClick={() => {
-                                                  setIsPlaying(true);
-                                                  setCurrentBeat(beats[index]);
-                                              }}
-                                          />
-                                      </div>
-
-                                      <div className='bottom-bar'>
-                                          <div className='info'>
-                                              <span className='price'>${beat?.basic_licence}</span>
-                                              <span className='key'>{beat?.key}</span>
-                                              <span className='bpm'>{beat?.bpm} BPM</span>
-                                          </div>
-
-                                          <a href='#' style={{ textDecoration: 'none' }}>
-                                              <span className='title'>{beat?.title}</span>
-                                          </a>
-                                      </div>
+                                  <div key={index}>
+                                      <BeatCard beat={beat} index={index} />{' '}
                                   </div>
                               ))
                             : displaySkeleton()}

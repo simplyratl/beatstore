@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Beats from './pages/Beats';
 import Register from './pages/Register';
 import CategoryPage from './pages/CategoryPage';
+import BeatSingle from './pages/BeatSingle';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/beats' element={<Beats />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/category/:category' element={<CategoryPage />} />
+                <Route path='/beat/:name/:id' element={<BeatSingle />} />
             </Routes>
             <AudioPlayer />
         </Router>

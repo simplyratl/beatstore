@@ -1,6 +1,8 @@
 @use '../../util/colors.scss' as *;
 
 .beat-row-container {
+    margin-top: 100px;
+
     .beat-row-wrapper {
         .title {
             margin: 8px 0;

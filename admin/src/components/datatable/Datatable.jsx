@@ -13,7 +13,7 @@ const Datatable = () => {
             try {
                 const res = await axios.get('http://localhost:8800/user?new=true', {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDg5OTQyMywiZXhwIjoxNjUxMTU4NjIzfQ.UvX0nH_6C2Iev5oqnWIFge1qdYCYRmnZ3EBpV6D7_3Q',
+                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
                     },
                 });
 

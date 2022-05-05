@@ -4,6 +4,7 @@ import { BsVolumeDown, BsVolumeMute, BsCart2 } from 'react-icons/bs';
 import { AiFillPlayCircle, AiFillStepBackward, AiFillStepForward, AiFillPauseCircle } from 'react-icons/ai';
 import { BeatPlayingContext } from '../context/BeatPlayContext';
 import '../style/dist/audioplayer.min.css';
+import { Link } from 'react-router-dom';
 
 const AudioPlayer = () => {
     const [paused, setPaused] = useState(false);
@@ -109,11 +110,11 @@ const AudioPlayer = () => {
 
         if (!muted) {
             if (audioRef) {
-                audioRef.current.muted = true;
+                audioRef.current.muted = false;
             }
         } else {
             if (audioRef) {
-                audioRef.current.muted = false;
+                audioRef.current.muted = true;
             }
         }
     };
@@ -125,13 +126,24 @@ const AudioPlayer = () => {
                     <img src={currentBeat?.img} alt='' />
 
                     <div className='song-info'>
-                        <span className='song-title'>{currentBeat?.title}</span>
+                        <Link
+                            to={`/beat/${currentBeat?.title?.toLowerCase().replace(' ', '-')}/${
+                                currentBeat?._id
+                            }`}
+                            state={{ beat: currentBeat }}
+                            className='song-title'
+                            style={{ textDecoration: 'none', color: '#fff' }}
+                        >
+                            {currentBeat?.title}
+                        </Link>
                         {currentBeat.artist ? (
                             <span className='song-artist'>{currentBeat.artist}</span>
                         ) : Object.keys(currentBeat).length > 0 ? (
                             <button type='button' className='buy-now-player' style={{ margin: '4px 0' }}>
                                 <BsCart2 />
-                                24.99$
+                                {!currentBeat?.basic_licence?.toString()?.includes('.')
+                                    ? `${currentBeat?.basic_licence}.00`
+                                    : currentBeat?.basic_licence}
                             </button>
                         ) : null}
                     </div>
@@ -139,7 +151,9 @@ const AudioPlayer = () => {
                     {currentBeat.artist && (
                         <button type='button' className='buy-now-player'>
                             <BsCart2 />
-                            24.99$
+                            {!currentBeat?.basic_licence?.toString()?.includes('.')
+                                ? `${currentBeat?.basic_licence}.00`
+                                : currentBeat?.basic_licence}
                         </button>
                     )}
                 </div>

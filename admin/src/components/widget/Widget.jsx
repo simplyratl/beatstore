@@ -28,7 +28,7 @@ const Widget = ({ type }) => {
             try {
                 const res = await axios.get('http://localhost:8800/user/stats', {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDg5MjU0NCwiZXhwIjoxNjUxMTUxNzQ0fQ.-sJDks_S4Ofzvg83mWRafTWYWq0IzjnDGjk3MlnEXbA',
+                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
                     },
                 });
                 const statsList = res.data.sort((a, b) => {
@@ -50,7 +50,7 @@ const Widget = ({ type }) => {
             try {
                 const res = await axios.get('http://localhost:8800/user', {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDg5MjU0NCwiZXhwIjoxNjUxMTUxNzQ0fQ.-sJDks_S4Ofzvg83mWRafTWYWq0IzjnDGjk3MlnEXbA',
+                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
                     },
                 });
                 setUsers(res.data);

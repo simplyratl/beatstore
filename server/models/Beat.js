@@ -14,7 +14,7 @@ const BeatSchema = new mongoose.Schema(
       stems: {type: String},
       basic_licence: {type: Number, required: true},
       premium_licence: {type: Number},
-      stem_licence: {type: Number},
+      vip_licence: {type: Number},
    },
    {timestamps: true}
 );

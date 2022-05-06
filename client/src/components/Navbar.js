@@ -3,7 +3,7 @@ import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
 import { BsCart2 } from 'react-icons/bs';
 import { BiHeart, BiLogOut } from 'react-icons/bi';
 import { AiOutlineUser } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../style/hamburger/hamburger.css';
 import '../style/dist/navbar.min.css';
 import Promotion_Navbar from './Home/Promotion_Navbar';
@@ -13,6 +13,7 @@ const Navbar = () => {
     const [showHamburgerWidth, setShowHamburgerWidth] = useState(false);
     const [searchShow, setSearchShow] = useState(false);
     const [background, setBackground] = useState(false);
+    const location = useLocation();
 
     let timer = null;
     useEffect(() => {
@@ -32,6 +33,10 @@ const Navbar = () => {
             setBackground(false);
         }
     };
+
+    useEffect(() => {
+        setHamburger(false);
+    }, [location]);
 
     window.addEventListener('scroll', changeBackgorund);
 

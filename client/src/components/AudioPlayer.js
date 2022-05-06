@@ -132,7 +132,6 @@ const AudioPlayer = () => {
                             }`}
                             state={{ beat: currentBeat }}
                             className='song-title'
-                            style={{ textDecoration: 'none', color: '#fff' }}
                         >
                             {currentBeat?.title}
                         </Link>

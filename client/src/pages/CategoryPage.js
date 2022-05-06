@@ -12,7 +12,7 @@ const CategoryPage = () => {
             <div className='category-wrapper'>
                 <h1 style={{ color: '#fff', marginTop: 120, marginLeft: '4%' }}>{title.toUpperCase()}</h1>
 
-                <CategoryList />
+                <CategoryList rowTitle={title}/>
             </div>
         </div>
     );

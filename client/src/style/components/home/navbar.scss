@@ -44,6 +44,7 @@ header {
                 visibility: hidden;
                 pointer-events: none;
                 transform: translateX(100%);
+                transition: 0.2s;
 
                 .logo {
                     position: absolute;

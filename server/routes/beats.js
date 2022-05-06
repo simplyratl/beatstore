@@ -80,4 +80,17 @@ router.get('/', verify, async (req, res) => {
     }
 });
 
+//DOWNLOAD
+router.get('/download/:id', verify, async (req, res) => {
+    if (req.user.isAdmin) {
+        try {
+            res.download('https://firebasestorage.googleapis.com/v0/b/beatstore-a7a21.appspot.com/o/items%2Frattle_-_counting_167_Bm_(24kgoldn_guitar_sad).mp3-(mp3_tagged)4e4b742f-c068-4a01-b0d8-1aa00bddb077?alt=media&token=fa2b4deb-309a-4868-a47d-6a52ef249b6f');
+
+            res.status(200).json();
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    }
+});
+
 module.exports = router;

@@ -23,6 +23,7 @@ const Chart = ({ aspect, title }) => {
     useEffect(() => {
         const getStats = async () => {
             try {
+                //192.168.1.18 ---- replace for testing on devices.
                 const res = await axios.get('http://localhost:8800/user/stats', {
                     headers: {
                         token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDg5MjU0NCwiZXhwIjoxNjUxMTUxNzQ0fQ.-sJDks_S4Ofzvg83mWRafTWYWq0IzjnDGjk3MlnEXbA',

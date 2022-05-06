@@ -37,7 +37,7 @@
             width: 68px;
             height: 68px;
             color: $text-color-bbg;
-            // pointer-events: none;
+            pointer-events: none;
             visibility: hidden;
             opacity: 0;
             transition: 0.28s cubic-bezier(0.19, 1, 0.22, 1);
@@ -72,6 +72,8 @@
         .title {
             font-size: 1.2rem;
             transition: 0.1s ease;
+            text-decoration: none;
+            color: $text-color-bbg;
 
             &:hover {
                 color: $primary;

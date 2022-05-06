@@ -2,15 +2,23 @@ import React, { useContext } from 'react';
 import { BsPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { BeatPlayingContext } from '../../context/BeatPlayContext';
+import { motion } from 'framer-motion';
 import '../../style/dist/beatcard.min.css';
 
 const BeatCard = ({ beat, index }) => {
     const { setCurrentBeat, setIsPlaying } = useContext(BeatPlayingContext);
 
     return (
-        <div className='beat-card-container' key={index}>
-            <div className='beat-image'>
-                <BsPlayFill className='play' onClick={() => setIsPlaying(false)} />
+        <motion.div
+            className='beat-card-container'
+            key={index}
+            initial={{ opacity: 0, transform: 'scale(1.1)' }}
+            animate={{ opacity: 1, transform: 'scale(1)' }}
+            exit={{ opacity: 0, transform: 'scale(1.1)' }}
+            transition={{ duration: 1.2, stiffness: '50', type: 'spring' }}
+        >
+            <motion.div className='beat-image'>
+                <BsPlayFill className='play' />
                 <img
                     src={beat?.img}
                     alt=''
@@ -18,8 +26,12 @@ const BeatCard = ({ beat, index }) => {
                         setIsPlaying(true);
                         setCurrentBeat(beat);
                     }}
+                    initial={{ opacity: 0, transform: 'scale(1.2)' }}
+                    animate={{ opacity: 1, transform: 'scale(1)' }}
+                    exit={{ opacity: 0, transform: 'scale(1.1)' }}
+                    transition={{ duration: 1, delay: 2 }}
                 />
-            </div>
+            </motion.div>
 
             <div className='bottom-bar'>
                 <div className='info'>
@@ -36,7 +48,7 @@ const BeatCard = ({ beat, index }) => {
                     <span className='title'>{beat?.title}</span>
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

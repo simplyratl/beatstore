@@ -9,9 +9,17 @@
     border-radius: 8px;
     position: relative;
 
+    @include breakpoint-down(small) {
+        background: none;
+        padding: 0;
+        margin: 0 3%;
+    }
+
     .top-bar-wrapper {
         color: $text-color-bbg;
         display: flex;
+        padding-bottom: 2em;
+        border-bottom: 1px solid $tertiary;
 
         @include breakpoint-down(small) {
             flex-direction: column;
@@ -32,6 +40,23 @@
             .beat-image-container {
                 position: relative;
                 cursor: pointer;
+
+                @include breakpoint-down(small) {
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(
+                            360deg,
+                            rgba(25, 25, 25, 1) 0%,
+                            rgba(0, 212, 255, 0) 100%
+                        );
+                        pointer-events: none;
+                    }
+                }
 
                 &:hover {
                     .play {
@@ -75,15 +100,43 @@
                     object-fit: cover;
                     border-radius: 8px;
                     box-shadow: 4px 4px 20px rgba($color: #000000, $alpha: 0.4);
+
+                    @include breakpoint-down(small) {
+                        display: block;
+                        width: 100vw;
+                        height: 400px;
+                        box-shadow: none;
+                        border-radius: 0px;
+                    }
                 }
             }
 
             h2 {
                 font-size: 2rem;
+
+                @include breakpoint-down(small) {
+                    font-size: 3rem;
+                }
+            }
+
+            .beat-info {
+                color: whitesmoke;
+                margin-top: 8px;
+                cursor: default;
+
+                span {
+                    background-color: $tertiary;
+                    border-radius: 4px;
+                    padding: 4px 12px;
+
+                    &:not(:first-child) {
+                        margin-left: 8px;
+                    }
+                }
             }
 
             .control-beat {
-                margin-top: 8px;
+                margin-top: 16px;
 
                 .icon {
                     font-size: 1.8rem;
@@ -115,7 +168,7 @@
             .add-to-cart {
                 display: flex;
                 align-items: center;
-                margin: 10px 0;
+                margin: 18px 0;
 
                 .total-container {
                     display: flex;
@@ -143,6 +196,7 @@
                 border-top: 1px solid $tertiary;
                 display: flex;
                 flex-wrap: wrap;
+                margin-top: 24px;
 
                 .licence {
                     display: flex;
@@ -199,9 +253,10 @@
                 overflow: hidden;
                 background-color: $background;
                 border-radius: 8px;
-                padding: 12px;
+                padding: 8px;
                 max-height: 58px;
                 transition: 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+                margin-top: 18px;
 
                 &.active {
                     max-height: 100%;
@@ -216,7 +271,7 @@
                 .usage-title {
                     display: flex;
                     align-items: center;
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                     padding-bottom: 12px;
                     border-bottom: 1px solid $tertiary;
                     cursor: pointer;
@@ -224,6 +279,7 @@
                     .icon {
                         font-size: 2.2rem;
                         transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        margin-top: 6px;
                     }
                 }
 
@@ -248,7 +304,15 @@
                         }
 
                         .term {
+                            display: flex;
+                            align-items: center;
                             font-size: 1.06rem;
+                            color: rgb(208, 208, 208);
+
+                            .icon {
+                                font-size: 1.3rem;
+                                margin-right: 8px;
+                            }
 
                             @media screen and (max-width: 949px) {
                                 font-size: 1rem;
@@ -258,5 +322,10 @@
                 }
             }
         }
+    }
+
+    .recommended-beats {
+        color: $text-color-bbg;
+        margin-top: 2em;
     }
 }

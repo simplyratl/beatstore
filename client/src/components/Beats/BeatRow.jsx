@@ -6,6 +6,7 @@ import axios from 'axios';
 import '../../style/dist/beatrow.min.css';
 import { BeatPlayingContext } from '../../context/BeatPlayContext';
 import Slider from 'react-slick';
+import { getDataRow } from './beatrowfilter';
 import SkeletonCard from './SkeletonCard';
 import { Link } from 'react-router-dom';
 import BeatCard from './BeatCard';
@@ -14,9 +15,9 @@ const BeatRow = ({ title }) => {
     const [beats, setBeats] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    var settings = {
+    let settings = {
         dots: true,
-        infinite: true,
+        infinite: beats?.length >= 6 ? true : false,
         arrows: true,
         speed: 500,
         slidesToShow: 6,
@@ -44,6 +45,7 @@ const BeatRow = ({ title }) => {
                     arrows: false,
                     slidesToShow: 2,
                     slidesToScroll: 2,
+                    swipe: true,
                 },
             },
             {
@@ -51,6 +53,7 @@ const BeatRow = ({ title }) => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
+                    swipe: true,
                 },
             },
         ],
@@ -59,13 +62,14 @@ const BeatRow = ({ title }) => {
     useEffect(() => {
         const getBeats = async () => {
             try {
-                const res = await axios.get('http://localhost:8800/beat', {
+                //192.168.1.18 ---- replace for testing on devices.
+                const res = await axios.get('http://192.168.1.18:8800/beat', {
                     headers: {
                         token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTc0NDA3NywiZXhwIjoxNjUyMDAzMjc3fQ.NMtkexWaj7AVFadQ0CngHjUmQnt20RfMj_3aORhOunY',
                     },
                 });
 
-                setBeats(res.data);
+                setBeats(getDataRow(res.data, title));
                 setLoading(false);
 
                 return res;
@@ -106,7 +110,7 @@ const BeatRow = ({ title }) => {
                         {!loading
                             ? beats?.map((beat, index) => (
                                   <div key={index}>
-                                      <BeatCard beat={beat} index={index} />{' '}
+                                      <BeatCard beat={beat} index={index} />
                                   </div>
                               ))
                             : displaySkeleton()}

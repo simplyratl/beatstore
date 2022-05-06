@@ -45,6 +45,12 @@
 
                 .song-title {
                     font-weight: 600;
+                    color: $text-color-bbg;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
 
                 .song-artist {

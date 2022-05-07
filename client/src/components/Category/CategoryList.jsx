@@ -5,17 +5,25 @@ import { BiChevronDown } from 'react-icons/bi';
 import '../../style/dist/categorylist.min.css';
 import axios from 'axios';
 import { getDataRow } from '../Beats/beatrowfilter';
-import { key } from './categoriesfilter';
+import { key, mood, tags } from './categoriesfilter';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BeatPlayingContext } from '../../context/BeatPlayContext';
 
 const CategoryList = ({ rowTitle }) => {
     const location = useLocation();
     const [filterOpenedMobile, setFilterOpenedMobile] = useState(false);
+    const [checkPlaying, setCheckPlaying] = useState(false);
     const [beats, setBeats] = useState([]);
     const [filteredBeats, setFilteredBeats] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState('');
     const [addedFilters, setAddedFilters] = useState([]);
     const [keyCategory, setKeyCategory] = useState(new Array(key.length).fill(false));
+    const [moodCategory, setMoodCategory] = useState(new Array(mood.length).fill(false));
+    const [tagCategory, setTagCategory] = useState(new Array(tags.length).fill(false));
+    const [bpmLowest, setBpmLowest] = useState(0);
+    const [bpmHighest, setBpmHighest] = useState(250);
+
+    const { isPlaying, setIsPlaying, currentBeat, setCurrentBeat } = useContext(BeatPlayingContext);
 
     useEffect(() => {
         if (!location.state) {
@@ -51,6 +59,14 @@ const CategoryList = ({ rowTitle }) => {
             const updatedCheckState = keyCategory.map((item, index) => (index === position ? !item : item));
 
             setKeyCategory(updatedCheckState);
+        } else if (category === 'mood') {
+            const updatedCheckState = moodCategory.map((item, index) => (index === position ? !item : item));
+
+            setMoodCategory(updatedCheckState);
+        } else if (category === 'tags') {
+            const updatedCheckState = tagCategory.map((item, index) => (index === position ? !item : item));
+
+            setTagCategory(updatedCheckState);
         }
     };
 
@@ -58,11 +74,27 @@ const CategoryList = ({ rowTitle }) => {
         if (active) {
             setAddedFilters([...addedFilters, filter]);
 
+            if (filterName === 'tags') {
+                setFilteredBeats(
+                    beats.filter((beat) => {
+                        beat.tags.filter((beatTag) => {
+                            if (beatTag === filter) {
+                                return beat;
+                            }
+                        });
+                    })
+                );
+
+                return;
+            }
+
             setFilteredBeats(
                 beats.filter((beat) => {
                     for (let i = 0; i < addedFilters.length; i++) {
                         if (beat[filterName] === addedFilters[i]) {
-                            return beat;
+                            if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
+                                return true;
+                            }
                         }
                     }
                 })
@@ -75,7 +107,13 @@ const CategoryList = ({ rowTitle }) => {
             );
 
             if (addedFilters.length === 0) {
-                setFilteredBeats(beats);
+                setFilteredBeats(
+                    beats.filter((beat) => {
+                        if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
+                            return true;
+                        }
+                    })
+                );
                 return;
             }
 
@@ -83,7 +121,9 @@ const CategoryList = ({ rowTitle }) => {
                 beats.filter((beat) => {
                     for (let i = 0; i < addedFilters.length; i++) {
                         if (beat[filterName] === addedFilters[i]) {
-                            return beat;
+                            if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
+                                return true;
+                            }
                         }
                     }
                 })
@@ -91,8 +131,26 @@ const CategoryList = ({ rowTitle }) => {
         }
     };
 
+    useEffect(() => {
+        const bpmFilter = () => {
+            if (bpmLowest === 0 && bpmHighest === 250) {
+                return;
+            }
+
+            setFilteredBeats(
+                beats.filter((beat) => {
+                    if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
+                        return beat;
+                    }
+                })
+            );
+        };
+
+        bpmFilter();
+    }, [bpmHighest, bpmLowest]);
+
     const handleFilterMobile = () => {
-        if (window.innerWidth < 1149 && selectedFilter !== '') {
+        if (window.innerWidth < 1149) {
             setFilterOpenedMobile(true);
         } else {
             setFilterOpenedMobile(false);
@@ -105,7 +163,11 @@ const CategoryList = ({ rowTitle }) => {
                 <AnimatePresence>
                     {filteredBeats.map((beat, index) => (
                         <motion.li
-                            className='beat'
+                            className={`beat ${filteredBeats[index]._id === currentBeat._id && 'active'}`}
+                            onClick={() => {
+                                setIsPlaying(true);
+                                setCurrentBeat(beat);
+                            }}
                             key={index}
                             layout
                             initial={{ opacity: 0, transform: 'translateY(-20%)' }}
@@ -213,7 +275,23 @@ const CategoryList = ({ rowTitle }) => {
                         <>
                             <h5 style={{ marginBottom: 12 }}>FILTERS FOR BPM</h5>
 
-                            <input type='range' />
+                            <div className='input-container-bpm'>
+                                <input
+                                    type='number'
+                                    value={bpmLowest}
+                                    onChange={(e) => {
+                                        setBpmLowest(e.target.value);
+                                    }}
+                                />
+                                <span>to</span>
+                                <input
+                                    type='number'
+                                    value={bpmHighest}
+                                    onChange={(e) => {
+                                        setBpmHighest(e.target.value);
+                                    }}
+                                />
+                            </div>
                         </>
                     )}
 
@@ -222,22 +300,51 @@ const CategoryList = ({ rowTitle }) => {
                             <h5 style={{ marginBottom: 12 }}>FILTERS FOR MOOD</h5>
 
                             <ul className='sub'>
-                                <li>Energetic</li>
-                                <li>Bouncy</li>
-                                <li>Eccentric</li>
-                                <li>Flirty</li>
+                                {mood.map((mood, index) => (
+                                    <li key={index}>
+                                        <label
+                                            className={moodCategory[index] ? 'active' : ''}
+                                            onClick={() => {
+                                                handleFilterElement(
+                                                    'primary_mood',
+                                                    !moodCategory[index],
+                                                    mood
+                                                );
+                                            }}
+                                        >
+                                            {mood}
+                                            <input
+                                                type='checkbox'
+                                                onChange={() => handleChangeFilter(index, 'mood')}
+                                            />
+                                        </label>
+                                    </li>
+                                ))}
                             </ul>
                         </>
                     )}
 
                     {selectedFilter === 'tags' && (
                         <>
-                            <h5 style={{ marginBottom: 12 }}>FILTERS FOR MOOD</h5>
+                            <h5 style={{ marginBottom: 12 }}>FILTERS FOR KEY</h5>
 
                             <ul className='sub'>
-                                <li>jack harlow</li>
-                                <li>dark</li>
-                                <li>flirty</li>
+                                {tags.map((tag, index) => (
+                                    <li key={index}>
+                                        <label
+                                            className={tagCategory[index] ? 'active' : ''}
+                                            onClick={() => {
+                                                handleFilterElement('tags', !tagCategory[index], tag);
+                                            }}
+                                        >
+                                            {tag}
+                                            <input
+                                                type='checkbox'
+                                                onChange={() => handleChangeFilter(index, 'tags')}
+                                            />
+                                        </label>
+                                    </li>
+                                ))}
                             </ul>
                         </>
                     )}

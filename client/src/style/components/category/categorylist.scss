@@ -20,9 +20,19 @@
             justify-content: space-between;
             align-items: center;
             margin: 4px 0;
+            border-radius: 4px;
+            cursor: pointer;
 
             &:not(:first-child) {
                 margin-top: 10px;
+            }
+
+            &.active {
+                background-color: $tertiary;
+            }
+
+            &:hover {
+                background-color: $tertiary;
             }
 
             .left {
@@ -87,6 +97,7 @@
 
             .right {
                 display: block;
+                margin-right: 8px;
 
                 button {
                     display: flex;
@@ -108,7 +119,7 @@
         padding: 14px;
         border-radius: 8px;
         margin-left: 14px;
-        overflow: hidden;
+        overflow-y: auto;
 
         @include breakpoint-down(medium) {
             display: block;
@@ -117,6 +128,7 @@
             margin-bottom: 16px;
             height: 100px;
             max-height: none;
+            overflow: hidden;
 
             &.active {
                 height: auto;
@@ -207,6 +219,32 @@
                         filter: brightness(1.1);
                     }
                 }
+            }
+        }
+
+        .input-container-bpm {
+            input {
+                background: none;
+                padding: 2px 0;
+                border: none;
+                border-bottom: 1.4px solid $text-color-gray-light;
+                width: 80px;
+                font-size: 1rem;
+                color: $text-color-bbg;
+
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                    appearance: none;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            span {
+                margin: 0 10px;
+                color: $text-color-gray-light;
             }
         }
     }

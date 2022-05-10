@@ -1,0 +1,85 @@
+@use '../../util/colors.scss' as *;
+@use '../../util/breakpoints.scss' as *;
+
+.license-help-container {
+    margin: 0 4%;
+
+    .license-wrapper {
+        color: $text-color-bbg;
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 22px 0 12px 0;
+        }
+
+        .licences {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @include breakpoint-down(medium) {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            .license {
+                background-color: $secondary;
+                border-radius: 8px;
+                padding: 18px 24px;
+                margin: 0 10px;
+                width: 400px;
+                // height: 100%;
+                max-height: 380px;
+                overflow: hidden;
+
+                @include breakpoint-down(medium) {
+                    width: auto;
+                    margin: 0;
+                }
+
+                &.favorite {
+                    background-color: $primary;
+                }
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                .license-title {
+                    font-size: 1.7rem;
+
+                    &.price {
+                        font-size: 1.4rem;
+                    }
+                }
+
+                .license-description {
+                    margin: 22px 0;
+                }
+
+                ul {
+                    list-style: none;
+
+                    li {
+                        display: flex;
+                        flex-direction: column;
+
+                        .license-option {
+                            &.disabled {
+                                text-decoration: line-through;
+                                color: $text-color-gray-light;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

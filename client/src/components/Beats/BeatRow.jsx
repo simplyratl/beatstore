@@ -4,7 +4,7 @@ import { AiOutlineRight } from 'react-icons/ai';
 import '../../style/dist/beatcard.min.css';
 import axios from 'axios';
 import '../../style/dist/beatrow.min.css';
-import { BeatPlayingContext } from '../../context/BeatPlayContext';
+import { Context } from '../../context/Context';
 import Slider from 'react-slick';
 import { getDataRow } from './beatrowfilter';
 import SkeletonCard from './SkeletonCard';
@@ -63,11 +63,8 @@ const BeatRow = ({ title }) => {
         const getBeats = async () => {
             try {
                 //192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get('http://192.168.1.18:8800/beat', {
-                    headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTc0NDA3NywiZXhwIjoxNjUyMDAzMjc3fQ.NMtkexWaj7AVFadQ0CngHjUmQnt20RfMj_3aORhOunY',
-                    },
-                });
+                const res = await axios.get('http://localhost:8800/beat');
+                // const res = await axios.get('http://192.168.1.18:8800/beat');
 
                 setBeats(getDataRow(res.data, title));
                 setLoading(false);

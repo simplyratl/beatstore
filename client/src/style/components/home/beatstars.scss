@@ -1,7 +1,10 @@
+@use '../../util/colors.scss' as *;
+
 .beatstars-container {
     position: relative;
     padding: 0 4%;
     margin-top: 60px;
+    color: $text-color-bbg;
 
     .heading {
         text-align: center;
@@ -14,11 +17,11 @@
             font-weight: 500;
 
             a {
-                color: #ff3842;
+                color: $primary;
                 text-decoration: none;
 
                 &:hover {
-                    color: #cc343c;
+                    color: $primary;
                 }
             }
         }
@@ -36,7 +39,7 @@
         }
 
         h2 {
-            color: #ff3842;
+            color: $primary;
         }
     }
 }

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { BsPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { BeatPlayingContext } from '../../context/BeatPlayContext';
+import { Context } from '../../context/Context';
 import { motion } from 'framer-motion';
 import '../../style/dist/beatcard.min.css';
 
 const BeatCard = ({ beat, index }) => {
-    const { setCurrentBeat, setIsPlaying } = useContext(BeatPlayingContext);
+    const { setCurrentBeat, setIsPlaying } = useContext(Context);
 
     return (
         <motion.div

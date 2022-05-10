@@ -7,7 +7,9 @@ import axios from 'axios';
 import { getDataRow } from '../Beats/beatrowfilter';
 import { key, mood, tags } from './categoriesfilter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BeatPlayingContext } from '../../context/BeatPlayContext';
+import { Context } from '../../context/Context';
+import { addCart } from '../../context/cartContext/apiCalls';
+import { CartContext } from '../../context/cartContext/CartContext';
 
 const CategoryList = ({ rowTitle }) => {
     const location = useLocation();
@@ -23,18 +25,16 @@ const CategoryList = ({ rowTitle }) => {
     const [bpmLowest, setBpmLowest] = useState(0);
     const [bpmHighest, setBpmHighest] = useState(250);
 
-    const { isPlaying, setIsPlaying, currentBeat, setCurrentBeat } = useContext(BeatPlayingContext);
+    const { isPlaying, setIsPlaying, currentBeat, setCurrentBeat, cart, setCart } = useContext(Context);
+
+    // const { isFetching, dispatch } = useContext(CartContext);
 
     useEffect(() => {
         if (!location.state) {
             const getData = async () => {
                 try {
                     //192.168.1.18 ---- replace for testing on devices.
-                    const res = await axios.get('http://192.168.1.18:8800/beat', {
-                        headers: {
-                            token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTc0NDA3NywiZXhwIjoxNjUyMDAzMjc3fQ.NMtkexWaj7AVFadQ0CngHjUmQnt20RfMj_3aORhOunY',
-                        },
-                    });
+                    const res = await axios.get('http://192.168.1.18:8800/beat');
 
                     setBeats(getDataRow(res.data, rowTitle.charAt(0).toUpperCase() + rowTitle.slice(1)));
                     setFilteredBeats(
@@ -157,6 +157,11 @@ const CategoryList = ({ rowTitle }) => {
         }
     };
 
+    const handleAddToCart = (beat) => {
+        setCart([...cart, beat]);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    };
+
     return (
         <div className='category-list-container'>
             <ul className='beats-list'>
@@ -164,10 +169,6 @@ const CategoryList = ({ rowTitle }) => {
                     {filteredBeats.map((beat, index) => (
                         <motion.li
                             className={`beat ${filteredBeats[index]._id === currentBeat._id && 'active'}`}
-                            onClick={() => {
-                                setIsPlaying(true);
-                                setCurrentBeat(beat);
-                            }}
                             key={index}
                             layout
                             initial={{ opacity: 0, transform: 'translateY(-20%)' }}
@@ -175,7 +176,13 @@ const CategoryList = ({ rowTitle }) => {
                             exit={{ opacity: 0, transform: 'translateY(20%)' }}
                             transition={{ duration: 0.2 }}
                         >
-                            <div className='left'>
+                            <div
+                                className='left'
+                                onClick={() => {
+                                    setIsPlaying(true);
+                                    setCurrentBeat(beat);
+                                }}
+                            >
                                 <img src={beat?.img} alt='' />
                                 <div className='info'>
                                     <div className='title'>
@@ -187,7 +194,7 @@ const CategoryList = ({ rowTitle }) => {
                             </div>
 
                             <div className='right'>
-                                <button type='button'>
+                                <button type='button' onClick={() => handleAddToCart(beat)}>
                                     <BsCart2 />
                                     {!beat?.basic_licence?.toString()?.includes('.')
                                         ? `${beat?.basic_licence}.00`

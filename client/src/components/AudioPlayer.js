@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BiShuffle, BiRepeat } from 'react-icons/bi';
 import { BsVolumeDown, BsVolumeMute, BsCart2 } from 'react-icons/bs';
 import { AiFillPlayCircle, AiFillStepBackward, AiFillStepForward, AiFillPauseCircle } from 'react-icons/ai';
-import { BeatPlayingContext } from '../context/BeatPlayContext';
+import { Context } from '../context/Context';
 import '../style/dist/audioplayer.min.css';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/cartContext/CartContext';
+import { addCart } from '../context/cartContext/apiCalls';
 
 const AudioPlayer = () => {
     const [paused, setPaused] = useState(false);
@@ -13,9 +15,8 @@ const AudioPlayer = () => {
     const [repeat, setRepeat] = useState(false);
     const [percentVolume, setPercentVolume] = useState(50);
     const [muted, setMuted] = useState(true);
-    const [draging, setDraging] = useState(false);
 
-    const { isPlaying, currentBeat, setIsPlaying } = useContext(BeatPlayingContext);
+    const { isPlaying, currentBeat, setIsPlaying, cart } = useContext(Context);
 
     const audioRef = useRef(null);
     const sliderRef = useRef(null);
@@ -36,18 +37,6 @@ const AudioPlayer = () => {
     const handleVolumeChange = (e) => {
         setPercentVolume(e.target.value);
     };
-
-    // document.body.onkeyup = (e) => {
-    //     if (e.code == 'Space') {
-    //         setPaused(!paused);
-
-    //         if (paused) {
-    //             audioRef.current.pause();
-    //         } else {
-    //             audioRef.current.play();
-    //         }
-    //     }
-    // };
 
     useEffect(() => {
         if (isPlaying) {
@@ -119,6 +108,11 @@ const AudioPlayer = () => {
         }
     };
 
+    const handleAddToCart = (beat) => {
+        // addCart(beat, dispatch);
+
+    };
+
     return (
         <div className='audio-player-container'>
             <div className='audio-player-wrapper'>
@@ -138,8 +132,8 @@ const AudioPlayer = () => {
                         {currentBeat.artist ? (
                             <span className='song-artist'>{currentBeat.artist}</span>
                         ) : Object.keys(currentBeat).length > 0 ? (
-                            <button type='button' className='buy-now-player' style={{ margin: '4px 0' }}>
-                                <BsCart2 />
+                            <button type='button' className='buy-now-player' style={{ margin: '4px 0' }} onClick={handleAddToCart(currentBeat)}>
+                                <BsCart2 onClick={() => handleAddToCart(currentBeat)}/>
                                 {!currentBeat?.basic_licence?.toString()?.includes('.')
                                     ? `${currentBeat?.basic_licence}.00`
                                     : currentBeat?.basic_licence}
@@ -149,7 +143,7 @@ const AudioPlayer = () => {
 
                     {currentBeat.artist && (
                         <button type='button' className='buy-now-player'>
-                            <BsCart2 />
+                            <BsCart2 onClick={() => handleAddToCart(currentBeat)}/>
                             {!currentBeat?.basic_licence?.toString()?.includes('.')
                                 ? `${currentBeat?.basic_licence}.00`
                                 : currentBeat?.basic_licence}

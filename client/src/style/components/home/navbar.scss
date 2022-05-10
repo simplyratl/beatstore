@@ -136,6 +136,19 @@ header {
                 margin-left: 28px;
                 cursor: pointer;
 
+                &.auth {
+                    color: $text-color-bbg;
+                    text-decoration: none;
+                    position: relative;
+                    top: -2px;
+                    font-size: 1.1rem;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
                 &:hover {
                     color: $primary;
                 }

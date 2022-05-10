@@ -6,7 +6,7 @@ import { IoMdMicrophone } from 'react-icons/io';
 import { BiMicrophone, BiChevronDown } from 'react-icons/bi';
 import { BsCart2, BsSpotify } from 'react-icons/bs';
 import { BsPlayFill } from 'react-icons/bs';
-import { BeatPlayingContext } from '../../context/BeatPlayContext';
+import { Context } from '../../context/Context';
 import Slider from 'react-slick';
 import axios from 'axios';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
@@ -119,7 +119,7 @@ const BeatTopBar = () => {
         getRecommended();
     }, [recommended]);
 
-    const { setIsPlaying, isPlaying, setCurrentBeat, currentBeat } = useContext(BeatPlayingContext);
+    const { setIsPlaying, isPlaying, setCurrentBeat, currentBeat } = useContext(Context);
 
     return (
         <motion.div

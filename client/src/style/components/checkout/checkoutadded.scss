@@ -1,0 +1,33 @@
+@use '../../util/colors.scss' as *;
+@use '../../util/breakpoints.scss' as *;
+
+.checkout-added-container {
+    background-color: $secondary;
+    width: 440px;
+    color: $text-color-bbg;
+    padding: 22px;
+    border-radius: 8px;
+    flex: 1;
+
+    .pricing {
+        border-top: 1px solid $tertiary;
+        padding-top: 12px;
+
+        .subtotal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &.total {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 22px;
+                color: $primary;
+            }
+        }
+    }
+
+    .status {
+        color: $primary;
+    }
+}

@@ -1,0 +1,131 @@
+@use '../../util/breakpoints.scss' as *;
+@use '../../util/colors.scss' as *;
+
+.payment-container {
+    flex: 2;
+    color: $text-color-bbg;
+    margin-right: 12px;
+
+    .confirmation {
+        position: fixed;
+        inset: 0;
+        background: rgba($color: #000000, $alpha: 0.9);
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .confirmation-wrapper {
+            position: relative;
+            background-color: $secondary;
+            max-width: 400px;
+            height: 140px;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            margin: 0 8px;
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .question {
+                color: $text-color-gray-light;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    padding: 6px 14px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 1rem;
+
+                    &:hover {
+                        filter: brightness(1.2);
+                    }
+                }
+
+                .no {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+
+    .payment-wrapper {
+        position: relative;
+
+        .title {
+            font-size: 2rem;
+        }
+
+        .remove {
+            display: inline-block;
+            color: $primary;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 10px 0 18px 0;
+        }
+
+        .added-container {
+            .added {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 12px 0;
+
+                .image-container {
+                    position: relative;
+                    user-select: none;
+
+                    img {
+                        width: 70px;
+                        height: 70px;
+                        object-fit: cover;
+                        border-radius: 6px;
+                    }
+                }
+
+                .info {
+                    display: flex;
+                    align-items: center;
+
+                    .info-more {
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 8px;
+
+                        .title {
+                            font-size: 1.1rem;
+                        }
+
+                        .side {
+                            font-size: 0.8rem;
+                            color: $text-color-gray-light;
+                        }
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .remove {
+                        margin: 0;
+                        margin-left: 10px;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+}

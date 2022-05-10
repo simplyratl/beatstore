@@ -5,11 +5,15 @@
     width: 100%;
     background-color: $primary;
     color: #fff;
-    top: 76px;
+    top: 74px;
     padding: 10px 0;
     opacity: 0;
     pointer-events: none;
     transition: 0.3s;
+
+    @media screen and (max-width: 870px) {
+        padding: 10px 60px;
+    }
 
     &.active {
         opacity: 1;

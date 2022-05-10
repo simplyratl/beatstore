@@ -1,21 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IoSearchOutline, IoSettingsOutline } from 'react-icons/io5';
 import { BsCart2 } from 'react-icons/bs';
 import { BiHeart, BiLogOut } from 'react-icons/bi';
 import { AiOutlineUser } from 'react-icons/ai';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../style/hamburger/hamburger.css';
 import '../style/dist/navbar.min.css';
 import Promotion_Navbar from './Home/Promotion_Navbar';
+import { useDispatch } from 'react-redux';
+import { Context } from '../context/Context';
 
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
     const [showHamburgerWidth, setShowHamburgerWidth] = useState(false);
     const [searchShow, setSearchShow] = useState(false);
     const [background, setBackground] = useState(false);
-    const location = useLocation();
+    const [total, setTotal] = useState(0);
 
-    let timer = null;
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    const { setUser, user, cart } = useContext(Context);
+
+    useEffect(() => {
+        const calculateTotal = () => {
+            let counter = 0;
+
+            for (let i = 0; i < cart?.length; i++) {
+                counter += cart[i].basic_licence;
+            }
+            setTotal(counter);
+        };
+
+        calculateTotal();
+    }, [cart]);
+
     useEffect(() => {
         window.addEventListener('resize', () => {
             if (window.innerWidth < 1149) {
@@ -39,6 +60,12 @@ const Navbar = () => {
     }, [location]);
 
     window.addEventListener('scroll', changeBackgorund);
+
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' });
+
+        setUser(null);
+    };
 
     return (
         <header>
@@ -88,43 +115,59 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className='user-wrapper'>
-                        <span className='icon element'>{<AiOutlineUser />}</span>
+                        {user ? (
+                            <span className='icon element'>{<AiOutlineUser />}</span>
+                        ) : (
+                            <>
+                                <Link to={'/register'} className='element auth'>
+                                    Sign up
+                                </Link>
+                                <Link to={'/login'} className='element auth'>
+                                    Sign In
+                                </Link>
+                            </>
+                        )}
 
-                        <div className='user-sub-menu'>
-                            <div>
-                                <a href='#' className='profile-main'>
-                                    <img src='https://pbs.twimg.com/media/DiHYZjOVAAA95Yc.jpg' alt='' />
+                        {user ? (
+                            <div className='user-sub-menu'>
+                                <div>
+                                    <a href='#' className='profile-main'>
+                                        <img
+                                            src={user.result ? user.result.imageUrl : user.profilePic}
+                                            alt=''
+                                        />
 
-                                    <span>Index</span>
-                                </a>
+                                        <span>{user.result ? user.result.givenName : user.username}</span>
+                                    </a>
+                                </div>
+
+                                <ul className='ul-user-sub-menu'>
+                                    <a href='#' className='a-user-sub-menu'>
+                                        <li className='li-user-sub-menu'>
+                                            <BiHeart className='sub-icon' />
+                                            Cart
+                                        </li>
+                                    </a>
+                                    <a href='#' className='a-user-sub-menu'>
+                                        <li className='li-user-sub-menu'>
+                                            <IoSettingsOutline className='sub-icon' />
+                                            Settings
+                                        </li>
+                                    </a>
+                                    <span href='#' className='a-user-sub-menu' style={{ cursor: 'pointer' }}>
+                                        <li className='li-user-sub-menu last' onClick={logout}>
+                                            <BiLogOut className='sub-icon' />
+                                            Logout
+                                        </li>
+                                    </span>
+                                </ul>
                             </div>
-
-                            <ul className='ul-user-sub-menu'>
-                                <a href='#' className='a-user-sub-menu'>
-                                    <li className='li-user-sub-menu'>
-                                        <BiHeart className='sub-icon' />
-                                        Wishlist
-                                    </li>
-                                </a>
-                                <a href='#' className='a-user-sub-menu'>
-                                    <li className='li-user-sub-menu'>
-                                        <IoSettingsOutline className='sub-icon' />
-                                        Settings
-                                    </li>
-                                </a>
-                                <a href='#' className='a-user-sub-menu'>
-                                    <li className='li-user-sub-menu last'>
-                                        <BiLogOut className='sub-icon' />
-                                        Logout
-                                    </li>
-                                </a>
-                            </ul>
-                        </div>
+                        ) : null}
                     </div>
-                    <div className='cart element'>
+                    <Link to={'/checkout'} className='cart element'>
                         <span className='icon'>{<BsCart2 />}</span>
-                        <span className='money-in-cart'>$225.00</span>
-                    </div>
+                        <span className='money-in-cart'>${total}</span>
+                    </Link>
 
                     <div className='vertical-line'></div>
 

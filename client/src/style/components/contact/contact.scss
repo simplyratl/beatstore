@@ -1,0 +1,126 @@
+@use '../../util/colors.scss' as *;
+
+.contact-container {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .contact-wrapper {
+        margin: auto;
+        display: flex;
+        color: #fff;
+
+        .left {
+            flex: 1;
+            margin-right: 32px;
+
+            .desc {
+                display: block;
+                margin-top: 24px;
+                max-width: 440px;
+                font-weight: 300;
+            }
+
+            .email {
+                display: flex;
+                align-items: center;
+                border-radius: 8px;
+                padding: 8px;
+                width: 240px;
+                margin-top: 3.4em;
+                cursor: pointer;
+                border: 3px solid $background;
+                transition: 0.1s ease-in-out;
+                text-decoration: none;
+                color: #fff;
+
+                &:hover {
+                    border: 3px solid $primary;
+                    background-color: #da444530;
+                }
+
+                .icon {
+                    font-size: 1.4rem;
+                    margin-right: 6px;
+                }
+            }
+
+            .social-media {
+                display: flex;
+                justify-content: space-between;
+                width: 200px;
+                margin-top: 48px;
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+
+                    .icon {
+                        width: 54px;
+                        height: 54px;
+                        padding: 14px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: $primary;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+
+        form {
+            flex: 1;
+
+            .row {
+                display: flex;
+                flex-direction: column;
+                margin: 12px 0;
+
+                &:first-child {
+                    margin: 0;
+                }
+
+                label {
+                    font-size: 1rem;
+                    margin-bottom: 6px;
+                }
+
+                input {
+                    font-size: 1.1rem;
+                    padding: 12px 14px;
+                    outline: none;
+                    border: 2px solid $background;
+                    border-radius: 8px;
+
+                    &:focus {
+                        border: 2px solid $primary;
+                    }
+                }
+
+                textarea {
+                    font-size: 1rem;
+                    border: 2px solid $background;
+                    outline: none;
+                    border-radius: 8px;
+                    padding: 8px 12px;
+
+                    &:focus {
+                        border: 2px solid $primary;
+                    }
+                }
+
+                button {
+                    color: #fff;
+                    background-color: $primary;
+                    padding: 8px 0;
+                    font-size: 1rem;
+                    border-radius: 6px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

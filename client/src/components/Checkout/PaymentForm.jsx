@@ -1,30 +1,25 @@
 import React, { useContext, useState } from 'react';
-import { Context } from '../../context/Context';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AiOutlineDelete } from 'react-icons/ai';
 import '../../style/dist/paymentform.min.css';
+import { CartContext } from '../../context/cartContext/CartContext';
+import { removeAllCart, removeFromCart } from '../../context/cartContext/apiCalls';
 
 const PaymentForm = () => {
-    const { cart, setCart } = useContext(Context);
     const [showConfirmation, setShowConfirmation] = useState(false);
-    const [removeItems, setRemoveItems] = useState(false);
+
+    const { cart, dispatch } = useContext(CartContext);
 
     const deleteItems = () => {
         if (showConfirmation) {
+            removeAllCart(dispatch);
+
             setShowConfirmation(false);
-            setCart([]);
-            localStorage.removeItem('cart');
         }
     };
 
     const deleteSpecificItem = (deletedItem) => {
-        setCart(
-            cart.filter((item) => {
-                if (item._id !== deletedItem._id) return item;
-            })
-        );
-
-        localStorage.setItem('cart', cart);
+        removeFromCart(deletedItem, dispatch);
     };
 
     return (

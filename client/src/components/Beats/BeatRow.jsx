@@ -62,7 +62,7 @@ const BeatRow = ({ title }) => {
     useEffect(() => {
         const getBeats = async () => {
             try {
-                //192.168.1.18 ---- replace for testing on devices.
+                // 192.168.1.18 ---- replace for testing on devices.
                 const res = await axios.get('http://localhost:8800/beat');
                 // const res = await axios.get('http://192.168.1.18:8800/beat');
 
@@ -102,7 +102,10 @@ const BeatRow = ({ title }) => {
                         <AiOutlineRight className='icon' />
                     </Link>
                 </h2>
-                <div className='beats-container'>
+                <div
+                    className='beats-container'
+                    style={{ padding: beats?.length >= 6 ? '0 38px' : '0 28px' }}
+                >
                     <Slider {...settings}>
                         {!loading
                             ? beats?.map((beat, index) => (

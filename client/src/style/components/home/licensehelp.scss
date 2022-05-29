@@ -31,9 +31,9 @@
                 padding: 18px 24px;
                 margin: 0 10px;
                 width: 400px;
-                // height: 100%;
-                max-height: 380px;
-                overflow: hidden;
+                height: 420px;
+                max-height: 420px;
+                overflow-y: auto;
 
                 @include breakpoint-down(medium) {
                     width: auto;

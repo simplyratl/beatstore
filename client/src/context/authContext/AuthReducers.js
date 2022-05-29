@@ -1,39 +1,40 @@
 const AuthReducer = (state, action) => {
-   switch (action.type) {
-       case 'LOGIN_START':
-           return {
-               user: null,
-               isFetching: true,
-               error: false,
-           };
-
-       case 'LOGIN_SUCCESS':
-           return {
-               user: action.payload,
-               isFetching: false,
-               error: false,
-           };
-
-       case 'LOGIN_FAILURE':
-           return {
-               user: null,
-               isFetching: false,
-               error: true,
-           };
-
-       case 'LOGOUT':
-           return {
-               user: null,
-               isFetching: false,
-               error: false,
-           };
-           case 'LOGIN_START_GOOGLE':
+    switch (action.type) {
+        case 'LOGIN_START':
             return {
                 user: null,
                 isFetching: true,
                 error: false,
             };
- 
+
+        case 'LOGIN_SUCCESS':
+            return {
+                user: action.payload,
+                isFetching: false,
+                error: false,
+            };
+
+        case 'LOGIN_FAILURE':
+            return {
+                user: null,
+                isFetching: false,
+                error: true,
+            };
+
+        case 'LOGOUT':
+            return {
+                user: null,
+                isFetching: false,
+                error: false,
+            };
+
+        case 'LOGIN_START_GOOGLE':
+            return {
+                user: null,
+                isFetching: true,
+                error: false,
+            };
+
         case 'LOGIN_SUCCESS_GOOGLE':
             localStorage.setItem('user', JSON.stringify({ ...action?.payload }));
             return {
@@ -41,14 +42,14 @@ const AuthReducer = (state, action) => {
                 isFetching: false,
                 error: false,
             };
- 
+
         case 'LOGIN_FAILURE_GOOGLE':
             return {
                 user: null,
                 isFetching: false,
                 error: true,
             };
- 
+
         case 'LOGOUT_GOOGLE':
             localStorage.removeItem('user');
             return {
@@ -57,31 +58,30 @@ const AuthReducer = (state, action) => {
                 error: false,
             };
 
-            case 'REGISTER_START':
-                return {
-                    user: null,
-                    isFetching: true,
-                    error: false,
-                };
-     
-            case 'REGISTER_SUCCESS':
-                return {
-                    user: action.payload,
-                    isFetching: false,
-                    error: false,
-                };
-     
-            case 'REGISTER_FAILURE':
-                return {
-                    user: null,
-                    isFetching: false,
-                    error: true,
-                };
-        
+        case 'REGISTER_START':
+            return {
+                user: null,
+                isFetching: true,
+                error: false,
+            };
 
-       default:
-           return { ...state };
-   }
+        case 'REGISTER_SUCCESS':
+            return {
+                user: action.payload,
+                isFetching: false,
+                error: false,
+            };
+
+        case 'REGISTER_FAILURE':
+            return {
+                user: null,
+                isFetching: false,
+                error: true,
+            };
+
+        default:
+            return { ...state };
+    }
 };
 
 export default AuthReducer;

@@ -1,1 +1,1 @@
-.checkout-container{display:flex;justify-content:space-between;margin:0 4%}/*# sourceMappingURL=checkout.min.css.map */
+.checkout-container{display:flex;justify-content:space-between;margin:0 4%}@media screen and (max-width: 800px){.checkout-container{flex-direction:column-reverse}}/*# sourceMappingURL=checkout.min.css.map */

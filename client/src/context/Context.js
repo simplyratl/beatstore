@@ -8,13 +8,13 @@ export const BeatPlayProvider = ({ children }) => {
     const [currentBeat, setCurrentBeat] = useState({});
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
-    if (cart) {
-        if (cart.length === 0) {
-            if (localStorage.getItem('cart') !== undefined) {
-                setCart(JSON.parse(localStorage.getItem('cart')));
-            }
-        }
-    }
+    // if (cart) {
+    //     if (cart.length === 0) {
+    //         if (localStorage.getItem('cart')) {
+    //             setCart(JSON.parse(localStorage.getItem('cart')));
+    //         }
+    //     }
+    // }
 
     return (
         <Context.Provider

@@ -15,6 +15,8 @@ import '../../style/dist/beattopbar.min.css';
 import '../../style/dist/beatcard.min.css';
 import BeatCard from '../Beats/BeatCard';
 import { motion } from 'framer-motion';
+import { addToCart, removeFromCart } from '../../context/cartContext/apiCalls';
+import { CartContext } from '../../context/cartContext/CartContext';
 
 const BeatTopBar = () => {
     const location = useLocation();
@@ -22,6 +24,8 @@ const BeatTopBar = () => {
     const [recommended, setRecommended] = useState([]);
     const [usage, setUsage] = useState(false);
     const [selectedLicence, setSelectedLicence] = useState('basic');
+
+    const { cart, dispatch } = useContext(CartContext);
 
     let settings = {
         infinite: recommended.length > 6 ? true : false,
@@ -51,6 +55,7 @@ const BeatTopBar = () => {
                     arrows: false,
                     slidesToShow: 2,
                     slidesToScroll: 2,
+                    swipe: true,
                 },
             },
             {
@@ -58,6 +63,7 @@ const BeatTopBar = () => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
+                    swipe: true,
                 },
             },
         ],
@@ -87,6 +93,14 @@ const BeatTopBar = () => {
             setBeat(location.state.beat);
         }
     }, []);
+
+    const handleAddToCart = (beat) => {
+        addToCart(beat, dispatch);
+    };
+
+    const removeCart = (beat) => {
+        removeFromCart(beat, dispatch);
+    };
 
     useEffect(() => {
         const getRecommended = async () => {
@@ -187,10 +201,19 @@ const BeatTopBar = () => {
                             {selectedLicence === 'vip' && <span className='price'>${beat.vip_licence}</span>}
                         </div>
 
-                        <button>
-                            <BsCart2 />
-                            Add to cart
-                        </button>
+                        {!cart.some((item) => item._id === beat._id) && (
+                            <button onClick={() => handleAddToCart(beat)}>
+                                <BsCart2 className='icon' />
+                                Add to cart
+                            </button>
+                        )}
+
+                        {cart.some((item) => item._id === beat._id) && (
+                            <button onClick={() => removeCart(beat)} className='incart'>
+                                <BsCart2 className='icon' />
+                                In cart
+                            </button>
+                        )}
                     </div>
 
                     <div className='licence-container'>

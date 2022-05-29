@@ -75,6 +75,10 @@
                 align-items: center;
                 cursor: pointer;
 
+                &.incart {
+                    background-color: $secondary;
+                }
+
                 @include breakpoint-down(small) {
                     display: none;
                 }

@@ -89,5 +89,14 @@
                 margin-right: 8px;
             }
         }
+
+        .forgot-password {
+            cursor: pointer;
+            margin-top: 8px;
+
+            &:hover {
+                color: $primary;
+            }
+        }
     }
 }

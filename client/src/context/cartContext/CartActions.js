@@ -1,12 +1,13 @@
-export const cartStart = () => ({
-   type: 'CART_START',
-});
-
-export const cartSuccess = (cart) => ({
-   type: 'CART_SUCCESS',
+export const cartAdd = (cart) => ({
+   type: 'CART_ADD',
    payload: cart,
 });
 
-export const cartFailure = () => ({
-   type: 'CART_FAILURE',
+export const cartDelete = (cart) => ({
+   type: 'CART_DELETE',
+   payload: cart,
+});
+
+export const cartDeleteAll = () => ({
+   type: 'CART_DELETE_ALL',
 });

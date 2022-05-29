@@ -6,7 +6,7 @@ import { Context } from '../context/Context';
 import '../style/dist/audioplayer.min.css';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/cartContext/CartContext';
-import { addCart } from '../context/cartContext/apiCalls';
+import { addCart, addToCart, removeFromCart } from '../context/cartContext/apiCalls';
 
 const AudioPlayer = () => {
     const [paused, setPaused] = useState(false);
@@ -16,7 +16,8 @@ const AudioPlayer = () => {
     const [percentVolume, setPercentVolume] = useState(50);
     const [muted, setMuted] = useState(true);
 
-    const { isPlaying, currentBeat, setIsPlaying, cart } = useContext(Context);
+    const { isPlaying, currentBeat, setIsPlaying } = useContext(Context);
+    const { cart, dispatch } = useContext(CartContext);
 
     const audioRef = useRef(null);
     const sliderRef = useRef(null);
@@ -109,8 +110,11 @@ const AudioPlayer = () => {
     };
 
     const handleAddToCart = (beat) => {
-        // addCart(beat, dispatch);
+        addToCart(beat, dispatch);
+    };
 
+    const removeCart = (beat) => {
+        removeFromCart(beat, dispatch);
     };
 
     return (
@@ -132,18 +136,35 @@ const AudioPlayer = () => {
                         {currentBeat.artist ? (
                             <span className='song-artist'>{currentBeat.artist}</span>
                         ) : Object.keys(currentBeat).length > 0 ? (
-                            <button type='button' className='buy-now-player' style={{ margin: '4px 0' }} onClick={handleAddToCart(currentBeat)}>
-                                <BsCart2 onClick={() => handleAddToCart(currentBeat)}/>
-                                {!currentBeat?.basic_licence?.toString()?.includes('.')
-                                    ? `${currentBeat?.basic_licence}.00`
-                                    : currentBeat?.basic_licence}
-                            </button>
+                            !cart.some((item) => item._id === currentBeat._id) ? (
+                                <button
+                                    type='button'
+                                    className='buy-now-player'
+                                    style={{ margin: '4px 0' }}
+                                    onClick={() => handleAddToCart(currentBeat)}
+                                >
+                                    <BsCart2 />
+                                    {!currentBeat?.basic_licence?.toString()?.includes('.')
+                                        ? `${currentBeat?.basic_licence}.00`
+                                        : currentBeat?.basic_licence}
+                                </button>
+                            ) : (
+                                <button
+                                    type='button'
+                                    className='buy-now-player incart'
+                                    style={{ margin: '4px 0' }}
+                                    onClick={() => removeCart(currentBeat)}
+                                >
+                                    <BsCart2 />
+                                    In cart
+                                </button>
+                            )
                         ) : null}
                     </div>
 
                     {currentBeat.artist && (
                         <button type='button' className='buy-now-player'>
-                            <BsCart2 onClick={() => handleAddToCart(currentBeat)}/>
+                            <BsCart2 onClick={() => handleAddToCart(currentBeat)} />
                             {!currentBeat?.basic_licence?.toString()?.includes('.')
                                 ? `${currentBeat?.basic_licence}.00`
                                 : currentBeat?.basic_licence}

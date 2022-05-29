@@ -189,6 +189,17 @@
                     border: none;
                     border-radius: 8px;
                     cursor: pointer;
+                    font-size: 1.1rem;
+                    font-weight: 400;
+
+                    .icon {
+                        margin-right: 4px;
+                    }
+
+                    &.incart {
+                        background-color: $background;
+                        color: $text-color-gray-light;
+                    }
                 }
             }
 
@@ -218,12 +229,12 @@
                     }
 
                     &.active {
-                        border: 2px solid $primary;
-                        background-color: #fcc20160;
+                        border: 2px solid #db3535;
+                        background-color: $primary;
 
                         &:hover {
-                            filter: brightness(1.1);
-                            background-color: #fcc20180;
+                            filter: brightness(1.16);
+                            background-color: $primary;
                         }
                     }
 

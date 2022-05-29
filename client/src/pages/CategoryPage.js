@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import CategoryList from '../components/Category/CategoryList';
 
+
 const CategoryPage = () => {
     const location = useLocation();
 

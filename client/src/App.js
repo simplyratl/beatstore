@@ -12,6 +12,7 @@ import { Context } from './context/Context';
 import Checkout from './pages/Checkout';
 import BoughPage from './pages/BoughPage';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import Contact from './pages/Contact';
 
 const Defaults = () => {
     return (
@@ -53,6 +54,9 @@ function App() {
                     </Route>
                     <Route element={<Defaults />}>
                         <Route path='/checkout/:id' element={<BoughPage />} />
+                    </Route>
+                    <Route element={<Defaults />}>
+                        <Route path='/contact' element={<Contact />} />
                     </Route>
                     <Route path='/register' element={<Register />} />
                     <Route path='/login' element={<Login />} />

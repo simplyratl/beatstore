@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { loginFailure, loginStart, loginSuccess, loginStartGoogle, loginSuccessGoogle, loginFailureGoogle, registerStart, registerFailure, registerSuccess } from './AuthActions';
+import { loginFailure, loginStart, loginSuccess, loginSuccessGoogle, loginFailureGoogle, registerStart, registerFailure, registerSuccess, logoutStart } from './AuthActions';
 
 export const login = async (user, dispatch, setErrorDisplay) => {
     dispatch(loginStart());
@@ -24,7 +24,7 @@ export const loginGoogle = (user, dispatch) => {
     try {
         dispatch(loginSuccessGoogle(user));
         window.location.href = '/';
-        
+
     } catch (error) {
         dispatch(loginFailureGoogle());
     }
@@ -36,7 +36,7 @@ export const register = async (user, dispatch, setErrorDisplay, setSuccess) => {
     try {
         const res = await axios.post('http://192.168.1.18:8800/auth/register', user);
         dispatch(registerSuccess(res.data));
-        
+
         setTimeout(() => {
             window.location.href = '/login';
         }, [2000])
@@ -47,4 +47,8 @@ export const register = async (user, dispatch, setErrorDisplay, setSuccess) => {
         dispatch(registerFailure());
         setErrorDisplay('Registration failed.');
     }
+}
+
+export const logoutRegular = (dispatch) => {
+    dispatch(logoutStart());
 }

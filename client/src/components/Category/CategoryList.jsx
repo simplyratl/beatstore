@@ -8,7 +8,7 @@ import { getDataRow } from '../Beats/beatrowfilter';
 import { key, mood, tags } from './categoriesfilter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Context } from '../../context/Context';
-import { addCart } from '../../context/cartContext/apiCalls';
+import { addToCart, removeFromCart } from '../../context/cartContext/apiCalls';
 import { CartContext } from '../../context/cartContext/CartContext';
 
 const CategoryList = ({ rowTitle }) => {
@@ -25,9 +25,9 @@ const CategoryList = ({ rowTitle }) => {
     const [bpmLowest, setBpmLowest] = useState(0);
     const [bpmHighest, setBpmHighest] = useState(250);
 
-    const { isPlaying, setIsPlaying, currentBeat, setCurrentBeat, cart, setCart } = useContext(Context);
+    const { isPlaying, setIsPlaying, currentBeat, setCurrentBeat } = useContext(Context);
 
-    // const { isFetching, dispatch } = useContext(CartContext);
+    const { dispatch, cart } = useContext(CartContext);
 
     useEffect(() => {
         if (!location.state) {
@@ -157,9 +157,17 @@ const CategoryList = ({ rowTitle }) => {
         }
     };
 
+    // const handleAddToCart = (beat) => {
+    //     setCart([...cart, beat]);
+    //     localStorage.setItem('cart', JSON.stringify(cart));
+    // };
+
     const handleAddToCart = (beat) => {
-        setCart([...cart, beat]);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        addToCart(beat, dispatch);
+    };
+
+    const removeCart = (beat) => {
+        removeFromCart(beat, dispatch);
     };
 
     return (
@@ -194,12 +202,38 @@ const CategoryList = ({ rowTitle }) => {
                             </div>
 
                             <div className='right'>
-                                <button type='button' onClick={() => handleAddToCart(beat)}>
-                                    <BsCart2 />
-                                    {!beat?.basic_licence?.toString()?.includes('.')
-                                        ? `${beat?.basic_licence}.00`
-                                        : beat?.basic_licence}
-                                </button>
+                                {!cart.some((item) => item._id === beat._id) && (
+                                    <motion.button
+                                        type='button'
+                                        onClick={() => {
+                                            handleAddToCart(beat, index);
+                                        }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                    >
+                                        <BsCart2 />
+                                        {!beat?.basic_licence?.toString()?.includes('.')
+                                            ? `${beat?.basic_licence}.00`
+                                            : beat?.basic_licence}
+                                    </motion.button>
+                                )}
+
+                                {cart.some((item) => item._id === beat._id) && (
+                                    <motion.button
+                                        type='button'
+                                        onClick={() => {
+                                            removeCart(beat);
+                                        }}
+                                        className='incart'
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                    >
+                                        <BsCart2 />
+                                        In cart
+                                    </motion.button>
+                                )}
                             </div>
                         </motion.li>
                     ))}

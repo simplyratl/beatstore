@@ -7,8 +7,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../style/hamburger/hamburger.css';
 import '../style/dist/navbar.min.css';
 import Promotion_Navbar from './Home/Promotion_Navbar';
-import { useDispatch } from 'react-redux';
 import { Context } from '../context/Context';
+import { CartContext } from '../context/cartContext/CartContext';
+import { logoutRegular } from '../context/authContext/apiCalls';
+import { AuthContext } from '../context/authContext/AuthContext';
 
 const Navbar = () => {
     const [hamburger, setHamburger] = useState(false);
@@ -20,18 +22,23 @@ const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-
-    const { setUser, user, cart } = useContext(Context);
+    const { cart, dispatch } = useContext(CartContext);
+    const { dispatch: authDispatch } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const calculateTotal = () => {
-            let counter = 0;
+            if (cart.length > 0) {
+                let counter = 0;
 
-            for (let i = 0; i < cart?.length; i++) {
-                counter += cart[i].basic_licence;
+                for (let i = 0; i < cart?.length; i++) {
+                    counter += cart[i].basic_licence;
+                }
+
+                setTotal(counter.toFixed(2));
+            } else {
+                setTotal(0);
             }
-            setTotal(counter);
         };
 
         calculateTotal();
@@ -61,10 +68,8 @@ const Navbar = () => {
 
     window.addEventListener('scroll', changeBackgorund);
 
-    const logout = () => {
-        dispatch({ type: 'LOGOUT' });
-
-        setUser(null);
+    const handleLogout = () => {
+        logoutRegular(authDispatch);
     };
 
     return (
@@ -98,9 +103,9 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li className='navigation-list'>
-                            <a href='#' className='navigation-link'>
+                            <Link to={'/contact'} className='navigation-link'>
                                 CONTACT
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -142,7 +147,7 @@ const Navbar = () => {
                                 </div>
 
                                 <ul className='ul-user-sub-menu'>
-                                    <a href='#' className='a-user-sub-menu'>
+                                    <a href='/checkout' className='a-user-sub-menu'>
                                         <li className='li-user-sub-menu'>
                                             <BiHeart className='sub-icon' />
                                             Cart
@@ -155,7 +160,7 @@ const Navbar = () => {
                                         </li>
                                     </a>
                                     <span href='#' className='a-user-sub-menu' style={{ cursor: 'pointer' }}>
-                                        <li className='li-user-sub-menu last' onClick={logout}>
+                                        <li className='li-user-sub-menu last' onClick={() => handleLogout()}>
                                             <BiLogOut className='sub-icon' />
                                             Logout
                                         </li>
@@ -164,10 +169,10 @@ const Navbar = () => {
                             </div>
                         ) : null}
                     </div>
-                    <Link to={'/checkout'} className='cart element'>
+                    <a href='/checkout' className='cart element'>
                         <span className='icon'>{<BsCart2 />}</span>
                         <span className='money-in-cart'>${total}</span>
-                    </Link>
+                    </a>
 
                     <div className='vertical-line'></div>
 
@@ -182,7 +187,7 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-        </header>
+        </header >
     );
 };
 

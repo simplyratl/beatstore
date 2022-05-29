@@ -7,13 +7,13 @@ import '../style/dist/login.min.css';
 import { useNavigate } from 'react-router-dom';
 import { login, loginGoogle } from '../context/authContext/apiCalls';
 import { AuthContext } from '../context/authContext/AuthContext';
-
+import ForgottenPassword from '../components/ForgottenPassword';
 
 const Login = () => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorDisplay, setErrorDisplay] = useState('');
+    const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
 
     const { isFetching, dispatch } = useContext(AuthContext);
 
@@ -37,7 +37,7 @@ const Login = () => {
         const result = res?.profileObj;
         const token = res?.tokenId;
 
-        loginGoogle({result, token}, dispatch);
+        loginGoogle({ result, token }, dispatch);
     };
 
     const googleFailure = (error) => {
@@ -48,8 +48,9 @@ const Login = () => {
         e.preventDefault();
 
         login({ email, password }, dispatch, setErrorDisplay);
-
     };
+
+    const openForgotModal = () => { };
 
     return (
         <div className='login-container'>
@@ -62,16 +63,29 @@ const Login = () => {
 
                 <div className='row'>
                     <label htmlFor='email'>Email</label>
-                    <input type='text' name='email' autoComplete='off' placeholder='Your email' onChange={(e) => setEmail(e.target.value)}/>
+                    <input
+                        type='text'
+                        name='email'
+                        autoComplete='off'
+                        placeholder='Your email'
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
 
                 <div className='row'>
                     <label htmlFor='password'>Password</label>
-                    <input type='password' name='password' autoComplete='off' placeholder='Your password' onChange={(e) => setPassword(e.target.value)}
+                    <input
+                        type='password'
+                        name='password'
+                        autoComplete='off'
+                        placeholder='Your password'
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
 
-                <button type='button' onClick={handleLogin} disabled={isFetching}>Login</button>
+                <button type='button' onClick={handleLogin} disabled={isFetching}>
+                    Login
+                </button>
 
                 <GoogleLogin
                     clientId='677222132956-7bc9o1s3vkt87bvh6iiurq6460tasrmk.apps.googleusercontent.com'
@@ -89,7 +103,15 @@ const Login = () => {
                     onFailure={googleFailure}
                     cookiePolicy='single_host_origin'
                 />
+
+                <span className='forgot-password' onClick={() => setForgotPasswordModal(true)}>
+                    You forgot your password?
+                </span>
             </form>
+
+            <div className='forgot-password'>
+                {forgotPasswordModal && <ForgottenPassword close={setForgotPasswordModal} />}
+            </div>
         </div>
     );
 };

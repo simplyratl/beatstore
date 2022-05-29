@@ -1,29 +1,26 @@
 const CartReducers = (state, action) => {
-   switch (action.type) {
-       case 'CART_START':
-           return {
-               cart: null,
-               isFetching: true,
-               error: false,
-           };
+    switch (action.type) {
+        case 'CART_ADD':
+            return {
+                ...state,
+                cart: [...state.cart, { ...action.payload }],
+            };
 
-       case 'CART_SUCCESS':
-           return {
-               cart: action.payload,
-               isFetching: false,
-               error: false,
-           };
+        case 'CART_DELETE':
+            return {
+                ...state,
+                cart: state.cart.filter((item) => item._id !== action.payload._id),
+            };
 
-       case 'CART_FAILURE':
-           return {
-               cart: null,
-               isFetching: false,
-               error: true,
-           };
+        case 'CART_DELETE_ALL':
+            return {
+                ...state,
+                cart: [],
+            };
 
-       default:
-           return { ...state };
-   }
+        default:
+            return state;
+    }
 };
 
 export default CartReducers;

@@ -1,0 +1,21 @@
+@use '../../util/colors.scss' as *;
+@use '../../util/breakpoints.scss' as *;
+
+.music-platforms-container {
+    margin-top: 2em;
+    padding: 13em 4%;
+    background-color: $background-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    clip-path: polygon(0 16%, 100% 0, 100% 100%, 0% 100%);
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    img {
+        width: 60%;
+    }
+}

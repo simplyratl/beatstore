@@ -20,9 +20,9 @@ root.render(
         <Provider store={store}>
             <AuthContextProvider>
                 <BeatPlayProvider>
-                    {/* <CartContextProvider> */}
+                    <CartContextProvider>
                         <App />
-                    {/* </CartContextProvider> */}
+                    </CartContextProvider>
                 </BeatPlayProvider>
             </AuthContextProvider>
         </Provider>

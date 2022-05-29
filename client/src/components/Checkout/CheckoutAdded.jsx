@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Context } from '../../context/Context';
+import { CartContext } from '../../context/cartContext/CartContext';
 import '../../style/dist/checkoutadded.min.css';
 import PaypalButton from './PaypalButton';
 
 const CheckoutAdded = () => {
     const [total, setTotal] = useState(0);
 
-    const { cart, setCart } = useContext(Context);
+    const { cart, dispatch } = useContext(CartContext);
 
     useEffect(() => {
         const calculateTotal = () => {
@@ -41,9 +41,13 @@ const CheckoutAdded = () => {
                     <div className='price'>${total}</div>
                 </div>
 
-                <div className='paypal-button'>
-                    <PaypalButton total={total} />
-                </div>
+                {localStorage.getItem('user').length > 0 ? (
+                    <div className='paypal-button'>
+                        <PaypalButton total={total} />
+                    </div>
+                ) : (
+                    <h2>You have to login to buy beats.</h2>
+                )}
             </div>
         </div>
     );

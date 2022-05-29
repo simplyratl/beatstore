@@ -1,0 +1,17 @@
+.search-page-container {
+    margin: 0 4%;
+    margin-top: 80px;
+
+    h1 {
+        display: block;
+        color: #fff;
+        margin-bottom: 16px;
+    }
+
+    .search-page-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+        gap: 12px;
+        row-gap: 24px;
+    }
+}

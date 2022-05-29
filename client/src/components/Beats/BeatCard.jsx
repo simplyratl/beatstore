@@ -16,6 +16,7 @@ const BeatCard = ({ beat, index }) => {
             animate={{ opacity: 1, transform: 'scale(1)' }}
             exit={{ opacity: 0, transform: 'scale(1.1)' }}
             transition={{ duration: 1.2, stiffness: '50', type: 'spring' }}
+            // style={{ width: search && '268px' }}
         >
             <motion.div className='beat-image'>
                 <BsPlayFill className='play' />

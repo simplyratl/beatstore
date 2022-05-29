@@ -72,6 +72,11 @@ const Navbar = () => {
         logoutRegular(authDispatch);
     };
 
+    const handleSearch = (e) => {
+        window.location = `/search/${e.target.value}`;
+        // navigate(`/search/${e.target.value}`);
+    };
+
     return (
         <header>
             <Promotion_Navbar enabled={background} />
@@ -116,7 +121,12 @@ const Navbar = () => {
                             {<IoSearchOutline />}
                         </span>
                         <div className='input'>
-                            <input type='text' placeholder='Search for beats...' autoComplete='off' />
+                            <input
+                                type='text'
+                                placeholder='Search for beats...'
+                                autoComplete='off'
+                                onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
+                            />
                         </div>
                     </div>
                     <div className='user-wrapper'>
@@ -187,7 +197,7 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-        </header >
+        </header>
     );
 };
 

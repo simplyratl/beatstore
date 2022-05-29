@@ -57,9 +57,22 @@ router.delete('/:id', verify, async (req, res) => {
 });
 
 //GET
-router.get('/find/:id', verify, async (req, res) => {
+// router.get('/find/:id', verify, async (req, res) => {
+//     try {
+//         const beat = await Beat.findById(req.params.id);
+
+//         res.status(200).json(beat);
+//     } catch (error) {
+//         res.status(500).json(error);
+//     }
+// });
+
+//GET
+router.get('/find/:title', verify, async (req, res) => {
     try {
-        const beat = await Beat.findById(req.params.id);
+        const regex = new RegExp(req.params.title, 'i');
+
+        const beat = await Beat.find({ title: regex }, { 'title': 1, 'bpm': 1, 'img': 1, 'key': 1, 'mp3_tagged': 1, 'createdAt': 1, 'basic_licence': 1, '_id': 1, 'waw_untagged': 1, 'stems': 1, 'premium_licence': 1, 'vip_licence': 1, 'secondary_mood': 1, 'primary_mood': 1, 'tags': 1 }).collation({ locale: 'en', strength: 2 });
 
         res.status(200).json(beat);
     } catch (error) {

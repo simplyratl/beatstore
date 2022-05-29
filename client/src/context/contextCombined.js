@@ -8,12 +8,12 @@ import { CartContextProvider } from './cartContext/CartContext';
 //    CartContextProvider,
 //  ]
 
- export const AppContextProvider = (children) => {
-    return <BeatPlayProvider>
-      <AuthContextProvider>
-        <CartContextProvider>
-          {children}
-        </CartContextProvider>
-      </AuthContextProvider>
-    </BeatPlayProvider> 
- };
+export const AppContextProvider = (children) => {
+  return <BeatPlayProvider>
+    <AuthContextProvider>
+      <CartContextProvider>
+        {children}
+      </CartContextProvider>
+    </AuthContextProvider>
+  </BeatPlayProvider>
+};

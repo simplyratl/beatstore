@@ -2,20 +2,89 @@
 @use '../../util/breakpoints.scss' as *;
 
 .music-platforms-container {
+    position: relative;
     margin-top: 2em;
     padding: 13em 4%;
     background-color: $background-white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     clip-path: polygon(0 16%, 100% 0, 100% 100%, 0% 100%);
+    height: 700px;
+
+    @include breakpoint-down(small) {
+        height: 600px;
+    }
 
     h2 {
         font-size: 2rem;
+        max-width: 600px;
+
+        @include breakpoint-down(medium) {
+            font-size: 4vw;
+            max-width: 100%;
+            text-align: center;
+            margin-top: 148px;
+        }
+    }
+
+    h4 {
+        font-weight: 400;
+
+        @include breakpoint-down(medium) {
+            text-align: center;
+            font-size: 3vw;
+        }
     }
 
     img {
         width: 60%;
+    }
+
+    .laptop {
+        position: absolute;
+        right: 42px;
+        top: 48px;
+        width: 40%;
+        z-index: -1;
+        pointer-events: none;
+
+        @include breakpoint-down(medium) {
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @include breakpoint-down(medium-small) {
+            top: 12%;
+            width: 60%;
+        }
+
+        @include breakpoint-down(small) {
+            width: 90%;
+        }
+    }
+
+    .infinite-scroll-container {
+        position: absolute;
+        left: 0;
+        bottom: 140px;
+        width: 100%;
+        overflow: hidden;
+
+        .infinite-scroll {
+            .element {
+                margin: 0 80px;
+
+                @include breakpoint-down(small) {
+                    margin: 0 40px;
+                }
+
+                img {
+                    width: 180px;
+
+                    @include breakpoint-down(small) {
+                        width: 120px;
+                    }
+                }
+            }
+        }
     }
 }

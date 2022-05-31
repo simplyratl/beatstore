@@ -14,6 +14,7 @@ import BoughPage from './pages/BoughPage';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import Contact from './pages/Contact';
 import SearchPage from './pages/SearchPage';
+import Profile from './pages/Profile';
 
 const Defaults = () => {
     return (
@@ -61,6 +62,9 @@ function App() {
                     </Route>
                     <Route element={<Defaults />}>
                         <Route path='/contact' element={<Contact />} />
+                    </Route>
+                    <Route element={<Defaults />}>
+                        <Route path='/profile/:username' element={<Profile />} />
                     </Route>
                     <Route path='/register' element={<Register />} />
                     <Route path='/login' element={<Login />} />

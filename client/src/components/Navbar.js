@@ -103,8 +103,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className='navigation-list'>
-                            <a href='#' className='navigation-link'>
-                                PRODUCT
+                            <a href='#' className='navigation-link disabled'>
+                                KITS
                             </a>
                         </li>
                         <li className='navigation-list'>
@@ -146,14 +146,14 @@ const Navbar = () => {
                         {user ? (
                             <div className='user-sub-menu'>
                                 <div>
-                                    <a href='#' className='profile-main'>
+                                    <Link to={`/profile/${user.result ? user.result.givenName : user.username}`} className='profile-main'>
                                         <img
                                             src={user.result ? user.result.imageUrl : user.profilePic}
                                             alt=''
                                         />
 
                                         <span>{user.result ? user.result.givenName : user.username}</span>
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 <ul className='ul-user-sub-menu'>

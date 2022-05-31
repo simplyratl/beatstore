@@ -19,7 +19,8 @@ header {
         transition: 0.2s;
 
         &.background {
-            background-color: #000;
+            background-color: rgba($color: #000000, $alpha: 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
         }
 
         @include breakpoint-down(medium) {
@@ -112,6 +113,11 @@ header {
                         color: $text-color-bbg;
                         text-decoration: none;
                         font-weight: 600;
+
+                        &.disabled {
+                            pointer-events: none;
+                            color: gray;
+                        }
 
                         @include breakpoint-down(medium) {
                             color: #fff;

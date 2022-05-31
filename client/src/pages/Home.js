@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import LicenseHelp from '../components/Home/LicenseHelp';
 import MusicPlatform from '../components/Home/MusicPlatform';
 import BuyNow from '../components/Home/BuyNow';
+import GetBeats from '../components/Home/GetBeats';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <LicenseHelp />
             <MusicPlatform />
             <BuyNow />
+            <GetBeats />
         </>
     );
 };

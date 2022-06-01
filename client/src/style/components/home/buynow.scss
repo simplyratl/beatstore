@@ -1,11 +1,11 @@
 @use '../../util/colors.scss' as *;
+@use '../../util/breakpoints.scss' as *;
 
 .buynow-container {
     margin-top: -4em;
     padding: 6em 4%;
     background-color: $background;
     color: $text-color-bbg;
-    clip-path: polygon(0 0, 100% 23%, 100% 100%, 0% 100%);
     text-align: center;
 
     h2 {
@@ -16,6 +16,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @include breakpoint-down(small) {
+            flex-direction: column;
+        }
 
         .step {
             width: 300px;

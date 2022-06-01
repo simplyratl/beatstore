@@ -7,7 +7,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../style/hamburger/hamburger.css';
 import '../style/dist/navbar.min.css';
 import Promotion_Navbar from './Home/Promotion_Navbar';
-import { Context } from '../context/Context';
 import { CartContext } from '../context/cartContext/CartContext';
 import { logoutRegular } from '../context/authContext/apiCalls';
 import { AuthContext } from '../context/authContext/AuthContext';
@@ -18,6 +17,8 @@ const Navbar = () => {
     const [searchShow, setSearchShow] = useState(false);
     const [background, setBackground] = useState(false);
     const [total, setTotal] = useState(0);
+
+    const [userMenu, setUserMenu] = useState(false);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -64,6 +65,7 @@ const Navbar = () => {
 
     useEffect(() => {
         setHamburger(false);
+        setUserMenu(false);
     }, [location]);
 
     window.addEventListener('scroll', changeBackgorund);
@@ -131,7 +133,9 @@ const Navbar = () => {
                     </div>
                     <div className='user-wrapper'>
                         {user ? (
-                            <span className='icon element'>{<AiOutlineUser />}</span>
+                            <span className='icon element user' onClick={() => setUserMenu(!userMenu)}>
+                                {<AiOutlineUser />}
+                            </span>
                         ) : (
                             <>
                                 <Link to={'/register'} className='element auth'>
@@ -144,9 +148,12 @@ const Navbar = () => {
                         )}
 
                         {user ? (
-                            <div className='user-sub-menu'>
+                            <div className={`user-sub-menu ${userMenu && 'active'}`}>
                                 <div>
-                                    <Link to={`/profile/${user.result ? user.result.givenName : user.username}`} className='profile-main'>
+                                    <Link
+                                        to={`/profile/${user.result ? user.result.givenName : user.username}`}
+                                        className='profile-main'
+                                    >
                                         <img
                                             src={user.result ? user.result.imageUrl : user.profilePic}
                                             alt=''

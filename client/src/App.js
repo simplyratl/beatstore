@@ -15,12 +15,25 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import Contact from './pages/Contact';
 import SearchPage from './pages/SearchPage';
 import Profile from './pages/Profile';
+import { ParallaxProvider } from 'react-scroll-parallax';
+import { AnimatePresence } from 'framer-motion';
+
+
 
 const Defaults = () => {
+
+    const { isPlaying, currentBeat } = useContext(Context);
+
+
     return (
         <>
             <Navbar />
-            <AudioPlayer />
+            {currentBeat &&
+                <AnimatePresence>
+                    <AudioPlayer />
+                </AnimatePresence>
+            }
+
             <Outlet />
         </>
     );
@@ -28,6 +41,7 @@ const Defaults = () => {
 
 function App() {
     const { user, setUser } = useContext(Context);
+
 
     useEffect(() => {
         const token = user?.token;
@@ -37,39 +51,41 @@ function App() {
 
     return (
         <PayPalScriptProvider options={{ 'client-id': process.env.REACT_APP_PAYPAL_CLIENT }}>
-            <Router>
-                <Routes>
-                    <Route element={<Defaults />}>
-                        <Route exact path='/' element={<Home />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/beats' element={<Beats />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/category/:category' element={<CategoryPage />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/beat/:name/:id' element={<BeatSingle />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/checkout' element={<Checkout />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/checkout/:id' element={<BoughPage />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/search/:query' element={<SearchPage />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/contact' element={<Contact />} />
-                    </Route>
-                    <Route element={<Defaults />}>
-                        <Route path='/profile/:username' element={<Profile />} />
-                    </Route>
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/login' element={<Login />} />
-                </Routes>
-            </Router>
+            <ParallaxProvider>
+                <Router>
+                    <Routes>
+                        <Route element={<Defaults />}>
+                            <Route exact path='/' element={<Home />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/beats' element={<Beats />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/category/:category' element={<CategoryPage />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/beat/:name/:id' element={<BeatSingle />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/checkout' element={<Checkout />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/checkout/:id' element={<BoughPage />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/search/:query' element={<SearchPage />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/contact' element={<Contact />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/profile/:username' element={<Profile />} />
+                        </Route>
+                        <Route path='/register' element={<Register />} />
+                        <Route path='/login' element={<Login />} />
+                    </Routes>
+                </Router>
+            </ParallaxProvider>
         </PayPalScriptProvider>
     );
 }

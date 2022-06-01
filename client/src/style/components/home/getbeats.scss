@@ -1,43 +1,60 @@
 @use '../../util/colors.scss' as *;
 
-.get-beats-container {
-    position: relative;
-    width: 100%;
-    height: 80vh;
+.buy-now-container {
+    background-color: $background-white;
+    padding: 3em 4%;
 
-    img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.6) saturate(2);
-        z-index: -1;
-    }
+    .grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    .text {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-
-        h1 {
-            color: #fff;
-            font-size: 3.4vw;
+        span {
+            max-width: 400px;
+            font-weight: 600;
         }
 
-        button {
-            background-color: $primary;
-            margin-top: 12px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
+        @media screen and (max-width: 870px) {
+            img {
+                width: 40% !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            flex-direction: column;
+
+            span {
+                margin-top: 14px;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            img {
+                width: 60% !important;
+            }
+        }
+
+        img {
+            width: 340px;
+        }
+    }
+
+    .left {
+        @media screen and (max-width: 480px) {
+            flex-direction: column-reverse;
+            margin-bottom: 2em;
+        }
+
+        img {
+            margin-left: 1em;
+        }
+    }
+
+    .right {
+        margin-top: 18px;
+
+        img {
+            margin-right: 1em;
         }
     }
 }

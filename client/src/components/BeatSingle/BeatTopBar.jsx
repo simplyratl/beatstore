@@ -75,14 +75,17 @@ const BeatTopBar = () => {
                 const locationArr = location.pathname.split('/');
                 const getID = locationArr[locationArr.length - 1];
 
+                console.log(getID);
+
                 try {
-                    const res = await axios.get(`http://192.168.1.18:8800/beat/find/${getID}`, {
+                    const res = await axios.get(`http://localhost:8800/beat/find-id/${getID}`, {
                         headers: {
-                            token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTc0NDA3NywiZXhwIjoxNjUyMDAzMjc3fQ.NMtkexWaj7AVFadQ0CngHjUmQnt20RfMj_3aORhOunY',
+                            token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
                         },
                     });
 
                     setBeat(res.data);
+                    return res;
                 } catch (error) {
                     console.log(error);
                 }
@@ -106,9 +109,9 @@ const BeatTopBar = () => {
         const getRecommended = async () => {
             try {
                 //192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get('http://192.168.1.18:8800/beat/', {
+                const res = await axios.get('http://localhost:8800/beat/', {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjY5OTMxZGM0NTJlYzczZGI0NTlmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MTc0NDA3NywiZXhwIjoxNjUyMDAzMjc3fQ.NMtkexWaj7AVFadQ0CngHjUmQnt20RfMj_3aORhOunY',
+                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
                     },
                 });
 

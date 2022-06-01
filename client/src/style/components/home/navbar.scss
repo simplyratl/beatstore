@@ -20,7 +20,11 @@ header {
 
         &.background {
             background-color: rgba($color: #000000, $alpha: 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(200%) blur(20px);
+
+            @supports not (backdrop-filter: blur()) {
+                background-color: rgba($color: #000000, $alpha: 0.93);
+            }
         }
 
         @include breakpoint-down(medium) {
@@ -137,6 +141,11 @@ header {
             right: 4%;
             display: flex;
             align-items: center;
+
+            @media screen and (max-width: 510px) {
+                position: unset !important;
+                margin: 0 4%;
+            }
 
             .element {
                 margin-left: 28px;
@@ -270,6 +279,10 @@ header {
                 right: 60px;
                 display: none;
 
+                @media screen and (max-width: 510px) {
+                    display: none !important;
+                }
+
                 @include breakpoint-down(medium) {
                     display: block;
                 }
@@ -304,10 +317,8 @@ header {
             .user-wrapper {
                 position: relative;
 
-                &:hover {
-                    .user-sub-menu {
-                        visibility: visible;
-                    }
+                @media screen and (max-width: 510px) {
+                    position: unset !important;
                 }
 
                 .user-sub-menu {
@@ -317,8 +328,24 @@ header {
                     width: 250px;
                     border-radius: 8px;
                     visibility: hidden;
+                    opacity: 0;
+                    transition: 0.14s;
+                    box-shadow: 0 4px 20px rgba($color: #000000, $alpha: 0.3);
 
                     background-color: $secondary;
+
+                    @media screen and (max-width: 510px) {
+                        top: 60px;
+                        left: 0;
+                        width: 92%;
+                        margin: 0 4%;
+                    }
+
+                    &.active {
+                        visibility: visible;
+                        opacity: 1;
+                        transition: 0.2s;
+                    }
 
                     .profile-main {
                         display: flex;

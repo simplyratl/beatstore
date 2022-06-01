@@ -1,0 +1,100 @@
+@use '../../util/colors.scss' as *;
+@use '../../util/breakpoints.scss' as *;
+
+.features-container {
+    position: relative;
+    height: 4000px;
+
+    @include breakpoint-down(medium-small) {
+        height: 2300px;
+    }
+
+    @include breakpoint-down(small) {
+        height: 100vh;
+    }
+
+    .features-wrapper {
+        position: sticky;
+        left: 0;
+        top: 0;
+        background-color: $background-white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8em 4%;
+
+        @include breakpoint-down(medium-small) {
+            height: 100vh;
+            padding: 2em 4%;
+            flex-direction: column;
+        }
+
+        @include breakpoint-down(small) {
+            height: 100%;
+        }
+
+        .grid {
+            position: relative;
+            margin: 0 8%;
+            transition: 0.2s all ease-in-out;
+            width: 0;
+            transition: 0.4s ease-in-out all;
+
+            &.active {
+                transition: 0.4s ease-in-out all;
+                max-width: 270px;
+                width: 270px;
+            }
+
+            .icon {
+                font-size: 3.4em;
+                color: $primary;
+                margin-bottom: 8px;
+            }
+
+            h3 {
+            }
+
+            p {
+                color: #8a929e;
+                margin-bottom: 8px;
+                max-width: 270px;
+            }
+
+            .card {
+                position: relative;
+                &.two {
+                }
+            }
+        }
+
+        .left {
+            text-align: right;
+
+            @include breakpoint-down(medium-small) {
+                text-align: left;
+            }
+        }
+
+        .middle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include breakpoint-down(medium-small) {
+                display: none;
+            }
+
+            img {
+                width: 80%;
+                height: 80%;
+            }
+        }
+
+        .right {
+            @include breakpoint-down(medium-small) {
+                display: none;
+            }
+        }
+    }
+}

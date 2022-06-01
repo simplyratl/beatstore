@@ -1,5 +1,6 @@
 import React from 'react';
 import Marquee from 'react-fast-marquee';
+import { Parallax } from 'react-scroll-parallax';
 import '../../style/dist/musicplatform.min.css';
 
 const MusicPlatform = () => {

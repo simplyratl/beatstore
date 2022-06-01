@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
     try {
         const user = await newUser.save();
 
-        res.status(201).json(user);
+        return res.status(201).json(user);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
         //za brisanje password iz res
         const { password, ...info } = user._doc;
 
-        res.status(200).json({ ...info, accessToken });
+        return res.status(200).json({ ...info, accessToken });
     } catch (error) {
         res.status(500).json(error);
     }

@@ -1,0 +1,90 @@
+@use '../../util/colors.scss' as *;
+
+.artists-container {
+    padding: 48px 4%;
+    color: #fff;
+    max-width: 1400px;
+    margin: auto;
+    overflow-x: hidden;
+
+    .artist-wrapper {
+        position: relative;
+        left: 0;
+        display: block;
+        margin: auto;
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(160px, 1fr));
+            grid-template-columns: auto auto;
+            //   justify-content: center;
+            align-items: center;
+
+            @media screen and (max-width: 840px) {
+                grid-template-columns: 90%;
+            }
+
+            p {
+                font-weight: 600;
+            }
+
+            .title {
+                font-size: 120px;
+
+                @media screen and (max-width: 1600px) {
+                    font-size: 80px;
+                }
+
+                @media screen and (max-width: 400px) {
+                    font-size: 60px;
+                }
+            }
+
+            .info {
+                color: #86868b;
+                font-weight: 400;
+                font-size: 19px;
+            }
+
+            img {
+                width: 700px;
+                height: 600px;
+                object-fit: cover;
+
+                @media screen and (max-width: 1600px) {
+                    width: 500px;
+                    height: 400px;
+                }
+
+                @media screen and (max-width: 910px) {
+                    width: 400px;
+                    height: 500px;
+                }
+
+                @media screen and (max-width: 400px) {
+                    width: 340px;
+                    height: 460px;
+                }
+            }
+        }
+
+        .condensed {
+            padding: 0 9%;
+
+            @media screen and (max-width: 840px) {
+                position: relative;
+                top: 112px;
+            }
+
+            img {
+                position: relative;
+                bottom: 28px;
+
+                @media screen and (max-width: 840px) {
+                    position: relative;
+                    left: 8px;
+                }
+            }
+        }
+    }
+}

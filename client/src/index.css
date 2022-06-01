@@ -6,11 +6,15 @@
 
 body {
     margin: 0;
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
+    font-synthesis: none;
+    font-family: 'Roboto', sans-serif;
+    /* font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #191919;
     padding-bottom: 80px;
+    overflow-x: hidden;
 }
 
 /* width */

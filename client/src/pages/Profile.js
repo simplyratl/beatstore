@@ -138,7 +138,12 @@ const Profile = () => {
 
     return (
         <>
-            <div className='profile-container'>
+            <motion.div
+                className='profile-container'
+                initial={{ opacity: 0, transform: 'translateY(-20%)' }}
+                animate={{ opacity: 1, transform: 'translateY(0%)' }}
+                exit={{ opacity: 0, transform: 'translateY(-20%)' }}
+            >
                 <h1>My profile</h1>
                 <h4>Edit my profile</h4>
 
@@ -188,7 +193,7 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             <AnimatePresence>
                 {notification && (

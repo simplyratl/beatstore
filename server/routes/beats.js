@@ -57,15 +57,15 @@ router.delete('/:id', verify, async (req, res) => {
 });
 
 //GET
-// router.get('/find/:id', verify, async (req, res) => {
-//     try {
-//         const beat = await Beat.findById(req.params.id);
+router.get('/find-id/:id', verify, async (req, res) => {
+    try {
+        const beat = await Beat.findById(req.params.id);
 
-//         res.status(200).json(beat);
-//     } catch (error) {
-//         res.status(500).json(error);
-//     }
-// });
+        res.status(200).json(beat);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 //GET
 router.get('/find/:title', verify, async (req, res) => {

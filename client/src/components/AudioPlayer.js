@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BiShuffle, BiRepeat } from 'react-icons/bi';
 import { BsVolumeDown, BsVolumeMute, BsCart2 } from 'react-icons/bs';
 import { AiFillPlayCircle, AiFillStepBackward, AiFillStepForward, AiFillPauseCircle } from 'react-icons/ai';
+import { CgRemove } from 'react-icons/cg';
 import { Context } from '../context/Context';
 import '../style/dist/audioplayer.min.css';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/cartContext/CartContext';
 import { addCart, addToCart, removeFromCart } from '../context/cartContext/apiCalls';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const AudioPlayer = () => {
     const [paused, setPaused] = useState(false);
@@ -16,7 +18,7 @@ const AudioPlayer = () => {
     const [percentVolume, setPercentVolume] = useState(50);
     const [muted, setMuted] = useState(true);
 
-    const { isPlaying, currentBeat, setIsPlaying } = useContext(Context);
+    const { isPlaying, currentBeat, setIsPlaying, setCurrentBeat } = useContext(Context);
     const { cart, dispatch } = useContext(CartContext);
 
     const audioRef = useRef(null);
@@ -118,7 +120,16 @@ const AudioPlayer = () => {
     };
 
     return (
-        <div className='audio-player-container'>
+        <motion.div
+            className='audio-player-container'
+            initial={{ transform: 'translateY(100%)' }}
+            animate={{ transform: 'translateY(0%)' }}
+            exit={{ transform: 'translateY(100%)' }}
+        >
+            <span className='close' onClick={() => setCurrentBeat(null)}>
+                <CgRemove className='icon' />
+            </span>
+
             <div className='audio-player-wrapper'>
                 <div className='left-side'>
                     <img src={currentBeat?.img} alt='' />
@@ -246,7 +257,7 @@ const AudioPlayer = () => {
             </div>
 
             <audio ref={audioRef} src={currentBeat?.mp3_tagged}></audio>
-        </div>
+        </motion.div>
     );
 };
 

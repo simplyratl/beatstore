@@ -1,7 +1,9 @@
 @use '../../util/colors.scss' as *;
 
 .buy-now-container {
+    max-width: 2560px;
     background-color: $background-white;
+    margin: auto;
     padding: 3em 4%;
 
     .grid {

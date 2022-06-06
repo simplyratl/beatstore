@@ -126,9 +126,9 @@ const AudioPlayer = () => {
             animate={{ transform: 'translateY(0%)' }}
             exit={{ transform: 'translateY(100%)' }}
         >
-            <span className='close' onClick={() => setCurrentBeat(null)}>
+            {/* <span className='close' onClick={() => { setCurrentBeat(null); setIsPlaying(false) }}>
                 <CgRemove className='icon' />
-            </span>
+            </span> */}
 
             <div className='audio-player-wrapper'>
                 <div className='left-side'>
@@ -136,9 +136,8 @@ const AudioPlayer = () => {
 
                     <div className='song-info'>
                         <Link
-                            to={`/beat/${currentBeat?.title?.toLowerCase().replace(' ', '-')}/${
-                                currentBeat?._id
-                            }`}
+                            to={`/beat/${currentBeat?.title?.toLowerCase().replace(' ', '-')}/${currentBeat?._id
+                                }`}
                             state={{ beat: currentBeat }}
                             className='song-title'
                         >

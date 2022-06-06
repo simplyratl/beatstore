@@ -11,11 +11,7 @@ const SearchPage = () => {
     useEffect(() => {
         const getSearchResults = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/beat/find/${searched}`, {
-                    headers: {
-                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
-                    },
-                });
+                const res = await axios.get(`http://localhost:8800/beat/find/${searched}`);
                 setBeat(res.data);
                 return res;
             } catch (error) {

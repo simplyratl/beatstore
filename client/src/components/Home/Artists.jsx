@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../style/dist/artists.min.css';
 import { Parallax } from 'react-scroll-parallax';
+import { motion } from 'framer-motion';
 
 const Artists = () => {
     return (
@@ -20,12 +21,16 @@ const Artists = () => {
                     </div>
                 </Parallax>
 
-                <div className='right grid condensed'>
+                <motion.div
+                    className='right grid condensed'
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                >
                     <div className='text'>
                         <p className='title'>IN ONE PLACE.</p>
                     </div>
                     <img src='https://images.complex.com/complex/images/c_fill,dpr_auto,f_auto,q_auto,w_1400/fl_lossy,pg_1/ved7hojt36yiabmf7bwc/roddy-dec-14?fimg-ssr-default' />
-                </div>
+                </motion.div>
             </div>
         </div>
     );

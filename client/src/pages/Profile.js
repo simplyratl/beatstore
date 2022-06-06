@@ -22,7 +22,7 @@ const Profile = () => {
     const { user } = useContext(AuthContext);
 
     useLayoutEffect(() => {
-        if (user === undefined || !user || location.pathname.split('/')[2] !== user.username) {
+        if (location.pathname.split('/')[2] !== user.username || !user) {
             navigate('/');
         }
     }, []);

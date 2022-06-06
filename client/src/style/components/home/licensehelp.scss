@@ -2,7 +2,9 @@
 @use '../../util/breakpoints.scss' as *;
 
 .license-help-container {
-    margin: 0 4%;
+    padding: 0 4%;
+    max-width: 2560px;
+    margin: auto;
 
     .license-wrapper {
         color: $text-color-bbg;
@@ -34,6 +36,10 @@
                 height: 420px;
                 max-height: 420px;
                 overflow-y: auto;
+
+                @media screen and (min-width: 1920px) {
+                    width: 100%;
+                }
 
                 @include breakpoint-down(medium) {
                     width: auto;

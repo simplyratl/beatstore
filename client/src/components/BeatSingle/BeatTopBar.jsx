@@ -75,14 +75,8 @@ const BeatTopBar = () => {
                 const locationArr = location.pathname.split('/');
                 const getID = locationArr[locationArr.length - 1];
 
-                console.log(getID);
-
                 try {
-                    const res = await axios.get(`http://localhost:8800/beat/find-id/${getID}`, {
-                        headers: {
-                            token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
-                        },
-                    });
+                    const res = await axios.get(`http://localhost:8800/beat/find-id/${getID}`);
 
                     setBeat(res.data);
                     return res;
@@ -109,11 +103,7 @@ const BeatTopBar = () => {
         const getRecommended = async () => {
             try {
                 //192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get('http://localhost:8800/beat/', {
-                    headers: {
-                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
-                    },
-                });
+                const res = await axios.get('http://localhost:8800/beat/');
 
                 setRecommended(
                     res.data.filter((beatEl) => {

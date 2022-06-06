@@ -57,7 +57,7 @@ router.delete('/:id', verify, async (req, res) => {
 });
 
 //GET
-router.get('/find-id/:id', verify, async (req, res) => {
+router.get('/find-id/:id', async (req, res) => {
     try {
         const beat = await Beat.findById(req.params.id);
 
@@ -68,7 +68,7 @@ router.get('/find-id/:id', verify, async (req, res) => {
 });
 
 //GET
-router.get('/find/:title', verify, async (req, res) => {
+router.get('/find/:title', async (req, res) => {
     try {
         const regex = new RegExp(req.params.title, 'i');
 

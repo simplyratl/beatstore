@@ -7,6 +7,9 @@ import BuyNow from '../components/Home/BuyNow';
 import GetBeats from '../components/Home/GetBeats';
 import FeaturesScrolling from '../components/Home/FeaturesScrolling';
 import Artists from '../components/Home/Artists';
+import EndSection from '../components/Home/EndSection';
+import ThreeDAnimation from '../components/Home/ThreeDAnimation';
+import Footer from '../components/Footer';
 
 const Home = () => {
     return (
@@ -19,6 +22,9 @@ const Home = () => {
             <GetBeats />
             <FeaturesScrolling />
             <Artists />
+            {/* <EndSection /> */}
+            <ThreeDAnimation />
+            <Footer />
         </>
     );
 };

@@ -16,6 +16,8 @@ const Navbar = () => {
     const [showHamburgerWidth, setShowHamburgerWidth] = useState(false);
     const [searchShow, setSearchShow] = useState(false);
     const [background, setBackground] = useState(false);
+    const [hideNav, setHideNav] = useState(false);
+
     const [total, setTotal] = useState(0);
 
     const [userMenu, setUserMenu] = useState(false);
@@ -26,6 +28,8 @@ const Navbar = () => {
     const { cart, dispatch } = useContext(CartContext);
     const { dispatch: authDispatch } = useContext(AuthContext);
     const { user } = useContext(AuthContext);
+
+    let lastScroll = window.scrollY;
 
     useEffect(() => {
         const calculateTotal = () => {
@@ -58,9 +62,21 @@ const Navbar = () => {
     const changeBackgorund = () => {
         if (window.scrollY >= 150) {
             setBackground(true);
+            setHideNav(true);
         } else {
             setBackground(false);
+            setHideNav(false);
         }
+    };
+
+    const hideNavScroll = () => {
+        if (lastScroll < window.scrollY && lastScroll > 120) {
+            setHideNav(true);
+        } else {
+            setHideNav(false);
+        }
+
+        lastScroll = window.scrollY;
     };
 
     useEffect(() => {
@@ -68,7 +84,10 @@ const Navbar = () => {
         setUserMenu(false);
     }, [location]);
 
-    window.addEventListener('scroll', changeBackgorund);
+    window.addEventListener('scroll', () => {
+        changeBackgorund();
+        hideNavScroll();
+    });
 
     const handleLogout = () => {
         logoutRegular(authDispatch);
@@ -81,9 +100,12 @@ const Navbar = () => {
 
     return (
         <header>
-            <Promotion_Navbar enabled={background} />
+            {/* <Promotion_Navbar enabled={background} /> */}
 
-            <div className={`${background ? 'navbar-inner background' : 'navbar-inner'}`}>
+            <div
+                className={`${background ? 'navbar-inner background' : 'navbar-inner'}`}
+                style={{ top: hideNav && '-100px' }}
+            >
                 <div
                     className={`navigation-left ${hamburger ? 'active' : showHamburgerWidth ? 'hidden' : ''}`}
                 >

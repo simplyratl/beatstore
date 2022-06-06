@@ -1,0 +1,25 @@
+.threed-container {
+    height: 70vh;
+
+    .threed-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: relative;
+            width: 700px;
+            margin: 0 -280px;
+        }
+    }
+
+    p {
+        color: #fff;
+        text-align: center;
+        font-size: 4rem;
+        margin-top: 24px;
+        font-weight: 600;
+        opacity: 0;
+    }
+}

@@ -15,5 +15,5 @@ export const login = async (user, dispatch, setErrorDisplay) => {
 };
 
 export const logoutStart = (dispatch) => {
-    dispatch(logout);
+    dispatch(logout());
 };

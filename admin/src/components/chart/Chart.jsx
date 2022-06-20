@@ -43,8 +43,6 @@ const Chart = ({ aspect, title }) => {
         getStats();
     }, [month]);
 
-    console.log(userStats);
-
     return (
         <div className="chart">
             <div className="title">{title}</div>

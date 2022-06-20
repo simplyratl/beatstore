@@ -4,11 +4,13 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { Context } from "../../context/Context";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
+import { CartContext } from "../../context/cartContext/CartContext";
 
 const PaypalButton = ({ total }) => {
-    const { cart } = useContext(Context);
+    const { cart } = useContext(CartContext);
     const navigate = useNavigate();
     const [transaction, setTransaction] = useState({});
+    const [download, setDownload] = useState([]);
 
     console.log(transaction);
 
@@ -18,7 +20,7 @@ const PaypalButton = ({ total }) => {
                 try {
                     const res = await axios({
                         method: "POST",
-                        url: "http://localhost:8800/transaction",
+                        url: "http://192.168.1.8:8800/transaction",
                         data: {
                             trackingID: transaction.id,
                             productName: transaction.purchase_units,
@@ -31,7 +33,6 @@ const PaypalButton = ({ total }) => {
                             token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
                         },
                     });
-
                     return res;
                 } catch (error) {
                     console.log(error);
@@ -52,7 +53,9 @@ const PaypalButton = ({ total }) => {
                     return actions.order.create({
                         purchase_units: [
                             {
-                                description: "Beats by ratlx.",
+                                title: cart.map((item) => {
+                                    return item.title;
+                                }),
                                 amount: {
                                     currency_code: "USD",
                                     value: total,

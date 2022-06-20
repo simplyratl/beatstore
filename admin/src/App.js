@@ -15,9 +15,7 @@ import { logoutStart } from "./context/authContext/apiCalls";
 
 function App() {
     const { darkMode } = useContext(DarkModeContext);
-    const { user } = useContext(AuthContext);
-
-    // const location = useLocation();
+    const { user, dispatch } = useContext(AuthContext);
 
     const checkLoggedIn = (component) => {
         return user ? component : <Navigate to="/login" />;
@@ -37,7 +35,7 @@ function App() {
         if (user) {
             const decodeJWT = parseJWT(user.accessToken);
             if (decodeJWT.exp * 1000 < Date.now()) {
-                logoutStart();
+                logoutStart(dispatch);
             }
         }
     }, [window.location]);

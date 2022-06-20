@@ -3,6 +3,7 @@ import { FiTwitter } from 'react-icons/fi';
 import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineYoutube } from 'react-icons/ai';
 import '../style/dist/footer.min.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -15,6 +16,10 @@ const Footer = () => {
                         <FiTwitter className='icon' />
                         <FaFacebookF className='icon' />
                         <AiOutlineYoutube className='icon' />
+                    </div>
+
+                    <div className='tos'>
+                        Our Terms of service & <Link to={'/privacy-policy'}>Privacy Policy.</Link>
                     </div>
                 </div>
 
@@ -37,7 +42,11 @@ const Footer = () => {
                         </p>
                         <input type='text' className='newsletter-input' placeholder='Enter your email' />
                     </div>
+
+
                 </div>
+
+
             </div>
         </footer>
     );

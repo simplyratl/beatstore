@@ -1,11 +1,11 @@
-import './widget.scss';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
+import "./widget.scss";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import { useState, useEffect, useMemo } from "react";
+import axios from "axios";
 
 const Widget = ({ type }) => {
     let data;
@@ -19,16 +19,16 @@ const Widget = ({ type }) => {
     const [userStats, setUsersStats] = useState([]);
 
     const month = useMemo(
-        () => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        () => ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         []
     );
 
     useEffect(() => {
         const getStats = async () => {
             try {
-                const res = await axios.get('http://localhost:8800/user/stats', {
+                const res = await axios.get("http://localhost:8800/user/stats", {
                     headers: {
-                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
+                        token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                     },
                 });
                 const statsList = res.data.sort((a, b) => {
@@ -48,9 +48,9 @@ const Widget = ({ type }) => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get('http://localhost:8800/user', {
+                const res = await axios.get("http://localhost:8800/user", {
                     headers: {
-                        token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
+                        token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                     },
                 });
                 setUsers(res.data);
@@ -73,62 +73,62 @@ const Widget = ({ type }) => {
     };
 
     switch (type) {
-        case 'user':
+        case "user":
             data = {
-                title: 'USERS',
+                title: "USERS",
                 isMoney: false,
-                link: 'See all users',
+                link: "See all users",
                 icon: (
                     <PersonOutlinedIcon
-                        className='icon'
+                        className="icon"
                         style={{
-                            color: 'crimson',
-                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                            color: "crimson",
+                            backgroundColor: "rgba(255, 0, 0, 0.2)",
                         }}
                     />
                 ),
             };
             break;
-        case 'order':
+        case "order":
             data = {
-                title: 'ORDERS',
+                title: "ORDERS",
                 isMoney: false,
-                link: 'View all orders',
+                link: "View all orders",
                 icon: (
                     <ShoppingCartOutlinedIcon
-                        className='icon'
+                        className="icon"
                         style={{
-                            backgroundColor: 'rgba(218, 165, 32, 0.2)',
-                            color: 'goldenrod',
+                            backgroundColor: "rgba(218, 165, 32, 0.2)",
+                            color: "goldenrod",
                         }}
                     />
                 ),
             };
             break;
-        case 'earning':
+        case "earning":
             data = {
-                title: 'EARNINGS',
+                title: "EARNINGS",
                 isMoney: true,
-                link: 'View net earnings',
+                link: "View net earnings",
                 icon: (
                     <MonetizationOnOutlinedIcon
-                        className='icon'
-                        style={{ backgroundColor: 'rgba(0, 128, 0, 0.2)', color: 'green' }}
+                        className="icon"
+                        style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
                     />
                 ),
             };
             break;
-        case 'balance':
+        case "balance":
             data = {
-                title: 'BALANCE',
+                title: "BALANCE",
                 isMoney: true,
-                link: 'See details',
+                link: "See details",
                 icon: (
                     <AccountBalanceWalletOutlinedIcon
-                        className='icon'
+                        className="icon"
                         style={{
-                            backgroundColor: 'rgba(128, 0, 128, 0.2)',
-                            color: 'purple',
+                            backgroundColor: "rgba(128, 0, 128, 0.2)",
+                            color: "purple",
                         }}
                     />
                 ),
@@ -139,20 +139,20 @@ const Widget = ({ type }) => {
     }
 
     return (
-        <div className='widget'>
-            <div className='left'>
-                <span className='title'>{data.title}</span>
-                <span className='counter'>
-                    {data.isMoney && '$'} {type === 'user' && allUsers.length}
-                    {type === 'earning' && 0} {type === 'balance' && 0}
-                    {type === 'order' && 0}
+        <div className="widget">
+            <div className="left">
+                <span className="title">{data.title}</span>
+                <span className="counter">
+                    {data.isMoney && "$"} {type === "user" && allUsers.length}
+                    {type === "earning" && 0} {type === "balance" && 0}
+                    {type === "order" && 0}
                 </span>
-                <span className='link'>{data.link}</span>
+                <span className="link">{data.link}</span>
             </div>
-            <div className='right'>
-                <div className={`percentage ${calculatePercent() <= 0 ? 'negative' : 'positive'}`}>
+            <div className="right">
+                <div className={`percentage ${calculatePercent() <= 0 ? "negative" : "positive"}`}>
                     <KeyboardArrowUpIcon />
-                    {type === 'user' && userStats ? calculatePercent() : null} %
+                    {type === "user" && userStats ? calculatePercent() : null} %
                 </div>
                 {data.icon}
             </div>

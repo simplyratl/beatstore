@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { loginFailure, loginStart, loginSuccess, loginSuccessGoogle, loginFailureGoogle, registerStart, registerFailure, registerSuccess, logoutStart } from './AuthActions';
+import { loginFailure, loginStart, loginSuccess, loginSuccessGoogle, loginFailureGoogle, registerStart, registerFailure, registerSuccess, logoutStart, updateUser } from './AuthActions';
 
 export const login = async (user, dispatch, setErrorDisplay) => {
     dispatch(loginStart());
@@ -51,4 +51,8 @@ export const register = async (user, dispatch, setErrorDisplay, setSuccess) => {
 
 export const logoutRegular = (dispatch) => {
     dispatch(logoutStart());
+}
+
+export const userUpdated = (user, dispatch) => {
+    dispatch(updateUser(user));
 }

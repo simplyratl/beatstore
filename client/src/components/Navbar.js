@@ -62,16 +62,15 @@ const Navbar = () => {
     const changeBackgorund = () => {
         if (window.scrollY >= 150) {
             setBackground(true);
-            setHideNav(true);
         } else {
             setBackground(false);
-            setHideNav(false);
         }
     };
 
     const hideNavScroll = () => {
         if (lastScroll < window.scrollY && lastScroll > 120) {
             setHideNav(true);
+            setUserMenu(false);
         } else {
             setHideNav(false);
         }

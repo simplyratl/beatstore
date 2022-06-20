@@ -14,12 +14,13 @@ import {
     uploadString,
 } from 'firebase/storage';
 import '../style/dist/profile.min.css';
+import { userUpdated } from '../context/authContext/apiCalls';
 
 const Profile = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { user } = useContext(AuthContext);
+    const { user, dispatch } = useContext(AuthContext);
 
     useLayoutEffect(() => {
         if (location.pathname.split('/')[2] !== user.username || !user) {
@@ -36,6 +37,12 @@ const Profile = () => {
 
     const [notification, setNotification] = useState(false);
     const [notificationText, setNotificationText] = useState('');
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/');
+        }
+    }, [user]);
 
     useEffect(() => {
         const uploadImage = () => {
@@ -64,14 +71,14 @@ const Profile = () => {
                     setNotification(true);
                     setNotificationText(`${progress.toString()}% updating...`);
 
-                    switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
-                    }
+                    // switch (snapshot.state) {
+                    //     case 'paused':
+                    //         console.log('Upload is paused');
+                    //         break;
+                    //     case 'running':
+                    //         console.log('Upload is running');
+                    //         break;
+                    // }
                 },
                 (error) => {
                     console.log('unsuccessful');
@@ -93,16 +100,20 @@ const Profile = () => {
         setNotificationText('Updating...');
         setNotification(true);
 
+        if (username.length === 0 || email.length === 0) {
+            setTimeout(() => {
+                setNotification(false);
+            }, 2500);
+
+            setNotificationText('None of the inputs can be empty when updating.');
+            setNotification(true);
+            return;
+        }
+
         try {
             const passwordObject = {
                 ...(password.length > 0 && { password: password }),
             };
-
-            const profilePicObject = {
-                ...(imageUrl.length > 0 && { profilePic: imageUrl }),
-            };
-
-            console.log(imageUrl);
 
             const res = await axios({
                 method: 'PUT',
@@ -110,19 +121,28 @@ const Profile = () => {
                 data: {
                     username: username,
                     email: email,
+                    profilePic: imageUrl,
                     passwordObject,
-                    profilePicObject,
                 },
                 headers: {
                     token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
                 },
             });
 
+            const updatedUser = {
+                username: username,
+                username: username,
+                email: email,
+                profilePic: imageUrl,
+            };
+
+            userUpdated(updatedUser, dispatch);
+
             setTimeout(() => {
                 setNotification(false);
             }, 2500);
 
-            setNotificationText('Profile updated succesffuly.');
+            setNotificationText('Profile updated succesfully.');
             setNotification(true);
 
             return res;

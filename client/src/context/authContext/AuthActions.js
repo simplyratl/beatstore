@@ -45,4 +45,7 @@ export const registerFailure = () => ({
    type: 'REGISTER_FAILURE',
 });
 
-
+export const updateUser = (user) => ({
+   type: 'UPDATE_USER',
+   payload: user,
+});

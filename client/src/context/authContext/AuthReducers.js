@@ -78,6 +78,21 @@ const AuthReducer = (state, action) => {
                 isFetching: false,
                 error: true,
             };
+        case 'UPDATE_USER':
+            const updatedUser = action.payload;
+            const currentUser = state.user;
+
+            Object.keys(updatedUser).forEach(key => {
+                if (updatedUser[key]) {
+                    state.user[key] = updatedUser[key];
+                }
+            })
+
+            return {
+                user: currentUser,
+                isFetching: false,
+                error: false,
+            };
 
         default:
             return { ...state };

@@ -17,6 +17,7 @@ import SearchPage from './pages/SearchPage';
 import Profile from './pages/Profile';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { AnimatePresence } from 'framer-motion';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 
 
@@ -80,6 +81,9 @@ function App() {
                         </Route>
                         <Route element={<Defaults />}>
                             <Route path='/profile/:username' element={<Profile />} />
+                        </Route>
+                        <Route element={<Defaults />}>
+                            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                         </Route>
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />

@@ -1,5 +1,19 @@
 .threed-container {
-    height: 70vh;
+    height: 600px;
+    overflow-x: hidden;
+
+    @media screen and (max-width: 840px) {
+        margin-top: 80px;
+        height: 400px;
+    }
+
+    @media screen and (max-width: 700px) {
+        height: 300px;
+    }
+
+    @media screen and (max-width: 500px) {
+        margin-top: 120px;
+    }
 
     .threed-wrapper {
         position: relative;
@@ -11,15 +25,38 @@
             position: relative;
             width: 700px;
             margin: 0 -280px;
+
+            @media screen and (max-width: 970px) {
+                width: 440px;
+            }
+
+            @media screen and (max-width: 700px) {
+                width: 240px;
+            }
+
+            @media screen and (max-width: 500px) {
+                position: absolute;
+                width: 70%;
+            }
         }
     }
 
     p {
+        position: relative;
         color: #fff;
         text-align: center;
         font-size: 4rem;
         margin-top: 24px;
         font-weight: 600;
         opacity: 0;
+
+        @media screen and (max-width: 970px) {
+            font-size: 2rem;
+        }
+
+        @media screen and (max-width: 500px) {
+            top: 120px;
+            font-size: 9vw;
+        }
     }
 }

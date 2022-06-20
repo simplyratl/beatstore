@@ -9,10 +9,24 @@ const Contact = (e) => {
     const [notificationText, setNotificationText] = useState('');
     const [notification, setNotification] = useState(false);
 
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
     const sendEmail = (e) => {
         e.preventDefault();
         setNotificationText('Sending...');
         setNotification(true);
+
+        if (name.length === 0 || email.length === 0 || message.length === 0) {
+            setTimeout(() => {
+                setNotification(false);
+            }, 2500);
+
+            setNotificationText('You have to write credientals to send the message.');
+            setNotification(true);
+            return;
+        }
 
         emailjs.sendForm('service_gde2yr4', 'template_jpg9cbb', e.target, 'DpNsu2ce7T4UzYt7Y').then(
             (result) => {
@@ -37,7 +51,12 @@ const Contact = (e) => {
     return (
         <>
             <AnimatePresence>
-                <motion.div className='contact-container' initial={{ opacity: 0, transform: 'translateY(-20%)' }} animate={{ opacity: 1, transform: 'translateY(0%)' }} exit={{ opacity: 0, transform: 'translateY(-20%)' }}>
+                <motion.div
+                    className='contact-container'
+                    initial={{ opacity: 0, transform: 'translateY(-20%)' }}
+                    animate={{ opacity: 1, transform: 'translateY(0%)' }}
+                    exit={{ opacity: 0, transform: 'translateY(-20%)' }}
+                >
                     <div className='contact-wrapper'>
                         <div className='left'>
                             <h1>Contact me.</h1>
@@ -68,17 +87,32 @@ const Contact = (e) => {
                         <form onSubmit={sendEmail}>
                             <div className='row'>
                                 <label>Your name</label>
-                                <input type='text' name='name' autoComplete='off' />
+                                <input
+                                    type='text'
+                                    name='name'
+                                    autoComplete='off'
+                                    onChange={(e) => setName(e.target.value)}
+                                />
                             </div>
 
                             <div className='row'>
                                 <label>Email</label>
-                                <input type='email' name='email' autoComplete='off' />
+                                <input
+                                    type='email'
+                                    name='email'
+                                    autoComplete='off'
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
                             </div>
 
                             <div className='row'>
                                 <label>Message</label>
-                                <textarea cols='30' rows='10' name='message'></textarea>
+                                <textarea
+                                    cols='30'
+                                    rows='10'
+                                    name='message'
+                                    onChange={(e) => setMessage(e.target.value)}
+                                ></textarea>
                             </div>
 
                             <div className='row'>

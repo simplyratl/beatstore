@@ -45,12 +45,10 @@ const Login = () => {
     };
 
     const handleLogin = (e) => {
-        e.preventDefault();
-
         login({ email, password }, dispatch, setErrorDisplay);
     };
 
-    const openForgotModal = () => { };
+    const openForgotModal = () => {};
 
     return (
         <div className='login-container'>
@@ -80,6 +78,9 @@ const Login = () => {
                         autoComplete='off'
                         placeholder='Your password'
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyPress={(e) => {
+                            e.key === 'Enter' && handleLogin();
+                        }}
                     />
                 </div>
 

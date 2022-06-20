@@ -70,7 +70,7 @@ const BeatTopBar = () => {
     };
 
     useEffect(() => {
-        if (!location.state) {
+        if (!location.state || location.pathname.split('/')[2] !== location.state.beat.title.toLowerCase()) {
             const getData = async () => {
                 const locationArr = location.pathname.split('/');
                 const getID = locationArr[locationArr.length - 1];
@@ -89,7 +89,7 @@ const BeatTopBar = () => {
         } else {
             setBeat(location.state.beat);
         }
-    }, []);
+    }, [location]);
 
     const handleAddToCart = (beat) => {
         addToCart(beat, dispatch);

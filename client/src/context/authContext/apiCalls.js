@@ -22,10 +22,17 @@ export const login = async (user, dispatch, setErrorDisplay) => {
 
         window.location.href = "/";
 
-        setErrorDisplay("Uspjesno ulogovan.");
+        setErrorDisplay("Login success.");
     } catch (error) {
         dispatch(loginFailure());
-        setErrorDisplay("You don't have admin account, or credidentials are not correct.");
+        switch (error.response.status) {
+            case 400:
+                setErrorDisplay("User not found");
+                break;
+            case 404:
+                setErrorDisplay("Incorrect password");
+                break;
+        }
     }
 };
 

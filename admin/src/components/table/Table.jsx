@@ -22,7 +22,13 @@ const List = () => {
                     },
                 });
 
-                setTransactions(res.data);
+                setTransactions(
+                    res.data
+                        .sort((a, b) => {
+                            return new Date(b.createdAt) - new Date(a.createdAt);
+                        })
+                        .splice(0, 10)
+                );
 
                 return res;
             } catch (error) {

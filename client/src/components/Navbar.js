@@ -90,14 +90,13 @@ const Navbar = () => {
 
     const handleLogout = () => {
         logoutRegular(authDispatch);
+        if (location.pathname.includes("profile")) navigate("/");
     };
 
     const handleSearch = (e) => {
         window.location = `/search/${e.target.value}`;
         // navigate(`/search/${e.target.value}`);
     };
-
-    console.log(user);
 
     return (
         <header>

@@ -39,8 +39,6 @@ const List = () => {
         getTransactionDetails();
     }, []);
 
-    console.log(transactions);
-
     return (
         <TableContainer component={Paper} className="table">
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

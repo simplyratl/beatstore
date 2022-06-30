@@ -208,8 +208,9 @@ const AddForm = () => {
                     </div>
                     <div className="row">
                         <div className="tags">
+                            <div className="tag">Example: </div>
                             <div className="tag">jack harlow</div>
-                            <div className="tag">jack harlow</div>
+                            <div className="tag">hard type beat</div>
                         </div>
                     </div>
 
@@ -343,7 +344,7 @@ const AddForm = () => {
                             text={`${uploadPercent}%`}
                             styles={buildStyles({
                                 // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                                strokeLinecap: "butt",
+                                strokeLinecap: "round",
 
                                 // Text size
                                 textSize: "16px",

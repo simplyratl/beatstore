@@ -65,9 +65,15 @@ const Widget = ({ type }) => {
 
     const calculatePercent = () => {
         //novi mjesec / stari mjesec (korisnici) * 100 - 100;
+        let previousMonth;
 
         const thisMonth = userStats[userStats.length - 1]?.new_user;
-        const previousMonth = userStats[userStats.length - 2]?.new_user;
+
+        if (userStats[userStats.length - 2]) {
+            previousMonth = userStats[userStats.length - 2]?.new_user;
+        } else {
+            previousMonth = userStats[userStats.length - 1]?.new_user;
+        }
 
         return parseInt((thisMonth / previousMonth) * 100 - 100);
     };
@@ -152,7 +158,7 @@ const Widget = ({ type }) => {
             <div className="right">
                 <div className={`percentage ${calculatePercent() <= 0 ? "negative" : "positive"}`}>
                     <KeyboardArrowUpIcon />
-                    {type === "user" && userStats ? calculatePercent() : null} %
+                    {type === "user" && userStats ? calculatePercent() : 0} %
                 </div>
                 {data.icon}
             </div>

@@ -1,12 +1,12 @@
-import './datatable.scss';
-import { DataGrid } from '@mui/x-data-grid';
-import { beatColumns, userColumns, userRows } from '../../datatablesource';
-import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { BeatContext } from '../../context/beatContext/BeatContext';
-import { deleteBeats, getBeats } from '../../context/beatContext/apiCalls';
-import { getStorage, ref, deleteObject } from 'firebase/storage';
-import storage from '../../firebase';
+import "./datatable.scss";
+import { DataGrid } from "@mui/x-data-grid";
+import { beatColumns, userColumns, userRows } from "../../datatablesource";
+import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { BeatContext } from "../../context/beatContext/BeatContext";
+import { deleteBeats, getBeats } from "../../context/beatContext/apiCalls";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import storage from "../../firebase";
 
 const Datatable = () => {
     const { beats, dispatch } = useContext(BeatContext);
@@ -26,9 +26,7 @@ const Datatable = () => {
             const storageRef = ref(storage, beats[index].mp3_tagged);
 
             deleteObject(storageRef)
-                .then(() => {
-                    console.log('deleted');
-                })
+                .then(() => {})
                 .catch((err) => console.log(err));
         }
 
@@ -37,7 +35,7 @@ const Datatable = () => {
 
             deleteObject(storageRef)
                 .then(() => {
-                    console.log('deleted');
+                    console.log("deleted");
                 })
                 .catch((err) => console.log(err));
         }
@@ -47,7 +45,7 @@ const Datatable = () => {
 
             deleteObject(storageRef)
                 .then(() => {
-                    console.log('deleted');
+                    console.log("deleted");
                 })
                 .catch((err) => console.log(err));
         }
@@ -57,7 +55,7 @@ const Datatable = () => {
 
             deleteObject(storageRef)
                 .then(() => {
-                    console.log('deleted');
+                    console.log("deleted");
                 })
                 .catch((err) => console.log(err));
         }
@@ -66,21 +64,21 @@ const Datatable = () => {
 
     const actionColumn = [
         {
-            field: 'action',
-            headerName: 'Action',
+            field: "action",
+            headerName: "Action",
             width: 200,
             renderCell: (params) => {
                 return (
-                    <div className='cellAction'>
+                    <div className="cellAction">
                         <Link
-                            to={{ pathname: '/products/' + params.row._id }}
+                            to={{ pathname: "/products/" + params.row._id }}
                             state={{ beat: params.row }}
-                            style={{ textDecoration: 'none' }}
+                            style={{ textDecoration: "none" }}
                         >
-                            <div className='viewButton'>View</div>
+                            <div className="viewButton">View</div>
                         </Link>
                         <div
-                            className='deleteButton'
+                            className="deleteButton"
                             onClick={() => handleDelete(params.row._id, params.row)}
                         >
                             Delete
@@ -91,15 +89,15 @@ const Datatable = () => {
         },
     ];
     return (
-        <div className='datatable'>
-            <div className='datatableTitle'>
+        <div className="datatable">
+            <div className="datatableTitle">
                 Add New User
-                <Link to='/add' className='link'>
+                <Link to="/add" className="link">
                     Add New
                 </Link>
             </div>
             <DataGrid
-                className='datagrid'
+                className="datagrid"
                 rows={beats}
                 columns={beatColumns.concat(actionColumn)}
                 pageSize={9}

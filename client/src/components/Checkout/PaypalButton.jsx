@@ -12,8 +12,6 @@ const PaypalButton = ({ total }) => {
     const [transaction, setTransaction] = useState({});
     const [download, setDownload] = useState([]);
 
-    console.log(transaction);
-
     useEffect(() => {
         if (transaction.status === "COMPLETED") {
             const transactionUpdate = async () => {

@@ -1,9 +1,9 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/authContext/AuthContext';
-import { motion, AnimatePresence } from 'framer-motion';
-import storage from '../firebase';
+import axios from "axios";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext/AuthContext";
+import { motion, AnimatePresence } from "framer-motion";
+import storage from "../firebase";
 import {
     ref,
     uploadBytes,
@@ -12,9 +12,9 @@ import {
     getDownloadURL,
     uploadBytesResumable,
     uploadString,
-} from 'firebase/storage';
-import '../style/dist/profile.min.css';
-import { userUpdated } from '../context/authContext/apiCalls';
+} from "firebase/storage";
+import "../style/dist/profile.min.css";
+import { userUpdated } from "../context/authContext/apiCalls";
 
 const Profile = () => {
     const location = useLocation();
@@ -23,24 +23,24 @@ const Profile = () => {
     const { user, dispatch } = useContext(AuthContext);
 
     useLayoutEffect(() => {
-        if (location.pathname.split('/')[2] !== user.username || !user) {
-            navigate('/');
+        if (location.pathname.split("/")[2] !== user.username || !user) {
+            navigate("/");
         }
     }, []);
 
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
-    const [password, setPassword] = useState('');
-    const [img, setImg] = useState('');
+    const [password, setPassword] = useState("");
+    const [img, setImg] = useState({});
 
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState("");
 
     const [notification, setNotification] = useState(false);
-    const [notificationText, setNotificationText] = useState('');
+    const [notificationText, setNotificationText] = useState("");
 
     useEffect(() => {
         if (!user) {
-            navigate('/');
+            navigate("/");
         }
     }, [user]);
 
@@ -49,11 +49,11 @@ const Profile = () => {
             if (!img) {
                 setTimeout(() => {
                     setNotification(false);
-                    setNotificationText('');
+                    setNotificationText("");
                 }, 1000);
 
                 setNotification(true);
-                setNotificationText('Error, file not found.');
+                setNotificationText("Error, file not found.");
                 return;
             }
 
@@ -64,7 +64,7 @@ const Profile = () => {
             const uploadTask = uploadBytesResumable(storageRef, img);
 
             uploadTask.on(
-                'state_changed',
+                "state_changed",
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
@@ -81,23 +81,25 @@ const Profile = () => {
                     // }
                 },
                 (error) => {
-                    console.log('unsuccessful');
+                    console.log("unsuccessful");
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         setImageUrl(downloadURL);
                         setNotification(false);
-                        setNotificationText('');
+                        setNotificationText("");
                     });
                 }
             );
         };
 
-        uploadImage();
+        if (img?.name) {
+            uploadImage();
+        }
     }, [img]);
 
     const updateUser = async () => {
-        setNotificationText('Updating...');
+        setNotificationText("Updating...");
         setNotification(true);
 
         if (username.length === 0 || email.length === 0) {
@@ -105,7 +107,7 @@ const Profile = () => {
                 setNotification(false);
             }, 2500);
 
-            setNotificationText('None of the inputs can be empty when updating.');
+            setNotificationText("None of the inputs can be empty when updating.");
             setNotification(true);
             return;
         }
@@ -116,7 +118,7 @@ const Profile = () => {
             };
 
             const res = await axios({
-                method: 'PUT',
+                method: "PUT",
                 url: `http://localhost:8800/user/${user._id}`,
                 data: {
                     username: username,
@@ -125,7 +127,7 @@ const Profile = () => {
                     passwordObject,
                 },
                 headers: {
-                    token: `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
+                    token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                 },
             });
 
@@ -142,7 +144,7 @@ const Profile = () => {
                 setNotification(false);
             }, 2500);
 
-            setNotificationText('Profile updated succesfully.');
+            setNotificationText("Profile updated succesfully.");
             setNotification(true);
 
             return res;
@@ -151,7 +153,7 @@ const Profile = () => {
                 setNotification(false);
             }, 2500);
 
-            setNotificationText('Updating profile failed.');
+            setNotificationText("Updating profile failed.");
             setNotification(true);
         }
     };
@@ -159,56 +161,56 @@ const Profile = () => {
     return (
         <>
             <motion.div
-                className='profile-container'
-                initial={{ opacity: 0, transform: 'translateY(-20%)' }}
-                animate={{ opacity: 1, transform: 'translateY(0%)' }}
-                exit={{ opacity: 0, transform: 'translateY(-20%)' }}
+                className="profile-container"
+                initial={{ opacity: 0, transform: "translateY(-20%)" }}
+                animate={{ opacity: 1, transform: "translateY(0%)" }}
+                exit={{ opacity: 0, transform: "translateY(-20%)" }}
             >
                 <h1>My profile</h1>
                 <h4>Edit my profile</h4>
 
-                <div className='edit-wrapper'>
-                    <div className='row'>
+                <div className="edit-wrapper">
+                    <div className="row">
                         <img
                             src={imageUrl.length === 0 ? user.profilePic : imageUrl}
-                            className='profile-picture'
+                            className="profile-picture"
                         />
 
                         <input
-                            type='file'
-                            id='file'
-                            name='file'
-                            accept='image/*'
+                            type="file"
+                            id="file"
+                            name="file"
+                            accept="image/*"
                             onChange={(e) => setImg(e.target.files[0])}
                         ></input>
-                        <label htmlFor='file' className='choose-file-label'>
+                        <label htmlFor="file" className="choose-file-label">
                             Choose a photo
                         </label>
                     </div>
 
-                    <div className='row input'>
+                    <div className="row input">
                         <label>Username</label>
                         <input
-                            type='text'
+                            type="text"
                             defaultValue={user.username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
-                    <div className='row input'>
+                    <div className="row input">
                         <label>Email</label>
                         <input
-                            type='email'
+                            type="email"
                             defaultValue={user.email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
-                    <div className='row input'>
+                    <div className="row input">
                         <label>Password</label>
-                        <input type='password' onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password" onChange={(e) => setPassword(e.target.value)} />
                     </div>
 
-                    <div className='row'>
-                        <button type='button' style={{ margin: 0 }} onClick={() => updateUser()}>
+                    <div className="row">
+                        <button type="button" style={{ margin: 0 }} onClick={() => updateUser()}>
                             Save changes
                         </button>
                     </div>
@@ -218,7 +220,7 @@ const Profile = () => {
             <AnimatePresence>
                 {notification && (
                     <motion.div
-                        className='notification-container'
+                        className="notification-container"
                         initial={{ opacity: 0, bottom: 0 }}
                         animate={{ opacity: 1, bottom: 100 }}
                         exit={{ opacity: 0, bottom: 0 }}

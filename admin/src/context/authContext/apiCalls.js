@@ -4,13 +4,28 @@ import { loginFailure, loginStart, loginSuccess, updateUser, logout } from "./Au
 export const login = async (user, dispatch, setErrorDisplay) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post("http://localhost:8800/auth/login", user);
+        const adminUser = {
+            ...user,
+            admin: true,
+        };
+
+        const res = await axios.post("http://localhost:8800/auth/login", adminUser);
         res.data.isAdmin && dispatch(loginSuccess(res.data));
 
         setErrorDisplay("Uspjesno ulogovan.");
     } catch (error) {
         dispatch(loginFailure());
-        setErrorDisplay("Nemate admin nalog, ili kredincijali su netačni.");
+        switch (error.response.status) {
+            case 400:
+                setErrorDisplay("User not found");
+                break;
+            case 403:
+                setErrorDisplay("You are not authorised for this login.");
+                break;
+            case 404:
+                setErrorDisplay("Incorrect password");
+                break;
+        }
     }
 };
 

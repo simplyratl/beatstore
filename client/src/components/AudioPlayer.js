@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { BiShuffle, BiRepeat } from 'react-icons/bi';
-import { BsVolumeDown, BsVolumeMute, BsCart2 } from 'react-icons/bs';
-import { AiFillPlayCircle, AiFillStepBackward, AiFillStepForward, AiFillPauseCircle } from 'react-icons/ai';
-import { CgRemove } from 'react-icons/cg';
-import { Context } from '../context/Context';
-import '../style/dist/audioplayer.min.css';
-import { Link } from 'react-router-dom';
-import { CartContext } from '../context/cartContext/CartContext';
-import { addCart, addToCart, removeFromCart } from '../context/cartContext/apiCalls';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { BiShuffle, BiRepeat } from "react-icons/bi";
+import { BsVolumeDown, BsVolumeMute, BsCart2 } from "react-icons/bs";
+import { AiFillPlayCircle, AiFillStepBackward, AiFillStepForward, AiFillPauseCircle } from "react-icons/ai";
+import { CgRemove } from "react-icons/cg";
+import { Context } from "../context/Context";
+import "../style/dist/audioplayer.min.css";
+import { Link } from "react-router-dom";
+import { CartContext } from "../context/cartContext/CartContext";
+import { addCart, addToCart, removeFromCart } from "../context/cartContext/apiCalls";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AudioPlayer = () => {
     const [paused, setPaused] = useState(false);
@@ -31,7 +31,7 @@ const AudioPlayer = () => {
             audioRef.current.currentTime = e.target.value;
             setPercentSong(e.target.value);
             currentProgress.current.style.setProperty(
-                'width',
+                "width",
                 `${(sliderRef.current.value / audioRef.current.duration) * 100}%`
             );
         }
@@ -70,7 +70,7 @@ const AudioPlayer = () => {
             if (isPlaying && !audioRef.current.ended) {
                 setPercentSong(audioRef.current.currentTime);
                 currentProgress.current.style.setProperty(
-                    'width',
+                    "width",
                     `${(sliderRef.current.value / audioRef.current.duration) * 100}%`
                 );
                 animationRef.current = requestAnimationFrame(whilePlaying);
@@ -82,13 +82,11 @@ const AudioPlayer = () => {
         let minute = Math.floor((duration % 3600) / 60);
         let second = Math.floor((duration % 3600) % 60);
 
-        return `${isNaN(minute) ? '-' : minute}:${isNaN(second) ? '-' : second <= 9 ? '0' + second : second}`;
+        return `${isNaN(minute) ? "-" : minute}:${isNaN(second) ? "-" : second <= 9 ? "0" + second : second}`;
     };
 
     const handleRepeat = (e) => {
         setRepeat(!repeat);
-
-        console.log(repeat);
 
         if (!repeat) {
             audioRef.current.loop = true;
@@ -121,48 +119,49 @@ const AudioPlayer = () => {
 
     return (
         <motion.div
-            className='audio-player-container'
-            initial={{ transform: 'translateY(100%)' }}
-            animate={{ transform: 'translateY(0%)' }}
-            exit={{ transform: 'translateY(100%)' }}
+            className="audio-player-container"
+            initial={{ transform: "translateY(100%)" }}
+            animate={{ transform: "translateY(0%)" }}
+            exit={{ transform: "translateY(100%)" }}
         >
             {/* <span className='close' onClick={() => { setCurrentBeat(null); setIsPlaying(false) }}>
                 <CgRemove className='icon' />
             </span> */}
 
-            <div className='audio-player-wrapper'>
-                <div className='left-side'>
-                    <img src={currentBeat?.img} alt='' />
+            <div className="audio-player-wrapper">
+                <div className="left-side">
+                    <img src={currentBeat?.img} alt="" />
 
-                    <div className='song-info'>
+                    <div className="song-info">
                         <Link
-                            to={`/beat/${currentBeat?.title?.toLowerCase().replace(' ', '-')}/${currentBeat?._id
-                                }`}
+                            to={`/beat/${currentBeat?.title?.toLowerCase().replace(" ", "-")}/${
+                                currentBeat?._id
+                            }`}
                             state={{ beat: currentBeat }}
-                            className='song-title'
+                            className="song-title"
                         >
                             {currentBeat?.title}
                         </Link>
                         {currentBeat.artist ? (
-                            <span className='song-artist'>{currentBeat.artist}</span>
+                            <span className="song-artist">{currentBeat.artist}</span>
                         ) : Object.keys(currentBeat).length > 0 ? (
                             !cart.some((item) => item._id === currentBeat._id) ? (
                                 <button
-                                    type='button'
-                                    className='buy-now-player'
-                                    style={{ margin: '4px 0' }}
+                                    type="button"
+                                    className="buy-now-player"
+                                    style={{ margin: "4px 0" }}
                                     onClick={() => handleAddToCart(currentBeat)}
                                 >
                                     <BsCart2 />
-                                    {!currentBeat?.basic_licence?.toString()?.includes('.')
+                                    {!currentBeat?.basic_licence?.toString()?.includes(".")
                                         ? `${currentBeat?.basic_licence}.00`
                                         : currentBeat?.basic_licence}
                                 </button>
                             ) : (
                                 <button
-                                    type='button'
-                                    className='buy-now-player incart'
-                                    style={{ margin: '4px 0' }}
+                                    type="button"
+                                    className="buy-now-player incart"
+                                    style={{ margin: "4px 0" }}
                                     onClick={() => removeCart(currentBeat)}
                                 >
                                     <BsCart2 />
@@ -173,26 +172,26 @@ const AudioPlayer = () => {
                     </div>
 
                     {currentBeat.artist && (
-                        <button type='button' className='buy-now-player'>
+                        <button type="button" className="buy-now-player">
                             <BsCart2 onClick={() => handleAddToCart(currentBeat)} />
-                            {!currentBeat?.basic_licence?.toString()?.includes('.')
+                            {!currentBeat?.basic_licence?.toString()?.includes(".")
                                 ? `${currentBeat?.basic_licence}.00`
                                 : currentBeat?.basic_licence}
                         </button>
                     )}
                 </div>
 
-                <div className='middle'>
-                    <div className='controls'>
+                <div className="middle">
+                    <div className="controls">
                         <BiShuffle
-                            className='icon smaller'
+                            className="icon smaller"
                             onClick={() => setShuffle(!shuffle)}
-                            style={{ fill: shuffle && 'red' }}
+                            style={{ fill: shuffle && "red" }}
                         />
-                        <AiFillStepBackward className='icon remove' />
+                        <AiFillStepBackward className="icon remove" />
                         {paused ? (
                             <AiFillPlayCircle
-                                className='icon big'
+                                className="icon big"
                                 onClick={() => {
                                     setPaused(false);
                                     setIsPlaying(true);
@@ -200,7 +199,7 @@ const AudioPlayer = () => {
                             />
                         ) : (
                             <AiFillPauseCircle
-                                className={`icon big ${paused && 'paused'}`}
+                                className={`icon big ${paused && "paused"}`}
                                 onClick={() => {
                                     setPaused(true);
                                     setIsPlaying(false);
@@ -208,48 +207,48 @@ const AudioPlayer = () => {
                             />
                         )}
 
-                        <AiFillStepForward className='icon' />
+                        <AiFillStepForward className="icon" />
                         <BiRepeat
-                            className='icon smaller remove'
+                            className="icon smaller remove"
                             onClick={handleRepeat}
-                            style={{ fill: repeat && 'red' }}
+                            style={{ fill: repeat && "red" }}
                         />
                     </div>
-                    <div className='play-time'>
-                        <span className='timeline-time'>{convertTime(audioRef?.current?.currentTime)}</span>
-                        <div className='progress-bar-range'>
-                            <div className='progress-bar' ref={currentProgress}></div>
+                    <div className="play-time">
+                        <span className="timeline-time">{convertTime(audioRef?.current?.currentTime)}</span>
+                        <div className="progress-bar-range">
+                            <div className="progress-bar" ref={currentProgress}></div>
                             <input
-                                type='range'
-                                step='0.01'
-                                className='timeline'
+                                type="range"
+                                step="0.01"
+                                className="timeline"
                                 onChange={handlePercentDrag}
                                 value={percentSong}
                                 ref={sliderRef}
                                 max={audioRef?.current?.duration?.toString()}
                             />
                         </div>
-                        <span className='timeline-time'>
-                            {audioRef ? convertTime(audioRef?.current?.duration) : '-:-'}
+                        <span className="timeline-time">
+                            {audioRef ? convertTime(audioRef?.current?.duration) : "-:-"}
                         </span>
                     </div>
                 </div>
 
-                <div className='right-side'>
+                <div className="right-side">
                     {muted ? (
-                        <BsVolumeDown className='icon' onClick={mute} />
+                        <BsVolumeDown className="icon" onClick={mute} />
                     ) : (
-                        <BsVolumeMute className='icon' onClick={mute} />
+                        <BsVolumeMute className="icon" onClick={mute} />
                     )}
 
-                    <div className='progress-bar-range'>
-                        <div className='progress-bar' style={{ width: `${percentVolume}%` }}></div>
+                    <div className="progress-bar-range">
+                        <div className="progress-bar" style={{ width: `${percentVolume}%` }}></div>
                         <input
-                            type='range'
-                            step='0.01'
-                            className='timeline'
+                            type="range"
+                            step="0.01"
+                            className="timeline"
                             onChange={handleVolumeChange}
-                            defaultValue='50%'
+                            defaultValue="50%"
                         />
                     </div>
                 </div>

@@ -61,7 +61,14 @@ export const register = async (user, dispatch, setErrorDisplay, setSuccess) => {
         setSuccess(true);
     } catch (error) {
         dispatch(registerFailure());
-        setErrorDisplay("Registration failed.");
+        switch (error.response.status) {
+            case 400:
+                setErrorDisplay("User with that email already exists.");
+                break;
+            case 500:
+                setErrorDisplay("Something went wrong.");
+                break;
+        }
     }
 };
 

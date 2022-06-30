@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/Users");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const Users = require("../models/Users");
 
 router.post("/register", async (req, res) => {
     const newUser = new User({
@@ -13,7 +14,7 @@ router.post("/register", async (req, res) => {
     try {
         const user = await newUser.save();
 
-        return res.status(201).json(user);
+        res.status(201).json(user);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -32,7 +33,10 @@ router.post("/login", async (req, res) => {
 
         if (originalPassword !== password) return res.status(400).json({ message: "Incorrect credentials" });
 
-        const accessToken = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET_KEY, {
+        if (req.body.admin && !user.isAdmin)
+            return res.status(403).json({ message: "You don't have admin account." });
+
+        const accessToken = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.SECRET_KEY, {
             expiresIn: "2h",
         });
 

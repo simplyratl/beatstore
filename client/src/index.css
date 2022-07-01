@@ -6,10 +6,8 @@
 
 body {
     margin: 0;
-    /* font-family: 'Rubik', sans-serif; */
     font-synthesis: none;
     font-family: "Roboto", sans-serif;
-    /* font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #191919;
@@ -29,12 +27,13 @@ body::-webkit-scrollbar {
 
 /* Track */
 body::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #191919;
 }
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-    background: #888;
+    background: rgb(168, 168, 168);
+    border-radius: 20px;
 }
 
 /* Handle on hover */

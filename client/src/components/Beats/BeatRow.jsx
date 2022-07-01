@@ -95,26 +95,30 @@ const BeatRow = ({ title }) => {
         <div className="beat-row-container">
             <div className="beat-row-wrapper">
                 <h2 style={{ marginLeft: 28, marginBottom: 10, display: "block" }}>
-                    <Link to={`/category/${title.toLowerCase()}`} state={{ beats: beats }} className="title">
+                    <Link to={`/category/${title?.toLowerCase()}`} state={{ beats: beats }} className="title">
                         {title}
 
                         <AiOutlineRight className="icon" />
                     </Link>
                 </h2>
-                <div
-                    className="beats-container"
-                    style={{ padding: beats?.length >= 6 ? "0 38px" : "0 28px" }}
-                >
-                    <Slider {...settings}>
-                        {!loading
-                            ? beats?.map((beat, index) => (
-                                  <div key={index}>
-                                      <BeatCard beat={beat} index={index} />
-                                  </div>
-                              ))
-                            : displaySkeleton()}
-                    </Slider>
-                </div>
+                {beats?.length > 0 ? (
+                    <div
+                        className="beats-container"
+                        style={{ padding: beats?.length >= 6 ? "0 38px" : "0 28px" }}
+                    >
+                        <Slider {...settings}>
+                            {!loading
+                                ? beats?.map((beat, index) => (
+                                      <div key={index}>
+                                          <BeatCard beat={beat} index={index} />
+                                      </div>
+                                  ))
+                                : displaySkeleton()}
+                        </Slider>
+                    </div>
+                ) : (
+                    <span className="not-found">Not found</span>
+                )}
             </div>
         </div>
     );

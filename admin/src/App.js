@@ -38,7 +38,7 @@ function App() {
                 logoutStart(dispatch);
             }
         }
-    }, [window.location]);
+    }, []);
 
     return (
         <div className={darkMode ? "app dark" : "app"}>

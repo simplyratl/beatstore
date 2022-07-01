@@ -3,14 +3,14 @@ import BeatRow from "../components/Beats/BeatRow";
 import { rows } from "../components/Beats/beatrowfilter";
 
 const Beats = () => {
-    const [rows, setRows] = useState([]);
+    const [rowsCategory, setRowsCategory] = useState([]);
 
     useEffect(() => {
         const createRandomRow = () => {
             let randomIndex = [];
 
             for (let i = 0; i < 5; i++) {
-                randomIndex.push(rows[Math.floor(Math.random() * rows.length)]);
+                randomIndex.push(rows[Math.floor(Math.random() * rows.length - 1)]);
             }
 
             if (!sessionStorage.getItem("library"))
@@ -21,7 +21,7 @@ const Beats = () => {
 
         const getRows = () => {
             if (sessionStorage.getItem("library")) {
-                setRows(JSON.parse(sessionStorage.getItem("library")));
+                setRowsCategory(JSON.parse(sessionStorage.getItem("library")));
             }
         };
 
@@ -32,8 +32,10 @@ const Beats = () => {
     return (
         <div style={{ marginTop: 100 }}>
             <BeatRow title="Latest" />
-            {rows.map((row) => (
-                <BeatRow title={row} />
+            {rowsCategory.map((row, index) => (
+                <div className="beat-row" key={index}>
+                    <BeatRow title={row} />
+                </div>
             ))}
         </div>
     );

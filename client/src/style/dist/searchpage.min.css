@@ -1,1 +1,15 @@
-.search-page-container{margin:0 4%;margin-top:80px}.search-page-container h1{display:block;color:#fff;margin-bottom:16px}.search-page-container .search-page-wrapper{display:grid;grid-template-columns:repeat(auto-fill, minmax(268px, 1fr));gap:12px;row-gap:24px}/*# sourceMappingURL=searchpage.min.css.map */
+.search-page-container {
+  margin: 0 4%;
+  margin-top: 80px;
+}
+.search-page-container h1 {
+  display: block;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.search-page-container .search-page-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 12px;
+  row-gap: 24px;
+}/*# sourceMappingURL=searchpage.min.css.map */

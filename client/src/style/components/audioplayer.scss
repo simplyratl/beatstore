@@ -1,5 +1,5 @@
-@use '../util/breakpoints.scss' as *;
-@use '../util/colors.scss' as *;
+@use "../util/breakpoints.scss" as *;
+@use "../util/colors.scss" as *;
 
 .audio-player-container {
     position: fixed;
@@ -39,6 +39,8 @@
             img {
                 width: 60px;
                 border-radius: 4px;
+                object-fit: cover;
+                aspect-ratio: 1/1;
 
                 @include breakpoint-down(medium-small) {
                     display: none;

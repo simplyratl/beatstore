@@ -1,1 +1,76 @@
-.license-help-container{padding:0 4%;max-width:2560px;margin:auto}.license-help-container .license-wrapper{color:#fff}.license-help-container .license-wrapper h2{font-size:2rem;font-weight:800;margin:22px 0 12px 0}.license-help-container .license-wrapper .licences{display:flex;justify-content:space-between;align-items:center}@media(max-width: 71.8125em){.license-help-container .license-wrapper .licences{display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));justify-content:flex-start;gap:12px}}.license-help-container .license-wrapper .licences .license{background-color:#2f2f2f;border-radius:8px;padding:18px 24px;margin:0 10px;width:400px;height:420px;max-height:420px;overflow-y:auto}@media screen and (min-width: 1920px){.license-help-container .license-wrapper .licences .license{width:100%}}@media(max-width: 71.8125em){.license-help-container .license-wrapper .licences .license{width:auto;margin:0}}.license-help-container .license-wrapper .licences .license.favorite{background-color:#da4445}.license-help-container .license-wrapper .licences .license:first-child{margin-left:0}.license-help-container .license-wrapper .licences .license:last-child{margin-right:0}.license-help-container .license-wrapper .licences .license .license-title{font-size:1.7rem}.license-help-container .license-wrapper .licences .license .license-title.price{font-size:1.4rem}.license-help-container .license-wrapper .licences .license .license-description{margin:22px 0}.license-help-container .license-wrapper .licences .license ul{list-style:none}.license-help-container .license-wrapper .licences .license ul li{display:flex;flex-direction:column}.license-help-container .license-wrapper .licences .license ul li .license-option.disabled{text-decoration:line-through;color:#b2b2b2}/*# sourceMappingURL=licensehelp.min.css.map */
+.license-help-container {
+  padding: 0 4%;
+  max-width: 2560px;
+  margin: auto;
+}
+.license-help-container .license-wrapper {
+  color: #fff;
+}
+.license-help-container .license-wrapper h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 22px 0 12px 0;
+}
+.license-help-container .license-wrapper .licences {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 71.8125em) {
+  .license-help-container .license-wrapper .licences {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-content: flex-start;
+    gap: 12px;
+  }
+}
+.license-help-container .license-wrapper .licences .license {
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  padding: 18px 24px;
+  margin: 0 10px;
+  width: 400px;
+  height: 420px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+@media screen and (min-width: 1920px) {
+  .license-help-container .license-wrapper .licences .license {
+    width: 100%;
+  }
+}
+@media (max-width: 71.8125em) {
+  .license-help-container .license-wrapper .licences .license {
+    width: auto;
+    margin: 0;
+  }
+}
+.license-help-container .license-wrapper .licences .license.favorite {
+  background-color: #da4445;
+}
+.license-help-container .license-wrapper .licences .license:first-child {
+  margin-left: 0;
+}
+.license-help-container .license-wrapper .licences .license:last-child {
+  margin-right: 0;
+}
+.license-help-container .license-wrapper .licences .license .license-title {
+  font-size: 1.7rem;
+}
+.license-help-container .license-wrapper .licences .license .license-title.price {
+  font-size: 1.4rem;
+}
+.license-help-container .license-wrapper .licences .license .license-description {
+  margin: 22px 0;
+}
+.license-help-container .license-wrapper .licences .license ul {
+  list-style: none;
+}
+.license-help-container .license-wrapper .licences .license ul li {
+  display: flex;
+  flex-direction: column;
+}
+.license-help-container .license-wrapper .licences .license ul li .license-option.disabled {
+  text-decoration: line-through;
+  color: #b2b2b2;
+}/*# sourceMappingURL=licensehelp.min.css.map */

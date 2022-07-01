@@ -18,7 +18,7 @@ const PaypalButton = ({ total }) => {
                 try {
                     const res = await axios({
                         method: "POST",
-                        url: "http://192.168.1.8:8800/transaction",
+                        url: "http://localhost:8800/transaction",
                         data: {
                             trackingID: transaction.id,
                             productName: transaction.purchase_units,

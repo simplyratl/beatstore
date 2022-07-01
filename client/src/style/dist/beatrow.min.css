@@ -1,1 +1,42 @@
-.beat-row-container{margin-top:20px}.beat-row-container .beat-row-wrapper .title{margin:8px 0;color:#fff;text-decoration:none;transition:.2s ease;display:inline-flex;align-items:center;overflow:hidden}.beat-row-container .beat-row-wrapper .title .icon{position:relative;top:2px;visibility:hidden;opacity:0;transform:translateX(100%);transition:.2s ease-in-out;color:#707070;width:20px;height:20px;margin-left:4px}.beat-row-container .beat-row-wrapper .title:hover{color:#707070}.beat-row-container .beat-row-wrapper .title:hover .icon{visibility:visible;opacity:1;transform:translateX(0)}.beat-row-container .beat-row-wrapper .beats-container{overflow:hidden}/*# sourceMappingURL=beatrow.min.css.map */
+.beat-row-container {
+  margin-top: 20px;
+}
+.beat-row-container .beat-row-wrapper .title {
+  margin: 8px 0;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+}
+.beat-row-container .beat-row-wrapper .title .icon {
+  position: relative;
+  top: 2px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: 0.2s ease-in-out;
+  color: #707070;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+}
+.beat-row-container .beat-row-wrapper .title:hover {
+  color: #707070;
+}
+.beat-row-container .beat-row-wrapper .title:hover .icon {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+.beat-row-container .beat-row-wrapper .beats-container {
+  overflow: hidden;
+}
+.beat-row-container .not-found {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-left: 26px;
+  font-weight: 600;
+  text-decoration: line-through;
+}/*# sourceMappingURL=beatrow.min.css.map */

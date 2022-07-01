@@ -18,6 +18,8 @@ const Navbar = () => {
     const [background, setBackground] = useState(false);
     const [hideNav, setHideNav] = useState(false);
 
+    const [disableCart, setDisableCart] = useState(false);
+
     const [total, setTotal] = useState(0);
 
     const [userMenu, setUserMenu] = useState(false);
@@ -97,6 +99,14 @@ const Navbar = () => {
         window.location = `/search/${e.target.value}`;
         // navigate(`/search/${e.target.value}`);
     };
+
+    useEffect(() => {
+        if (!user) {
+            setDisableCart(true);
+        } else {
+            setDisableCart(false);
+        }
+    }, [user]);
 
     return (
         <header>
@@ -208,10 +218,15 @@ const Navbar = () => {
                             </div>
                         ) : null}
                     </div>
-                    <a href="/checkout" className="cart element">
-                        <span className="icon">{<BsCart2 />}</span>
-                        <span className="money-in-cart">${total}</span>
-                    </a>
+
+                    <div className={`checkout-wrapper ${disableCart && "disabled"}`}>
+                        <a href="/checkout" className="cart element">
+                            <span className="icon">{<BsCart2 />}</span>
+                            <span className="money-in-cart">${total}</span>
+                        </a>
+
+                        <div className="login-error">You must login to use cart.</div>
+                    </div>
 
                     <div className="vertical-line"></div>
 

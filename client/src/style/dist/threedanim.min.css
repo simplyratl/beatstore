@@ -1,1 +1,67 @@
-.threed-container{height:600px;overflow-x:hidden}@media screen and (max-width: 840px){.threed-container{margin-top:80px;height:400px}}@media screen and (max-width: 700px){.threed-container{height:300px}}@media screen and (max-width: 500px){.threed-container{margin-top:120px}}.threed-container .threed-wrapper{position:relative;display:flex;justify-content:center;align-items:center}.threed-container .threed-wrapper img{position:relative;width:700px;margin:0 -280px}@media screen and (max-width: 970px){.threed-container .threed-wrapper img{width:440px}}@media screen and (max-width: 700px){.threed-container .threed-wrapper img{width:240px}}@media screen and (max-width: 500px){.threed-container .threed-wrapper img{position:absolute;width:70%}}.threed-container p{position:relative;color:#fff;text-align:center;font-size:4rem;margin-top:24px;font-weight:600;opacity:0}@media screen and (max-width: 970px){.threed-container p{font-size:2rem}}@media screen and (max-width: 500px){.threed-container p{top:120px;font-size:9vw}}/*# sourceMappingURL=threedanim.min.css.map */
+.threed-container {
+  height: 600px;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 840px) {
+  .threed-container {
+    margin-top: 80px;
+    height: 400px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .threed-container {
+    height: 300px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .threed-container {
+    margin-top: 120px;
+  }
+}
+.threed-container .threed-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.threed-container .threed-wrapper img {
+  position: relative;
+  width: 700px;
+  margin: 0 -280px;
+}
+@media screen and (max-width: 970px) {
+  .threed-container .threed-wrapper img {
+    width: 440px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .threed-container .threed-wrapper img {
+    width: 240px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .threed-container .threed-wrapper img {
+    position: absolute;
+    width: 70%;
+  }
+}
+.threed-container p {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 24px;
+  font-weight: 600;
+  opacity: 0;
+}
+@media screen and (max-width: 970px) {
+  .threed-container p {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .threed-container p {
+    top: 120px;
+    font-size: 9vw;
+  }
+}/*# sourceMappingURL=threedanim.min.css.map */

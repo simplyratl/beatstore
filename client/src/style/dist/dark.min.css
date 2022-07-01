@@ -1,1 +1,53 @@
-.app.dark{background-color:#111;color:#fff}.app.dark .chartGrid{stroke:rgba(228,228,228,.219)}.app.dark .table{background-color:#111}.app.dark .table .tableCell{color:#fff}.app.dark .navbar{color:#fff;border-color:#333}.app.dark .navbar .search{border-color:gray}.app.dark .sidebar{background-color:#111;border-color:#333}.app.dark .sidebar .top .logo{color:#999}.app.dark .sidebar hr{border-color:#333}.app.dark .sidebar ul li:hover{background-color:#333}.app.dark .sidebar ul li .icon{color:#fff}.app.dark .sidebar ul li span{color:#fff}.app.dark .datatable .datagrid{color:#fff;border:none}.app.dark .datatable .datagrid .viewButton,.app.dark .datatable .datagrid .deleteButton,.app.dark .datatable .datagrid .cellWithStatus{color:gray;border:none}.app.dark input{background-color:rgba(0,0,0,0);color:#fff}/*# sourceMappingURL=dark.min.css.map */
+.app.dark {
+  background-color: #111;
+  color: #fff;
+}
+.app.dark .chartGrid {
+  stroke: rgba(228, 228, 228, 0.219);
+}
+.app.dark .table {
+  background-color: #111;
+}
+.app.dark .table .tableCell {
+  color: #fff;
+}
+.app.dark .navbar {
+  color: #fff;
+  border-color: #333;
+}
+.app.dark .navbar .search {
+  border-color: gray;
+}
+.app.dark .sidebar {
+  background-color: #111;
+  border-color: #333;
+}
+.app.dark .sidebar .top .logo {
+  color: #999;
+}
+.app.dark .sidebar hr {
+  border-color: #333;
+}
+.app.dark .sidebar ul li:hover {
+  background-color: #333;
+}
+.app.dark .sidebar ul li .icon {
+  color: #fff;
+}
+.app.dark .sidebar ul li span {
+  color: #fff;
+}
+.app.dark .datatable .datagrid {
+  color: #fff;
+  border: none;
+}
+.app.dark .datatable .datagrid .viewButton,
+.app.dark .datatable .datagrid .deleteButton,
+.app.dark .datatable .datagrid .cellWithStatus {
+  color: gray;
+  border: none;
+}
+.app.dark input {
+  background-color: transparent;
+  color: #fff;
+}/*# sourceMappingURL=dark.min.css.map */

@@ -6,14 +6,12 @@ import { BeatContextProvider } from "./context/beatContext/BeatContext";
 import { DarkModeContextProvider } from "./context/darkModeContext";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <AuthContextProvider>
-            <BeatContextProvider>
-                <DarkModeContextProvider>
-                    <App />
-                </DarkModeContextProvider>
-            </BeatContextProvider>
-        </AuthContextProvider>
-    </React.StrictMode>,
+    <AuthContextProvider>
+        <BeatContextProvider>
+            <DarkModeContextProvider>
+                <App />
+            </DarkModeContextProvider>
+        </BeatContextProvider>
+    </AuthContextProvider>,
     document.getElementById("root")
 );

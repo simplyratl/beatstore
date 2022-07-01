@@ -1,1 +1,35 @@
-.promotion-bar{position:fixed;width:100%;background-color:#da4445;color:#fff;top:74px;padding:10px 0;opacity:0;pointer-events:none;transition:.3s}@media screen and (max-width: 870px){.promotion-bar{padding:10px 60px}}.promotion-bar.active{opacity:1;pointer-events:all}.promotion-bar h3{text-align:center;font-size:1rem}.promotion-bar .remove{position:absolute;font-size:2rem;fill:#fff;right:4%;top:4px;cursor:pointer}.promotion-bar .remove:hover{opacity:.9}/*# sourceMappingURL=promotionbar.min.css.map */
+.promotion-bar {
+  position: fixed;
+  width: 100%;
+  background-color: #da4445;
+  color: #fff;
+  top: 74px;
+  padding: 10px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+@media screen and (max-width: 870px) {
+  .promotion-bar {
+    padding: 10px 60px;
+  }
+}
+.promotion-bar.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.promotion-bar h3 {
+  text-align: center;
+  font-size: 1rem;
+}
+.promotion-bar .remove {
+  position: absolute;
+  font-size: 2rem;
+  fill: #fff;
+  right: 4%;
+  top: 4px;
+  cursor: pointer;
+}
+.promotion-bar .remove:hover {
+  opacity: 0.9;
+}/*# sourceMappingURL=promotionbar.min.css.map */

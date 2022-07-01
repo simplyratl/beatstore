@@ -1,1 +1,79 @@
-.form-container-upper{padding:20px;display:flex;justify-content:center;align-items:center}.form-container-upper form .row{display:grid;grid-template-columns:50em}.form-container-upper form .row .artwork{width:300px;height:300px;-o-object-fit:cover;object-fit:cover}.form-container-upper form .row .upload-beats{margin:12px 0}.form-container-upper form .btn{padding:10px;border:none;background-color:#7451f8;color:#fff;cursor:pointer}.form-container-upper form .btn-primary{padding:12px;border:none;background-color:red;color:#fff;cursor:pointer;width:100%}.form-container-upper form .btn-bottom{margin:8px 0}.form-container-upper form .tags{display:flex;margin:12px 0}.form-container-upper form .tags .tag{margin-right:12px;background-color:gray;padding:8px 16px;color:#fff;border-radius:12em}.form-container-upper form input{background:none;border:1px solid gray;border-radius:4px;padding:12px;margin:8px 0}.form-container-upper form .upload-beats{display:flex;flex-direction:column}.form-container-upper form .upload-beats .artwork-container{display:flex;justify-content:center;background-color:#000}.uploading-screen{position:fixed;inset:0;width:100%;height:100vh;background-color:rgba(0,0,0,.8);display:flex;justify-content:center;align-items:center}.uploading-screen .circle{width:120px;height:120px}/*# sourceMappingURL=addform.min.css.map */
+.form-container-upper {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container-upper form .row {
+  display: grid;
+  grid-template-columns: 50em;
+}
+.form-container-upper form .row .artwork {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.form-container-upper form .row .upload-beats {
+  margin: 12px 0;
+}
+.form-container-upper form .btn {
+  padding: 10px;
+  border: none;
+  background-color: #7451f8;
+  color: #fff;
+  cursor: pointer;
+}
+.form-container-upper form .btn-primary {
+  padding: 12px;
+  border: none;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+.form-container-upper form .btn-bottom {
+  margin: 8px 0;
+}
+.form-container-upper form .tags {
+  display: flex;
+  margin: 12px 0;
+}
+.form-container-upper form .tags .tag {
+  margin-right: 12px;
+  background-color: gray;
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 12em;
+}
+.form-container-upper form input {
+  background: none;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 8px 0;
+}
+.form-container-upper form .upload-beats {
+  display: flex;
+  flex-direction: column;
+}
+.form-container-upper form .upload-beats .artwork-container {
+  display: flex;
+  justify-content: center;
+  background-color: #000000;
+}
+
+.uploading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.uploading-screen .circle {
+  width: 120px;
+  height: 120px;
+}/*# sourceMappingURL=addform.min.css.map */

@@ -244,6 +244,7 @@ const AddForm = () => {
                                 type="file"
                                 className="btn"
                                 placeholder="Upload Picture"
+                                accept="images/*"
                                 onChange={(e) => setImg(e.target.files[0])}
                             />
 

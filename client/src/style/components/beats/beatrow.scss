@@ -1,4 +1,4 @@
-@use '../../util/colors.scss' as *;
+@use "../../util/colors.scss" as *;
 
 .beat-row-container {
     margin-top: 20px;
@@ -40,5 +40,12 @@
         .beats-container {
             overflow: hidden;
         }
+    }
+    .not-found {
+        color: #fff;
+        font-size: 1.2rem;
+        margin-left: 26px;
+        font-weight: 600;
+        text-decoration: line-through;
     }
 }

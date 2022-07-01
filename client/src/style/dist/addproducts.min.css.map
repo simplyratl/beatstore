@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../../../admin/src/pages/add/addproducts.scss"],"names":[],"mappings":"AAAA,cACI,YAAA,CACA,UAAA,CACA,6BACI,MAAA","file":"addproducts.min.css"}
+{"version":3,"sources":["../../../../admin/src/pages/add/addproducts.scss","addproducts.min.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,WAAA;ACCJ;ADAI;EACI,OAAA;ACER","file":"addproducts.min.css"}

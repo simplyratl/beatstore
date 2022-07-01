@@ -1,14 +1,24 @@
-import React from 'react';
-import CheckoutAdded from '../components/Checkout/CheckoutAdded';
-import PaymentForm from '../components/Checkout/PaymentForm';
-import '../style/dist/checkout.min.css';
+import React, { useEffect } from "react";
+import CheckoutAdded from "../components/Checkout/CheckoutAdded";
+import PaymentForm from "../components/Checkout/PaymentForm";
+import { motion, AnimatePresence } from "framer-motion";
+import "../style/dist/checkout.min.css";
 
 const Checkout = () => {
     return (
-        <div className='checkout-container' style={{ marginTop: 80 }}>
-            <PaymentForm />
-            <CheckoutAdded />
-        </div>
+        <AnimatePresence>
+            <motion.div
+                className="checkout-container"
+                style={{ marginTop: 80 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8 }}
+            >
+                <PaymentForm />
+                <CheckoutAdded />
+            </motion.div>
+        </AnimatePresence>
     );
 };
 

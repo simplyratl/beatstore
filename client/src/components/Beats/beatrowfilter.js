@@ -1,307 +1,305 @@
 export const rows = [
-    'Popular',
-    'Latest',
-    'Recommended',
-    'Jack Harlow',
-    'Trap',
-    'Recently Played',
-    'Energetic',
-    'Bouncy',
-    'Dark',
-    'Confident',
-    'Sad',
-    'Angry',
-    'Flirty',
-    'Eccentric',
-    'Depressed',
-    'Epic',
-    'Relaxed',
-    'Cm',
-    'C#m',
-    'Dm',
-    'D#m',
-    'Em',
-    'Fm',
-    'F#m',
-    'Gm',
-    'G#m',
-    'Am',
-    'A#m',
-    'Bm',
-    'CMaj',
-    'C#Maj',
-    'DMaj',
-    'D#Maj',
-    'EMaj',
-    'FMaj',
-    'F#Maj',
-    'GMaj',
-    'G#Maj',
-    'AMaj',
-    'A#Maj',
-    'BMaj',
+    "Popular",
+    "Recommended",
+    "Jack Harlow",
+    "Trap",
+    "Energetic",
+    "Bouncy",
+    "Dark",
+    "Confident",
+    "Sad",
+    "Angry",
+    "Flirty",
+    "Eccentric",
+    "Depressed",
+    "Epic",
+    "Relaxed",
+    "Cm",
+    "C#m",
+    "Dm",
+    "D#m",
+    "Em",
+    "Fm",
+    "F#m",
+    "Gm",
+    "G#m",
+    "Am",
+    "A#m",
+    "Bm",
+    "CMaj",
+    "C#Maj",
+    "DMaj",
+    "D#Maj",
+    "EMaj",
+    "FMaj",
+    "F#Maj",
+    "GMaj",
+    "G#Maj",
+    "AMaj",
+    "A#Maj",
+    "BMaj",
 ];
 
 export const getDataRow = (response, rowTitle) => {
     switch (rowTitle) {
-        case 'Popular':
+        case "Popular":
             return response;
 
-        case 'Latest':
+        case "Latest":
             return response.sort((a, b) => {
                 return new Date(b.createdAt) - new Date(a.createdAt);
             });
 
-        case 'Jack Harlow':
+        case "Jack Harlow":
             return response.filter((beat) => {
                 for (let i = 0; i < beat.tags.length; i++) {
-                    if (beat.tags[i] === 'jack harlow') {
+                    if (beat.tags[i] === "jack harlow") {
                         return beat;
                     }
                 }
             });
 
-        case 'Trap':
+        case "Trap":
             return response.filter((beat) => {
                 if (parseInt(beat.bpm) >= 120 && parseInt(beat.bpm) <= 180) {
                     return beat;
                 }
             });
 
-        case 'Energetic':
+        case "Energetic":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Energetic' || beat.secondary_mood === 'Energetic') {
+                if (beat.primary_mood === "Energetic" || beat.secondary_mood === "Energetic") {
                     return beat;
                 }
             });
 
-        case 'Bouncy':
+        case "Bouncy":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Bouncy' || beat.secondary_mood === 'Bouncy') {
+                if (beat.primary_mood === "Bouncy" || beat.secondary_mood === "Bouncy") {
                     return beat;
                 }
             });
 
-        case 'Dark':
+        case "Dark":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Dark' || beat.secondary_mood === 'Dark') {
+                if (beat.primary_mood === "Dark" || beat.secondary_mood === "Dark") {
                     return beat;
                 }
             });
 
-        case 'Confident':
+        case "Confident":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Confident' || beat.secondary_mood === 'Confident') {
+                if (beat.primary_mood === "Confident" || beat.secondary_mood === "Confident") {
                     return beat;
                 }
             });
 
-        case 'Sad':
+        case "Sad":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Sad' || beat.secondary_mood === 'Sad') {
+                if (beat.primary_mood === "Sad" || beat.secondary_mood === "Sad") {
                     return beat;
                 }
             });
 
-        case 'Angry':
+        case "Angry":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Angry' || beat.secondary_mood === 'Angry') {
+                if (beat.primary_mood === "Angry" || beat.secondary_mood === "Angry") {
                     return beat;
                 }
             });
 
-        case 'Flirty':
+        case "Flirty":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Flirty' || beat.secondary_mood === 'Flirty') {
+                if (beat.primary_mood === "Flirty" || beat.secondary_mood === "Flirty") {
                     return beat;
                 }
             });
 
-        case 'Eccentric':
+        case "Eccentric":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Eccentric' || beat.secondary_mood === 'Eccentric') {
+                if (beat.primary_mood === "Eccentric" || beat.secondary_mood === "Eccentric") {
                     return beat;
                 }
             });
 
-        case 'Depressed':
+        case "Depressed":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Depressed' || beat.secondary_mood === 'Depressed') {
+                if (beat.primary_mood === "Depressed" || beat.secondary_mood === "Depressed") {
                     return beat;
                 }
             });
 
-        case 'Epic':
+        case "Epic":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Epic' || beat.secondary_mood === 'Epic') {
+                if (beat.primary_mood === "Epic" || beat.secondary_mood === "Epic") {
                     return beat;
                 }
             });
 
-        case 'Relaxed':
+        case "Relaxed":
             return response.filter((beat) => {
-                if (beat.primary_mood === 'Relaxed' || beat.secondary_mood === 'Relaxed') {
+                if (beat.primary_mood === "Relaxed" || beat.secondary_mood === "Relaxed") {
                     return beat;
                 }
             });
 
-        case 'Cm':
+        case "Cm":
             return response.filter((beat) => {
-                if (beat.key === 'Cm') {
+                if (beat.key === "Cm") {
                     return beat;
                 }
             });
 
-        case 'C#m':
+        case "C#m":
             return response.filter((beat) => {
-                if (beat.key === 'C#m') {
+                if (beat.key === "C#m") {
                     return beat;
                 }
             });
 
-        case 'D#m':
+        case "D#m":
             return response.filter((beat) => {
-                if (beat.key === 'D#m') {
+                if (beat.key === "D#m") {
                     return beat;
                 }
             });
 
-        case 'Em':
+        case "Em":
             return response.filter((beat) => {
-                if (beat.key === 'Em') {
+                if (beat.key === "Em") {
                     return beat;
                 }
             });
 
-        case 'Fm':
+        case "Fm":
             return response.filter((beat) => {
-                if (beat.key === 'Fm') {
+                if (beat.key === "Fm") {
                     return beat;
                 }
             });
 
-        case 'F#m':
+        case "F#m":
             return response.filter((beat) => {
-                if (beat.key === 'F#m') {
+                if (beat.key === "F#m") {
                     return beat;
                 }
             });
 
-        case 'Gm':
+        case "Gm":
             return response.filter((beat) => {
-                if (beat.key === 'Gm') {
+                if (beat.key === "Gm") {
                     return beat;
                 }
             });
 
-        case 'G#m':
+        case "G#m":
             return response.filter((beat) => {
-                if (beat.key === 'G#m') {
+                if (beat.key === "G#m") {
                     return beat;
                 }
             });
 
-        case 'Am':
+        case "Am":
             return response.filter((beat) => {
-                if (beat.key === 'Am') {
+                if (beat.key === "Am") {
                     return beat;
                 }
             });
 
-        case 'A#m':
+        case "A#m":
             return response.filter((beat) => {
-                if (beat.key === 'A#m') {
+                if (beat.key === "A#m") {
                     return beat;
                 }
             });
 
-        case 'Bm':
+        case "Bm":
             return response.filter((beat) => {
-                if (beat.key === 'Bm') {
+                if (beat.key === "Bm") {
                     return beat;
                 }
             });
 
-        case 'CMaj':
+        case "CMaj":
             return response.filter((beat) => {
-                if (beat.key === 'CMaj') {
+                if (beat.key === "CMaj") {
                     return beat;
                 }
             });
 
-        case 'C#Maj':
+        case "C#Maj":
             return response.filter((beat) => {
-                if (beat.key === 'C#Maj') {
+                if (beat.key === "C#Maj") {
                     return beat;
                 }
             });
 
-        case 'DMaj':
+        case "DMaj":
             return response.filter((beat) => {
-                if (beat.key === 'DMaj') {
+                if (beat.key === "DMaj") {
                     return beat;
                 }
             });
 
-        case 'D#Maj':
+        case "D#Maj":
             return response.filter((beat) => {
-                if (beat.key === 'D#Maj') {
+                if (beat.key === "D#Maj") {
                     return beat;
                 }
             });
 
-        case 'EMaj':
+        case "EMaj":
             return response.filter((beat) => {
-                if (beat.key === 'EMaj') {
+                if (beat.key === "EMaj") {
                     return beat;
                 }
             });
 
-        case 'FMaj':
+        case "FMaj":
             return response.filter((beat) => {
-                if (beat.key === 'FMaj') {
+                if (beat.key === "FMaj") {
                     return beat;
                 }
             });
 
-        case 'F#Maj':
+        case "F#Maj":
             return response.filter((beat) => {
-                if (beat.key === 'F#Maj') {
+                if (beat.key === "F#Maj") {
                     return beat;
                 }
             });
 
-        case 'GMaj':
+        case "GMaj":
             return response.filter((beat) => {
-                if (beat.key === 'GMaj') {
+                if (beat.key === "GMaj") {
                     return beat;
                 }
             });
 
-        case 'G#Maj':
+        case "G#Maj":
             return response.filter((beat) => {
-                if (beat.key === 'G#Maj') {
+                if (beat.key === "G#Maj") {
                     return beat;
                 }
             });
 
-        case 'AMaj':
+        case "AMaj":
             return response.filter((beat) => {
-                if (beat.key === 'AMaj') {
+                if (beat.key === "AMaj") {
                     return beat;
                 }
             });
 
-        case 'A#Maj':
+        case "A#Maj":
             return response.filter((beat) => {
-                if (beat.key === 'A#Maj') {
+                if (beat.key === "A#Maj") {
                     return beat;
                 }
             });
 
-        case 'BMaj':
+        case "BMaj":
             return response.filter((beat) => {
-                if (beat.key === 'BMaj') {
+                if (beat.key === "BMaj") {
                     return beat;
                 }
             });

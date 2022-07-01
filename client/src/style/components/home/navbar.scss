@@ -1,5 +1,5 @@
-@use '../../util/breakpoints.scss' as *;
-@use '../../util/colors.scss' as *;
+@use "../../util/breakpoints.scss" as *;
+@use "../../util/colors.scss" as *;
 
 header {
     position: fixed;
@@ -229,43 +229,81 @@ header {
                 }
             }
 
-            .cart {
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                width: 26px;
-                overflow: hidden;
-                transition: 0.25s ease-in;
+            .checkout-wrapper {
+                position: relative;
 
-                &:hover {
-                    width: 98px;
-                }
+                &.disabled {
+                    cursor: not-allowed;
+                    .cart {
+                        pointer-events: none;
+                    }
 
-                &:hover {
-                    .money-in-cart {
-                        width: 98px;
-                        visibility: visible;
-                        transform: translateX(0);
+                    &:hover {
+                        .login-error {
+                            visibility: visible;
+                            opacity: 1;
+                        }
                     }
                 }
 
-                &:hover {
-                    .icon {
-                        color: $primary;
-                    }
-
-                    .money-in-cart {
-                        color: $primary;
-                    }
-                }
-
-                .money-in-cart {
+                .login-error {
+                    position: absolute;
+                    top: 46px;
+                    left: 72%;
+                    transform: translateX(-50%);
+                    color: #fff;
+                    background-color: $tertiary;
+                    width: 140px;
+                    padding: 10px;
+                    text-align: center;
+                    border-radius: 8px;
+                    font-size: 0.9rem;
+                    opacity: 0;
                     visibility: hidden;
-                    transform: translateX(100%);
-                    margin-left: 6px;
-                    font-weight: 600;
-                    color: $text-color-bbg;
-                    transition: 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: -12px;
+                        left: 52%;
+                        transform: translateX(-50%);
+                        border-left: 12px solid transparent;
+                        border-right: 12px solid transparent;
+                        border-bottom: 12px solid $tertiary;
+                    }
+                }
+
+                .cart {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    width: 26px;
+                    overflow: hidden;
+                    transition: 0.25s ease-in;
+
+                    &:hover {
+                        width: 98px;
+                        .money-in-cart {
+                            width: 98px;
+                            visibility: visible;
+                            transform: translateX(0);
+                            color: $primary;
+                        }
+                        .icon {
+                            color: $primary;
+                        }
+                    }
+
+                    .money-in-cart {
+                        visibility: hidden;
+                        transform: translateX(100%);
+                        margin-left: 6px;
+                        font-weight: 600;
+                        color: $text-color-bbg;
+                        transition: 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+                    }
                 }
             }
 

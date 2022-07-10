@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Context } from "../../context/Context";
 import { addToCart, removeFromCart } from "../../context/cartContext/apiCalls";
 import { CartContext } from "../../context/cartContext/CartContext";
+import { AuthContext } from "../../context/authContext/AuthContext";
 
 const CategoryList = ({ rowTitle }) => {
     const location = useLocation();
@@ -25,9 +26,10 @@ const CategoryList = ({ rowTitle }) => {
     const [bpmLowest, setBpmLowest] = useState(0);
     const [bpmHighest, setBpmHighest] = useState(250);
 
-    const { isPlaying, setIsPlaying, currentBeat, setCurrentBeat } = useContext(Context);
+    const { setIsPlaying, currentBeat, setCurrentBeat } = useContext(Context);
 
     const { dispatch, cart } = useContext(CartContext);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         if (!location.state) {
@@ -155,12 +157,8 @@ const CategoryList = ({ rowTitle }) => {
         }
     };
 
-    // const handleAddToCart = (beat) => {
-    //     setCart([...cart, beat]);
-    //     localStorage.setItem('cart', JSON.stringify(cart));
-    // };
-
     const handleAddToCart = (beat) => {
+        if (!user) return;
         addToCart(beat, dispatch);
     };
 
@@ -210,10 +208,16 @@ const CategoryList = ({ rowTitle }) => {
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
                                     >
-                                        <BsCart2 />
-                                        {!beat?.basic_licence?.toString()?.includes(".")
-                                            ? `${beat?.basic_licence}.00`
-                                            : beat?.basic_licence}
+                                        {!user && (
+                                            <div className="login-error">You must login to use cart.</div>
+                                        )}
+
+                                        <BsCart2 className="icon" />
+                                        <p>
+                                            {!beat?.basic_licence?.toString()?.includes(".")
+                                                ? `${beat?.basic_licence}.00`
+                                                : beat?.basic_licence}
+                                        </p>
                                     </motion.button>
                                 )}
 
@@ -228,8 +232,8 @@ const CategoryList = ({ rowTitle }) => {
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
                                     >
-                                        <BsCart2 />
-                                        In cart
+                                        <BsCart2 className="icon" />
+                                        <p>In cart</p>
                                     </motion.button>
                                 )}
                             </div>

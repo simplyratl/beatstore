@@ -96,7 +96,9 @@
   margin-right: 8px;
 }
 .category-list-container .beats-list .beat .right button {
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   background-color: #da4445;
   border: none;
@@ -104,7 +106,51 @@
   border-radius: 4px;
   cursor: pointer;
   color: #b2b2b2;
-  z-index: 99;
+  width: 80px;
+  box-sizing: content-box;
+}
+.category-list-container .beats-list .beat .right button:hover .login-error {
+  opacity: 1;
+  visibility: visible;
+}
+.category-list-container .beats-list .beat .right button .login-error {
+  position: absolute;
+  left: -70%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: #464646;
+  width: 110px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99999;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+}
+.category-list-container .beats-list .beat .right button .login-error::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  right: -17px;
+  transform: translate(-50%, -50%);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #464646;
+}
+.category-list-container .beats-list .beat .right button .icon {
+  position: relative;
+  top: -2px;
+  font-size: 1.4rem;
+}
+.category-list-container .beats-list .beat .right button p {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
 }
 .category-list-container .beats-list .beat .right button:hover {
   filter: brightness(1.1);

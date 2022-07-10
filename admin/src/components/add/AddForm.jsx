@@ -1,13 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import storage from "../../firebase";
-import {
-    ref,
-    uploadBytes,
-    bytesTransferred,
-    totalBytes,
-    getDownloadURL,
-    uploadBytesResumable,
-} from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { v4 } from "uuid";
 import CryptoJS from "crypto-js";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";

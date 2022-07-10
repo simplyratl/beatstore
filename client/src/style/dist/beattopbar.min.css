@@ -34,6 +34,7 @@
 }
 .top-bar-container .top-bar-wrapper .left h2 {
   margin-top: 6px;
+  font-weight: 800;
 }
 .top-bar-container .top-bar-wrapper .left .beat-image-container {
   position: relative;
@@ -117,6 +118,7 @@
   background-color: #464646;
   border-radius: 4px;
   padding: 4px 12px;
+  font-weight: 300;
 }
 .top-bar-container .top-bar-wrapper .left .beat-info span:not(:first-child) {
   margin-left: 8px;
@@ -145,7 +147,7 @@
 }
 .top-bar-container .top-bar-wrapper .right .licencing-title {
   font-size: 1.6rem;
-  font-weight: 200;
+  font-weight: 800;
 }
 .top-bar-container .top-bar-wrapper .right .add-to-cart {
   display: flex;

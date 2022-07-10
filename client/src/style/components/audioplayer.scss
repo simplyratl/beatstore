@@ -90,6 +90,52 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+                color: $text-color-gray-light;
+
+                font-size: 0.9rem;
+
+                .icon {
+                    position: relative;
+                    top: -1.8px;
+                }
+
+                &:hover {
+                    .login-error {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+
+                .login-error {
+                    position: absolute;
+                    left: 204%;
+                    top: 44%;
+                    transform: translate(-50%, -50%);
+                    color: #fff;
+                    background-color: $tertiary;
+                    width: 110px;
+                    padding: 7px;
+                    text-align: center;
+                    border-radius: 8px;
+                    font-size: 0.74rem;
+                    opacity: 0;
+                    visibility: hidden;
+                    z-index: 99999;
+                    box-shadow: 4px 4px 20px rgba($color: #000000, $alpha: 0.3);
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 50%;
+                        left: -5px;
+                        transform: translate(-50%, -50%);
+                        border-top: 12px solid transparent;
+                        border-bottom: 12px solid transparent;
+                        border-right: 12px solid $tertiary;
+                    }
+                }
 
                 &.incart {
                     background-color: $secondary;
@@ -207,13 +253,12 @@
                     .progress-bar {
                         background-color: $primary;
                         left: 0;
-                        height: 2px;
+                        height: 3px;
                         display: block;
                         position: absolute;
                         border-radius: 10px;
-                        // top: 55%;
-                        top: -1px;
-                        transform: translateY(-50%);
+                        top: 0;
+                        transform: tranlateY(-50%);
                         z-index: 1;
                         user-select: none;
                         pointer-events: none;
@@ -288,12 +333,11 @@
                 .progress-bar {
                     background-color: $primary;
                     left: 0;
-                    height: 2px;
+                    height: 3px;
                     display: block;
                     position: absolute;
                     border-radius: 10px;
-                    // top: 55%;
-                    top: -1px;
+                    top: 1.6px;
                     transform: translateY(-50%);
                     z-index: 1;
                     user-select: none;

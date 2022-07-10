@@ -1,31 +1,31 @@
-import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { FiShare } from 'react-icons/fi';
-import { AiOutlineCloudDownload } from 'react-icons/ai';
-import { IoMdMicrophone } from 'react-icons/io';
-import { BiMicrophone, BiChevronDown } from 'react-icons/bi';
-import { BsCart2, BsSpotify } from 'react-icons/bs';
-import { BsPlayFill } from 'react-icons/bs';
-import { Context } from '../../context/Context';
-import Slider from 'react-slick';
-import axios from 'axios';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import storage from '../../firebase';
-import '../../style/dist/beattopbar.min.css';
-import '../../style/dist/beatcard.min.css';
-import BeatCard from '../Beats/BeatCard';
-import { motion } from 'framer-motion';
-import { addToCart, removeFromCart } from '../../context/cartContext/apiCalls';
-import { CartContext } from '../../context/cartContext/CartContext';
+import React, { useContext, useState, useEffect, useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { FiShare } from "react-icons/fi";
+import { AiOutlineCloudDownload } from "react-icons/ai";
+import { IoMdMicrophone } from "react-icons/io";
+import { BiMicrophone, BiChevronDown } from "react-icons/bi";
+import { BsCart2, BsSpotify } from "react-icons/bs";
+import { BsPlayFill } from "react-icons/bs";
+import { Context } from "../../context/Context";
+import Slider from "react-slick";
+import axios from "axios";
+import "../../style/dist/beattopbar.min.css";
+import "../../style/dist/beatcard.min.css";
+import BeatCard from "../Beats/BeatCard";
+import { motion } from "framer-motion";
+import { addToCart, removeFromCart } from "../../context/cartContext/apiCalls";
+import { CartContext } from "../../context/cartContext/CartContext";
+import { AuthContext } from "../../context/authContext/AuthContext";
 
 const BeatTopBar = () => {
     const location = useLocation();
     const [beat, setBeat] = useState({});
     const [recommended, setRecommended] = useState([]);
     const [usage, setUsage] = useState(false);
-    const [selectedLicence, setSelectedLicence] = useState('basic');
+    const [selectedLicence, setSelectedLicence] = useState("basic");
 
     const { cart, dispatch } = useContext(CartContext);
+    const { user } = useContext(AuthContext);
 
     let settings = {
         infinite: recommended.length > 6 ? true : false,
@@ -70,9 +70,9 @@ const BeatTopBar = () => {
     };
 
     useEffect(() => {
-        if (!location.state || location.pathname.split('/')[2] !== location.state.beat.title.toLowerCase()) {
+        if (!location.state || location.pathname.split("/")[2] !== location.state.beat.title.toLowerCase()) {
             const getData = async () => {
-                const locationArr = location.pathname.split('/');
+                const locationArr = location.pathname.split("/");
                 const getID = locationArr[locationArr.length - 1];
 
                 try {
@@ -103,7 +103,7 @@ const BeatTopBar = () => {
         const getRecommended = async () => {
             try {
                 //192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get('http://localhost:8800/beat/');
+                const res = await axios.get("http://localhost:8800/beat/");
 
                 setRecommended(
                     res.data.filter((beatEl) => {
@@ -130,23 +130,23 @@ const BeatTopBar = () => {
 
     return (
         <motion.div
-            className='top-bar-container'
+            className="top-bar-container"
             initial={{ opacity: 0, top: -20 }}
             animate={{ opacity: 1, top: 0 }}
             exit={{ opacity: 0, top: -20 }}
             transition={{ delay: 0.2 }}
         >
-            <div className='top-bar-wrapper'>
-                <div className='left'>
-                    <div className='beat-image-container'>
+            <div className="top-bar-wrapper">
+                <div className="left">
+                    <div className="beat-image-container">
                         <BsPlayFill
                             className={`play ${
-                                isPlaying && JSON.stringify(currentBeat) === JSON.stringify(beat) && 'active'
+                                isPlaying && JSON.stringify(currentBeat) === JSON.stringify(beat) && "active"
                             }`}
                         />
                         <img
                             src={beat.img}
-                            className='beat-image'
+                            className="beat-image"
                             onClick={() => {
                                 setCurrentBeat(beat);
                                 setIsPlaying(true);
@@ -155,128 +155,129 @@ const BeatTopBar = () => {
                     </div>
                     <h2>{beat.title}</h2>
 
-                    <div className='beat-info'>
-                        <span className='bpm'>{beat?.bpm} BPM</span>
-                        <span className='key'>{beat?.key}</span>
+                    <div className="beat-info">
+                        <span className="bpm">{beat?.bpm} BPM</span>
+                        <span className="key">{beat?.key}</span>
                     </div>
 
-                    <div className='control-beat'>
-                        <FiShare className='icon' />
+                    <div className="control-beat">
+                        <FiShare className="icon" />
                         <AiOutlineCloudDownload
-                            className='icon'
+                            className="icon"
                             onClick={() => window.open(beat.mp3_tagged)}
                         />
                     </div>
                 </div>
 
-                <div className='right'>
-                    <span className='licencing-title'>Licencing</span>
+                <div className="right">
+                    <span className="licencing-title">Licencing</span>
 
-                    <div className='add-to-cart'>
-                        <div className='total-container'>
-                            <span className='total'>TOTAL:</span>
-                            {selectedLicence === 'basic' && (
-                                <span className='price'>
+                    <div className="add-to-cart">
+                        <div className="total-container">
+                            <span className="total">TOTAL:</span>
+                            {selectedLicence === "basic" && (
+                                <span className="price">
                                     $
-                                    {!beat?.basic_licence?.toString()?.includes('.')
+                                    {!beat?.basic_licence?.toString()?.includes(".")
                                         ? `${beat?.basic_licence}.00`
                                         : beat?.basic_licence}
                                 </span>
                             )}
-                            {selectedLicence === 'premium' && (
-                                <span className='price'>
+                            {selectedLicence === "premium" && (
+                                <span className="price">
                                     $
-                                    {!beat?.premium_licence?.toString()?.includes('.')
+                                    {!beat?.premium_licence?.toString()?.includes(".")
                                         ? `${beat?.premium_licence}.00`
                                         : beat?.premium_licence}
                                 </span>
                             )}
-                            {selectedLicence === 'vip' && <span className='price'>${beat.vip_licence}</span>}
+                            {selectedLicence === "vip" && <span className="price">${beat.vip_licence}</span>}
                         </div>
 
-                        {!cart.some((item) => item._id === beat._id) && (
-                            <button onClick={() => handleAddToCart(beat)}>
-                                <BsCart2 className='icon' />
-                                Add to cart
-                            </button>
-                        )}
-
-                        {cart.some((item) => item._id === beat._id) && (
-                            <button onClick={() => removeCart(beat)} className='incart'>
-                                <BsCart2 className='icon' />
-                                In cart
-                            </button>
-                        )}
+                        {user &&
+                            (!cart.some((item) => item._id === beat._id) ? (
+                                <button onClick={() => handleAddToCart(beat)}>
+                                    <BsCart2 className="icon" />
+                                    Add to cart
+                                </button>
+                            ) : (
+                                cart.some((item) => item._id === beat._id) && (
+                                    <button onClick={() => removeCart(beat)} className="incart">
+                                        <BsCart2 className="icon" />
+                                        In cart
+                                    </button>
+                                )
+                            ))}
                     </div>
 
-                    <div className='licence-container'>
+                    <div className="licence-container">
                         <div
-                            className={`licence ${selectedLicence === 'basic' && 'active'}`}
-                            onClick={() => setSelectedLicence('basic')}
+                            className={`licence ${selectedLicence === "basic" && "active"}`}
+                            onClick={() => setSelectedLicence("basic")}
                         >
-                            <span className='title'>Basic Licence</span>
-                            <span className='price'>
+                            <span className="title">Basic Licence</span>
+                            <span className="price">
                                 $
-                                {!beat?.basic_licence?.toString()?.includes('.')
+                                {!beat?.basic_licence?.toString()?.includes(".")
                                     ? `${beat?.basic_licence}.00`
                                     : beat?.basic_licence}
                             </span>
-                            <span className='type'>MP3</span>
+                            <span className="type">MP3</span>
                         </div>
                         <div
-                            className={`licence ${selectedLicence === 'premium' && 'active'}`}
-                            onClick={() => setSelectedLicence('premium')}
+                            className={`licence ${selectedLicence === "premium" && "active"}`}
+                            onClick={() => setSelectedLicence("premium")}
                         >
-                            <span className='title'>Premium Licence</span>
-                            <span className='price'>
+                            <span className="title">Premium Licence</span>
+                            <span className="price">
                                 $
-                                {!beat?.premium_licence?.toString()?.includes('.')
+                                {!beat?.premium_licence?.toString()?.includes(".")
                                     ? `${beat?.premium_licence}.00`
                                     : beat?.premium_licence}
                             </span>
-                            <span className='type'>MP3 and WAW</span>
+                            <span className="type">MP3 and WAW</span>
                         </div>
                         {beat.vip_licence && (
                             <div
-                                className={`licence ${selectedLicence === 'vip' && 'active'}`}
-                                onClick={() => setSelectedLicence('vip')}
+                                className={`licence ${selectedLicence === "vip" && "active"}`}
+                                onClick={() => setSelectedLicence("vip")}
                             >
-                                <span className='title'>VIP Licence</span>
-                                <span className='price'>$30.00</span>
-                                <span className='type'>MP3, WAW AND TRACK STEMS</span>
+                                <span className="title">VIP Licence</span>
+                                <span className="price">$30.00</span>
+                                <span className="type">MP3, WAW AND TRACK STEMS</span>
                             </div>
                         )}
                     </div>
 
-                    <div className={`usage-terms ${usage && 'active'}`}>
-                        <h3 className='usage-title' onClick={() => setUsage(!usage)}>
-                            Usage Terms <BiChevronDown className='icon' />
+                    <div className={`usage-terms ${usage && "active"}`}>
+                        <h3 className="usage-title" onClick={() => setUsage(!usage)}>
+                            Usage Terms <BiChevronDown className="icon" />
                         </h3>
 
-                        <div className='bottom-usage'>
-                            <span className='title-licence-usage'>
+                        <div className="bottom-usage">
+                            <span className="title-licence-usage">
                                 Basic Licence ($
-                                {selectedLicence === 'basic' &&
-                                !beat?.premium_licence?.toString()?.includes('.')
+                                {selectedLicence === "basic" &&
+                                !beat?.premium_licence?.toString()?.includes(".")
                                     ? `${beat?.basic_licence}.00`
                                     : beat?.basic_licence}
                                 )
                             </span>
 
-                            <div className='terms'>
-                                <div className='term'>
-                                    <IoMdMicrophone className='icon' />
+                            <div className="terms">
+                                <div className="term">
+                                    <IoMdMicrophone className="icon" />
                                     FOR PROFIT LIVE PERFORMANCES
                                 </div>
-                                <div className='term'>
-                                    <BiMicrophone className='icon' />
+                                <div className="term">
+                                    <BiMicrophone className="icon" />
                                     USED FOR RECORDING
                                 </div>
-                                <div className='term'>
-                                    <BsSpotify className='icon' />
-                                    {selectedLicence === 'basic' && 'UP TO 100,000  STREAMS'}
-                                    {selectedLicence === 'premium' && 'UP TO 250,000 STREAMS'}
-                                    {selectedLicence === 'vip' && 'UNLIMITED STREAMS'}
+                                <div className="term">
+                                    <BsSpotify className="icon" />
+                                    {selectedLicence === "basic" && "UP TO 100,000  STREAMS"}
+                                    {selectedLicence === "premium" && "UP TO 250,000 STREAMS"}
+                                    {selectedLicence === "vip" && "UNLIMITED STREAMS"}
                                 </div>
                             </div>
                         </div>
@@ -284,7 +285,7 @@ const BeatTopBar = () => {
                 </div>
             </div>
 
-            <div className='recommended-beats'>
+            <div className="recommended-beats">
                 <h2 style={{ marginBottom: 18 }}>Based on this beat you might like...</h2>
 
                 <Slider {...settings}>

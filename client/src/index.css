@@ -7,12 +7,23 @@
 body {
     margin: 0;
     font-synthesis: none;
-    font-family: "Roboto", sans-serif;
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #191919;
     padding-bottom: 80px;
     overflow-x: hidden;
+}
+
+::selection {
+    color: #000000;
+    background-color: #da4445;
+}
+
+::moz-selection {
+    color: #000000;
+    background-color: #da4445;
 }
 
 a {

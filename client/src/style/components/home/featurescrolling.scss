@@ -1,5 +1,5 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .features-container {
     position: relative;
@@ -54,9 +54,6 @@
                 margin-bottom: 8px;
             }
 
-            h3 {
-            }
-
             p {
                 color: #8a929e;
                 margin-bottom: 8px;
@@ -65,8 +62,6 @@
 
             .card {
                 position: relative;
-                &.two {
-                }
             }
         }
 
@@ -88,8 +83,8 @@
             }
 
             img {
-                width: 80%;
-                height: 80%;
+                width: 60%;
+                height: 60%;
             }
         }
 

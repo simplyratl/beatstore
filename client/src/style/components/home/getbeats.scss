@@ -1,4 +1,4 @@
-@use '../../util/colors.scss' as *;
+@use "../../util/colors.scss" as *;
 
 .buy-now-container {
     max-width: 2560px;
@@ -13,7 +13,8 @@
 
         span {
             max-width: 400px;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 400;
         }
 
         @media screen and (max-width: 870px) {

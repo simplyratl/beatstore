@@ -31,6 +31,7 @@
   transform: translateX(0);
 }
 .beat-row-container .beat-row-wrapper .beats-container {
+  position: relative;
   overflow: hidden;
 }
 .beat-row-container .not-found {
@@ -39,4 +40,27 @@
   margin-left: 26px;
   font-weight: 600;
   text-decoration: line-through;
+}
+
+.arrow-slider {
+  position: absolute;
+  top: 36%;
+  transform: translateY(-50%, -50%);
+  font-size: 2.48rem;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+.arrow-slider:hover {
+  transform: scale(1.1);
+}
+.arrow-slider:active {
+  transform: scale(1.2);
+}
+.arrow-slider.left {
+  left: 0;
+}
+.arrow-slider.right {
+  right: 0;
 }/*# sourceMappingURL=beatrow.min.css.map */

@@ -1,5 +1,5 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .top-bar-container {
     background-color: $secondary;
@@ -35,6 +35,7 @@
 
             h2 {
                 margin-top: 6px;
+                font-weight: 800;
             }
 
             .beat-image-container {
@@ -43,7 +44,7 @@
 
                 @include breakpoint-down(small) {
                     &::after {
-                        content: '';
+                        content: "";
                         position: absolute;
                         top: 0;
                         left: 0;
@@ -128,6 +129,7 @@
                     background-color: $tertiary;
                     border-radius: 4px;
                     padding: 4px 12px;
+                    font-weight: 300;
 
                     &:not(:first-child) {
                         margin-left: 8px;
@@ -162,7 +164,7 @@
 
             .licencing-title {
                 font-size: 1.6rem;
-                font-weight: 200;
+                font-weight: 800;
             }
 
             .add-to-cart {

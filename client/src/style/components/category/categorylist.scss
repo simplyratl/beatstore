@@ -1,5 +1,5 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .category-list-container {
     color: $text-color-bbg;
@@ -104,7 +104,9 @@
                 margin-right: 8px;
 
                 button {
+                    position: relative;
                     display: flex;
+                    justify-content: center;
                     align-items: center;
                     background-color: $primary;
                     border: none;
@@ -112,7 +114,58 @@
                     border-radius: 4px;
                     cursor: pointer;
                     color: $text-color-gray-light;
-                    z-index: 99;
+                    width: 80px;
+                    box-sizing: content-box;
+
+                    &:hover {
+                        .login-error {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    .login-error {
+                        position: absolute;
+                        left: -70%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        color: #fff;
+                        background-color: $tertiary;
+                        width: 110px;
+                        padding: 10px;
+                        text-align: center;
+                        border-radius: 8px;
+                        font-size: 0.74rem;
+                        opacity: 0;
+                        visibility: hidden;
+                        z-index: 99999;
+                        box-shadow: 4px 4px 20px rgba($color: #000000, $alpha: 0.3);
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            top: 50%;
+                            right: -17px;
+                            transform: translate(-50%, -50%);
+                            border-top: 12px solid transparent;
+                            border-bottom: 12px solid transparent;
+                            border-left: 12px solid $tertiary;
+                        }
+                    }
+
+                    .icon {
+                        position: relative;
+                        top: -2px;
+                        font-size: 1.4rem;
+                    }
+
+                    p {
+                        flex: 1;
+                        font-size: 1rem;
+                        font-weight: 600;
+                    }
 
                     &:hover {
                         filter: brightness(1.1);

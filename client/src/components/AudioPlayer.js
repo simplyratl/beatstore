@@ -7,8 +7,9 @@ import { Context } from "../context/Context";
 import "../style/dist/audioplayer.min.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/cartContext/CartContext";
-import { addCart, addToCart, removeFromCart } from "../context/cartContext/apiCalls";
-import { motion, AnimatePresence } from "framer-motion";
+import { AuthContext } from "../context/authContext/AuthContext";
+import { addToCart, removeFromCart } from "../context/cartContext/apiCalls";
+import { motion } from "framer-motion";
 
 const AudioPlayer = () => {
     const [paused, setPaused] = useState(false);
@@ -20,6 +21,7 @@ const AudioPlayer = () => {
 
     const { isPlaying, currentBeat, setIsPlaying, setCurrentBeat } = useContext(Context);
     const { cart, dispatch } = useContext(CartContext);
+    const { user } = useContext(AuthContext);
 
     const audioRef = useRef(null);
     const sliderRef = useRef(null);
@@ -110,6 +112,8 @@ const AudioPlayer = () => {
     };
 
     const handleAddToCart = (beat) => {
+        if (!user) return;
+
         addToCart(beat, dispatch);
     };
 
@@ -124,10 +128,6 @@ const AudioPlayer = () => {
             animate={{ transform: "translateY(0%)" }}
             exit={{ transform: "translateY(100%)" }}
         >
-            {/* <span className='close' onClick={() => { setCurrentBeat(null); setIsPlaying(false) }}>
-                <CgRemove className='icon' />
-            </span> */}
-
             <div className="audio-player-wrapper">
                 <div className="left-side">
                     <img src={currentBeat?.img} alt="" />
@@ -152,7 +152,8 @@ const AudioPlayer = () => {
                                     style={{ margin: "4px 0" }}
                                     onClick={() => handleAddToCart(currentBeat)}
                                 >
-                                    <BsCart2 />
+                                    {!user && <div className="login-error">You must login to use cart.</div>}
+                                    <BsCart2 className="icon" />
                                     {!currentBeat?.basic_licence?.toString()?.includes(".")
                                         ? `${currentBeat?.basic_licence}.00`
                                         : currentBeat?.basic_licence}
@@ -164,7 +165,7 @@ const AudioPlayer = () => {
                                     style={{ margin: "4px 0" }}
                                     onClick={() => removeCart(currentBeat)}
                                 >
-                                    <BsCart2 />
+                                    <BsCart2 className="icon" />
                                     In cart
                                 </button>
                             )

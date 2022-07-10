@@ -81,8 +81,8 @@
   }
 }
 .features-container .features-wrapper .middle img {
-  width: 80%;
-  height: 80%;
+  width: 60%;
+  height: 60%;
 }
 @media (max-width: 61.25em) {
   .features-container .features-wrapper .right {

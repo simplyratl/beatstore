@@ -1,10 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import CheckoutAdded from "../components/Checkout/CheckoutAdded";
 import PaymentForm from "../components/Checkout/PaymentForm";
 import { motion, AnimatePresence } from "framer-motion";
+import { AuthContext } from "../context/authContext/AuthContext";
 import "../style/dist/checkout.min.css";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useLayoutEffect(() => {
+        if (!user) navigate("/");
+    }, []);
+
     return (
         <AnimatePresence>
             <motion.div

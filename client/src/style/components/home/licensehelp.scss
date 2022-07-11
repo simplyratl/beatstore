@@ -37,6 +37,23 @@
                 max-height: 420px;
                 overflow-y: auto;
 
+                &::-webkit-scrollbar {
+                    width: 4px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #191919;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: rgb(168, 168, 168);
+                    border-radius: 20px;
+                }
+
+                &::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                }
+
                 @media screen and (min-width: 1920px) {
                     width: 100%;
                 }

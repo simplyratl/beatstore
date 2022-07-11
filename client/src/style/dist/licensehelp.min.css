@@ -34,6 +34,19 @@
   max-height: 420px;
   overflow-y: auto;
 }
+.license-help-container .license-wrapper .licences .license::-webkit-scrollbar {
+  width: 4px;
+}
+.license-help-container .license-wrapper .licences .license::-webkit-scrollbar-track {
+  background: #191919;
+}
+.license-help-container .license-wrapper .licences .license::-webkit-scrollbar-thumb {
+  background: rgb(168, 168, 168);
+  border-radius: 20px;
+}
+.license-help-container .license-wrapper .licences .license::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 @media screen and (min-width: 1920px) {
   .license-help-container .license-wrapper .licences .license {
     width: 100%;

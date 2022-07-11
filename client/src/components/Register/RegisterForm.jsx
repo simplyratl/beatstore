@@ -65,7 +65,12 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="register-container">
+        <motion.div
+            className="register-container"
+            initial={{ opacity: 0, transform: "translateY(-20%)" }}
+            animate={{ opacity: 1, transform: "translateY(0%)" }}
+            exit={{ opacity: 0, transform: "translateY(-20%)" }}
+        >
             <div className="register-wrapper">
                 <form action="">
                     <div className="logo-container">
@@ -177,7 +182,7 @@ const RegisterForm = () => {
                     <h3>Registered successfuly, redirecting to login page.</h3>
                 </motion.div>
             )}
-        </div>
+        </motion.div>
     );
 };
 

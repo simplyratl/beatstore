@@ -12,10 +12,11 @@ import axios from "axios";
 import "../../style/dist/beattopbar.min.css";
 import "../../style/dist/beatcard.min.css";
 import BeatCard from "../Beats/BeatCard";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { addToCart, removeFromCart } from "../../context/cartContext/apiCalls";
 import { CartContext } from "../../context/cartContext/CartContext";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import ShareBeat from "./ShareBeat";
 
 const BeatTopBar = () => {
     const location = useLocation();
@@ -23,6 +24,7 @@ const BeatTopBar = () => {
     const [recommended, setRecommended] = useState([]);
     const [usage, setUsage] = useState(false);
     const [selectedLicence, setSelectedLicence] = useState("basic");
+    const [share, setShare] = useState(false);
 
     const { cart, dispatch } = useContext(CartContext);
     const { user } = useContext(AuthContext);
@@ -161,7 +163,7 @@ const BeatTopBar = () => {
                     </div>
 
                     <div className="control-beat">
-                        <FiShare className="icon" />
+                        <FiShare className="icon" onClick={() => setShare(true)} />
                         <AiOutlineCloudDownload
                             className="icon"
                             onClick={() => window.open(beat.mp3_tagged)}
@@ -296,6 +298,19 @@ const BeatTopBar = () => {
                     ))}
                 </Slider>
             </div>
+
+            <AnimatePresence>
+                {share && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.18 }}
+                    >
+                        <ShareBeat setClose={setShare} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };

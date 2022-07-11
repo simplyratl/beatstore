@@ -1,0 +1,66 @@
+@use "../../util/colors.scss" as *;
+
+.share-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    .share-wrapper {
+        width: 440px;
+        padding: 18px 24px;
+        border-radius: 8px;
+        background-color: $tertiary;
+        color: #fff;
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h4 {
+                font-size: 1.2rem;
+            }
+
+            .close {
+                color: #fff;
+                font-size: 1.3rem;
+                cursor: pointer;
+            }
+        }
+
+        .share-link {
+            display: flex;
+            margin-top: 8px;
+            background-color: $secondary;
+            padding: 12px 8px;
+
+            input {
+                width: 100%;
+                font-size: 1.06rem;
+                background: none;
+                border: none;
+                color: #fff;
+                font-weight: 400;
+                padding: 4px;
+            }
+
+            .copy {
+                font-size: 1.2rem;
+                font-weight: 400;
+                padding: 0 10px;
+                cursor: pointer;
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}

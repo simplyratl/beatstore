@@ -1,0 +1,23 @@
+@use "../util/colors.scss" as *;
+
+.loading-fetch-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background-color: $primary;
+
+    &.end {
+        animation: load 0.58s reverse;
+    }
+
+    @keyframes load {
+        0% {
+            width: 0;
+        }
+
+        100% {
+            width: 100vw;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.loading-fetch-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: #da4445;
+}
+.loading-fetch-top.end {
+  animation: load 0.58s reverse;
+}
+@-webkit-keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100vw;
+  }
+}
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100vw;
+  }
+}/*# sourceMappingURL=fetchloading.min.css.map */

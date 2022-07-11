@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { login, loginGoogle } from "../context/authContext/apiCalls";
 import { AuthContext } from "../context/authContext/AuthContext";
 import ForgottenPassword from "../components/ForgottenPassword";
+import { motion } from "framer-motion";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -51,7 +52,12 @@ const Login = () => {
     const openForgotModal = () => {};
 
     return (
-        <div className="login-container">
+        <motion.div
+            className="login-container"
+            initial={{ opacity: 0, transform: "translateY(-20%)" }}
+            animate={{ opacity: 1, transform: "translateY(0%)" }}
+            exit={{ opacity: 0, transform: "translateY(-20%)" }}
+        >
             <form>
                 <div className="logo-container">
                     <img src={require("../assets/images/logo transparent.png")} className="logo" />
@@ -115,7 +121,7 @@ const Login = () => {
             <div className="forgot-password">
                 {forgotPasswordModal && <ForgottenPassword close={setForgotPasswordModal} />}
             </div>
-        </div>
+        </motion.div>
     );
 };
 

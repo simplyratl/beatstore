@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoSearchOutline, IoSettingsOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import { BiHeart, BiLogOut } from "react-icons/bi";
@@ -17,6 +17,7 @@ const Navbar = () => {
     const [searchShow, setSearchShow] = useState(false);
     const [background, setBackground] = useState(false);
     const [hideNav, setHideNav] = useState(false);
+    const [navbarPos, setNavbarPos] = useState("");
 
     const [disableCart, setDisableCart] = useState(false);
 
@@ -30,6 +31,8 @@ const Navbar = () => {
     const { cart, dispatch } = useContext(CartContext);
     const { dispatch: authDispatch } = useContext(AuthContext);
     const { user } = useContext(AuthContext);
+
+    const navbarRef = useRef(null);
 
     let lastScroll = window.scrollY;
 
@@ -108,20 +111,30 @@ const Navbar = () => {
         }
     }, [user]);
 
+    useEffect(() => {
+        if (hideNav) {
+            setNavbarPos("-150px");
+        } else {
+            if (!document.querySelector(".promotion-bar")) setNavbarPos("0");
+            else setNavbarPos("45px");
+        }
+    }, [hideNav]);
+
     return (
         <header>
-            {/* <Promotion_Navbar enabled={background} /> */}
+            <Promotion_Navbar navbarRef={navbarRef} />
 
             <div
                 className={`${background ? "navbar-inner background" : "navbar-inner"}`}
-                style={{ top: hideNav && "-100px" }}
+                style={{ top: navbarPos }}
+                ref={navbarRef}
             >
                 <div
                     className={`navigation-left ${hamburger ? "active" : showHamburgerWidth ? "hidden" : ""}`}
                 >
                     <div className="logo">
                         <a href="/">
-                            <img src={require("../assets/images/logo transparent.png")} className="light" />
+                            <img src={require("../assets/images/logo_small.png")} />
                         </a>
                     </div>
 

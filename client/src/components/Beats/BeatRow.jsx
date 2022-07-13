@@ -66,6 +66,7 @@ const BeatRow = ({ title }) => {
                 // 192.168.1.18 ---- replace for testing on devices.
                 const res = await axios.get("http://localhost:8800/beat");
 
+                // setBeats(getDataRow(res.data, title));
                 setBeats(getDataRow(res.data, title));
                 setLoading(false);
 

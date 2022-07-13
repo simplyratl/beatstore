@@ -3,15 +3,19 @@
   width: 100%;
   background-color: #da4445;
   color: #fff;
-  top: 74px;
+  top: 0;
   padding: 10px 0;
-  opacity: 0;
-  pointer-events: none;
+  z-index: 99;
   transition: 0.3s;
 }
 @media screen and (max-width: 870px) {
   .promotion-bar {
     padding: 10px 60px;
+  }
+}
+@media screen and (max-width: 445px) {
+  .promotion-bar {
+    padding: 10px 10px;
   }
 }
 .promotion-bar.active {
@@ -21,6 +25,11 @@
 .promotion-bar h3 {
   text-align: center;
   font-size: 1rem;
+}
+@media screen and (max-width: 445px) {
+  .promotion-bar h3 {
+    text-align: left;
+  }
 }
 .promotion-bar .remove {
   position: absolute;

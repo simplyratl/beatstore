@@ -66,7 +66,7 @@ export const register = async (user, dispatch, setErrorDisplay, setSuccess) => {
                 setErrorDisplay("User with that email already exists.");
                 break;
             case 500:
-                setErrorDisplay("Something went wrong.");
+                setErrorDisplay("Something went wrong or user with that username exists.");
                 break;
         }
     }

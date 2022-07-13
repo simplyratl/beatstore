@@ -1,18 +1,21 @@
-@use '../util/colors.scss' as *;
+@use "../util/colors.scss" as *;
 
 .promotion-bar {
     position: fixed;
     width: 100%;
     background-color: $primary;
     color: #fff;
-    top: 74px;
+    top: 0;
     padding: 10px 0;
-    opacity: 0;
-    pointer-events: none;
+    z-index: 99;
     transition: 0.3s;
 
     @media screen and (max-width: 870px) {
         padding: 10px 60px;
+    }
+
+    @media screen and (max-width: 445px) {
+        padding: 10px 10px;
     }
 
     &.active {
@@ -23,6 +26,10 @@
     h3 {
         text-align: center;
         font-size: 1rem;
+
+        @media screen and (max-width: 445px) {
+            text-align: left;
+        }
     }
 
     .remove {

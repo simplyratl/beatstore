@@ -52,7 +52,7 @@ header .navbar-inner .navigation-left {
   header .navbar-inner .navigation-left .logo {
     position: absolute;
     top: 100vh;
-    width: 54% !important;
+    width: 140px !important;
   }
   header .navbar-inner .navigation-left .navigation-wrapper .navigation-list {
     margin: 12px 0 !important;
@@ -75,16 +75,13 @@ header .navbar-inner .navigation-left {
   }
 }
 header .navbar-inner .navigation-left .logo {
-  width: 140px;
+  width: 50px;
 }
 header .navbar-inner .navigation-left .logo img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-}
-header .navbar-inner .navigation-left .logo img.light {
-  filter: invert(1);
 }
 header .navbar-inner .navigation-left .navigation-wrapper {
   list-style: none;

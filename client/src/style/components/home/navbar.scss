@@ -52,8 +52,7 @@ header {
                 .logo {
                     position: absolute;
                     top: 100vh;
-                    width: 54% !important;
-                    // padding-bottom: 80% !important;
+                    width: 140px !important;
                 }
 
                 .navigation-wrapper {
@@ -82,16 +81,12 @@ header {
             }
 
             .logo {
-                width: 140px;
+                width: 50px;
 
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
-
-                    &.light {
-                        filter: invert(1);
-                    }
                 }
             }
 

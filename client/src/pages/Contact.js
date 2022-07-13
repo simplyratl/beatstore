@@ -20,8 +20,6 @@ const Contact = (e) => {
         setNotificationText("Sending...");
         setNotification(true);
 
-        console.log(counterSent);
-
         if (counterSent === 3) {
             setLock(true);
 

@@ -68,7 +68,7 @@ const Login = () => {
                 <div className="row">
                     <label htmlFor="email">Email</label>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
                         autoComplete="off"
                         placeholder="Your email"

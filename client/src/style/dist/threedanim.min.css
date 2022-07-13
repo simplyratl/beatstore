@@ -24,6 +24,11 @@
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 500px) {
+  .threed-container .threed-wrapper {
+    align-items: flex-start;
+  }
+}
 .threed-container .threed-wrapper img {
   position: relative;
   width: 700px;

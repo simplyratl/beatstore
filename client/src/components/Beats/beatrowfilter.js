@@ -86,7 +86,6 @@ const keys = [
 const getKeys = (response, key) => {
     return response.filter((beat) => {
         if (beat.key === key) {
-            console.log(beat);
             return beat;
         }
     });

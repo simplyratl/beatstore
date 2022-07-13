@@ -13,6 +13,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 const BeatRow = ({ title }) => {
     const [beats, setBeats] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showArrows, setShowArrows] = useState(false);
 
     const slider = React.useRef(null);
 
@@ -64,7 +65,8 @@ const BeatRow = ({ title }) => {
         const getBeats = async () => {
             try {
                 // 192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get("http://localhost:8800/beat");
+                const res = await axios.get("http://192.168.1.18:8800/beat");
+                // const res = await axios.get("http://localhost:8800/beat");
 
                 // setBeats(getDataRow(res.data, title));
                 setBeats(getDataRow(res.data, title));
@@ -93,6 +95,16 @@ const BeatRow = ({ title }) => {
         return temp;
     };
 
+    useEffect(() => {
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+                setShowArrows(true);
+            } else {
+                setShowArrows(false);
+            }
+        });
+    });
+
     return (
         <div className="beat-row-container">
             <div className="beat-row-wrapper">
@@ -107,14 +119,15 @@ const BeatRow = ({ title }) => {
                 {beats?.length > 0 ? (
                     <div
                         className="beats-container"
-                        style={{ padding: beats?.length >= 6 ? "0 38px" : "0 28px" }}
+                        style={{ padding: showArrows && beats?.length >= 6 ? "0 38px" : "0 4px" }}
                     >
-                        {beats?.length >= 6 && (
+                        {showArrows && beats?.length >= 6 && (
                             <IoIosArrowBack
                                 className="arrow-slider left"
                                 onClick={() => slider?.current?.slickPrev()}
                             />
                         )}
+
                         <Slider {...settings} ref={slider}>
                             {!loading
                                 ? beats?.map((beat, index) => (
@@ -124,7 +137,7 @@ const BeatRow = ({ title }) => {
                                   ))
                                 : displaySkeleton()}
                         </Slider>
-                        {beats?.length >= 6 && (
+                        {showArrows && beats?.length >= 6 && (
                             <IoIosArrowForward
                                 className="arrow-slider right"
                                 onClick={() => slider?.current?.slickNext()}

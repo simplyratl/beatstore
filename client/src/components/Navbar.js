@@ -84,6 +84,11 @@ const Navbar = () => {
     };
 
     useEffect(() => {
+        if (hamburger) document.body.style.overflow = "hidden";
+        else document.body.style.overflow = "hidden visible";
+    }, [hamburger]);
+
+    useEffect(() => {
         setHamburger(false);
         setUserMenu(false);
     }, [location]);
@@ -112,11 +117,11 @@ const Navbar = () => {
     }, [user]);
 
     useEffect(() => {
-        if (hideNav) {
+        if (!hamburger && hideNav) {
             setNavbarPos("-150px");
         } else {
             if (!document.querySelector(".promotion-bar")) setNavbarPos("0");
-            else setNavbarPos("45px");
+            else setNavbarPos("44px");
         }
     }, [hideNav]);
 
@@ -163,95 +168,114 @@ const Navbar = () => {
                 </div>
 
                 <div className="navigation-right">
-                    <div className={`search-bar ${searchShow && "active"}`}>
-                        <span className="icon search-icon" onClick={() => setSearchShow(!searchShow)}>
-                            {<IoSearchOutline />}
-                        </span>
-                        <div className="input">
-                            <input
-                                type="text"
-                                placeholder="Search for beats..."
-                                autoComplete="off"
-                                onKeyPress={(e) => e.key === "Enter" && handleSearch(e)}
-                            />
+                    {showHamburgerWidth && (
+                        <div className="logo">
+                            <a href="/">
+                                <img src={require("../assets/images/logo_small.png")} />
+                            </a>
                         </div>
-                    </div>
-                    <div className="user-wrapper">
-                        {user ? (
-                            <span className="icon element user" onClick={() => setUserMenu(!userMenu)}>
-                                {<AiOutlineUser />}
+                    )}
+
+                    <div className="navigation-right__main">
+                        <div className={`search-bar ${searchShow && "active"}`}>
+                            <span className="icon search-icon" onClick={() => setSearchShow(!searchShow)}>
+                                {<IoSearchOutline />}
                             </span>
-                        ) : (
-                            <>
-                                <Link to={"/register"} className="element auth">
-                                    Sign up
-                                </Link>
-                                <Link to={"/login"} className="element auth">
-                                    Sign In
-                                </Link>
-                            </>
-                        )}
-
-                        {user ? (
-                            <div className={`user-sub-menu ${userMenu && "active"}`}>
-                                <div>
-                                    <Link
-                                        to={`/profile/${user.result ? user.result.givenName : user.username}`}
-                                        className="profile-main"
-                                    >
-                                        <img
-                                            src={user.result ? user.result.imageUrl : user.profilePic}
-                                            alt=""
-                                        />
-
-                                        <span>{user.result ? user.result.givenName : user.username}</span>
-                                    </Link>
-                                </div>
-
-                                <ul className="ul-user-sub-menu">
-                                    <a href="/checkout" className="a-user-sub-menu">
-                                        <li className="li-user-sub-menu">
-                                            <BiHeart className="sub-icon" />
-                                            Cart
-                                        </li>
-                                    </a>
-                                    <a href="#" className="a-user-sub-menu">
-                                        <li className="li-user-sub-menu">
-                                            <IoSettingsOutline className="sub-icon" />
-                                            Settings
-                                        </li>
-                                    </a>
-                                    <span href="#" className="a-user-sub-menu" style={{ cursor: "pointer" }}>
-                                        <li className="li-user-sub-menu last" onClick={() => handleLogout()}>
-                                            <BiLogOut className="sub-icon" />
-                                            Logout
-                                        </li>
-                                    </span>
-                                </ul>
+                            <div className="input">
+                                <input
+                                    type="text"
+                                    placeholder="Search for beats..."
+                                    autoComplete="off"
+                                    onKeyPress={(e) => e.key === "Enter" && handleSearch(e)}
+                                />
                             </div>
-                        ) : null}
+                        </div>
+                        <div className="user-wrapper">
+                            {user ? (
+                                <span className="icon element user" onClick={() => setUserMenu(!userMenu)}>
+                                    {<AiOutlineUser />}
+                                </span>
+                            ) : (
+                                <>
+                                    <Link to={"/register"} className="element auth">
+                                        Sign up
+                                    </Link>
+                                    <Link to={"/login"} className="element auth">
+                                        Sign In
+                                    </Link>
+                                </>
+                            )}
+
+                            {user ? (
+                                <div className={`user-sub-menu ${userMenu && "active"}`}>
+                                    <div>
+                                        <Link
+                                            to={`/profile/${
+                                                user.result ? user.result.givenName : user.username
+                                            }`}
+                                            className="profile-main"
+                                        >
+                                            <img
+                                                src={user.result ? user.result.imageUrl : user.profilePic}
+                                                alt=""
+                                            />
+
+                                            <span>{user.result ? user.result.givenName : user.username}</span>
+                                        </Link>
+                                    </div>
+
+                                    <ul className="ul-user-sub-menu">
+                                        <a href="/checkout" className="a-user-sub-menu">
+                                            <li className="li-user-sub-menu">
+                                                <BiHeart className="sub-icon" />
+                                                Cart
+                                            </li>
+                                        </a>
+                                        <a href="#" className="a-user-sub-menu">
+                                            <li className="li-user-sub-menu">
+                                                <IoSettingsOutline className="sub-icon" />
+                                                Settings
+                                            </li>
+                                        </a>
+                                        <span
+                                            href="#"
+                                            className="a-user-sub-menu"
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            <li
+                                                className="li-user-sub-menu last"
+                                                onClick={() => handleLogout()}
+                                            >
+                                                <BiLogOut className="sub-icon" />
+                                                Logout
+                                            </li>
+                                        </span>
+                                    </ul>
+                                </div>
+                            ) : null}
+                        </div>
+
+                        <div className={`checkout-wrapper ${disableCart && "disabled"}`}>
+                            <a href="/checkout" className="cart element">
+                                <span className="icon">{<BsCart2 />}</span>
+                                <span className="money-in-cart">${total}</span>
+                            </a>
+
+                            {disableCart && <div className="login-error">You must login to use cart.</div>}
+                        </div>
+
+                        <div className="vertical-line"></div>
+
+                        <button
+                            className={`hamburger hamburger--emphatic-r ${hamburger && "is-active"}`}
+                            type="button"
+                            onClick={() => setHamburger(!hamburger)}
+                        >
+                            <span className="hamburger-box">
+                                <span className="hamburger-inner"></span>
+                            </span>
+                        </button>
                     </div>
-
-                    <div className={`checkout-wrapper ${disableCart && "disabled"}`}>
-                        <a href="/checkout" className="cart element">
-                            <span className="icon">{<BsCart2 />}</span>
-                            <span className="money-in-cart">${total}</span>
-                        </a>
-
-                        <div className="login-error">You must login to use cart.</div>
-                    </div>
-
-                    <div className="vertical-line"></div>
-
-                    <button
-                        className={`hamburger hamburger--emphatic-r ${hamburger && "is-active"}`}
-                        type="button"
-                        onClick={() => setHamburger(!hamburger)}
-                    >
-                        <span className="hamburger-box">
-                            <span className="hamburger-inner"></span>
-                        </span>
-                    </button>
                 </div>
             </div>
         </header>

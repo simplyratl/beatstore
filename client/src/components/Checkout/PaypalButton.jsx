@@ -18,7 +18,7 @@ const PaypalButton = ({ total }) => {
                 try {
                     const res = await axios({
                         method: "POST",
-                        url: "http://localhost:8800/transaction",
+                        url: "https://elegant-mandarine-91231.herokuapp.com/transaction",
                         data: {
                             trackingID: transaction.id,
                             productName: transaction.purchase_units,

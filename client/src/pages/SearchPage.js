@@ -11,7 +11,10 @@ const SearchPage = () => {
     useEffect(() => {
         const getSearchResults = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/beat/find/${searched}`);
+                // const res = await axios.get(`http://localhost:8800/beat/find/${searched}`);
+                const res = await axios.get(
+                    `https://elegant-mandarine-91231.herokuapp.com/beat/find/${searched}`
+                );
                 setBeat(res.data);
                 return res;
             } catch (error) {

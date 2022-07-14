@@ -66,7 +66,7 @@ const BeatRow = ({ title }) => {
             try {
                 // 192.168.1.18 ---- replace for testing on devices.
                 // const res = await axios.get("http://192.168.1.18:8800/beat");
-                const res = await axios.get("http://localhost:8800/beat");
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/beat");
 
                 // setBeats(getDataRow(res.data, title));
                 setBeats(getDataRow(res.data, title));

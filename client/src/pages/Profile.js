@@ -119,7 +119,7 @@ const Profile = () => {
 
             const res = await axios({
                 method: "PUT",
-                url: `http://localhost:8800/user/${user._id}`,
+                url: `https://elegant-mandarine-91231.herokuapp.com/user/${user._id}`,
                 data: {
                     username: username,
                     email: email,

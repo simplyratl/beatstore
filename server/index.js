@@ -7,7 +7,7 @@ const userRoute = require("./routes/users");
 const beatsRoute = require("./routes/beats");
 const transactionRoute = require("./routes/transactions");
 const cors = require("cors");
-const path = "path";
+const path = require("path");
 
 const PORT = process.env.PORT || 8800;
 
@@ -30,7 +30,8 @@ app.use("/beat", beatsRoute);
 app.use("/transaction", transactionRoute);
 
 //Serve static assets if in production
-app.use(express.static(path.join(__dirname, "client/build")));
+// app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static("client/build"));
 
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));

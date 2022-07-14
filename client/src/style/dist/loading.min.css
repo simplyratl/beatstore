@@ -11,6 +11,7 @@
   align-items: center;
   opacity: 1;
   transition: 0.5s;
+  pointer-events: none;
 }
 .loading-container.fade {
   opacity: 0;

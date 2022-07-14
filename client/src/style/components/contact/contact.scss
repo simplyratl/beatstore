@@ -57,7 +57,7 @@
 
                 &:hover {
                     border: 3px solid $primary;
-                    background-color: #da444530;
+                    background-color: $primary-secondary;
                 }
 
                 .icon {
@@ -144,6 +144,7 @@
                     padding: 8px 0;
                     font-size: 1rem;
                     border-radius: 6px;
+                    border: none;
                     cursor: pointer;
                 }
             }

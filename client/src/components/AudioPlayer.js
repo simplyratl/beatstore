@@ -155,7 +155,7 @@ const AudioPlayer = () => {
                                     {!user && <div className="login-error">You must login to use cart.</div>}
                                     <BsCart2 className="icon" />
                                     {!currentBeat?.basic_licence?.toString()?.includes(".")
-                                        ? `${currentBeat?.basic_licence}.00`
+                                        ? `$${currentBeat?.basic_licence}.00`
                                         : currentBeat?.basic_licence}
                                 </button>
                             ) : (
@@ -176,7 +176,7 @@ const AudioPlayer = () => {
                         <button type="button" className="buy-now-player">
                             <BsCart2 onClick={() => handleAddToCart(currentBeat)} />
                             {!currentBeat?.basic_licence?.toString()?.includes(".")
-                                ? `${currentBeat?.basic_licence}.00`
+                                ? `$${currentBeat?.basic_licence}.00`
                                 : currentBeat?.basic_licence}
                         </button>
                     )}
@@ -187,7 +187,7 @@ const AudioPlayer = () => {
                         <BiShuffle
                             className="icon smaller"
                             onClick={() => setShuffle(!shuffle)}
-                            style={{ fill: shuffle && "red" }}
+                            style={{ fill: shuffle && "#0e74d3" }}
                         />
                         <AiFillStepBackward className="icon remove" />
                         {paused ? (
@@ -212,7 +212,7 @@ const AudioPlayer = () => {
                         <BiRepeat
                             className="icon smaller remove"
                             onClick={handleRepeat}
-                            style={{ fill: repeat && "red" }}
+                            style={{ fill: repeat && "#0e74d3" }}
                         />
                     </div>
                     <div className="play-time">

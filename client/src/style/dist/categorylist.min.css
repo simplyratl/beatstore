@@ -88,7 +88,7 @@
   left: 100%;
 }
 .category-list-container .beats-list .beat .left .info .title .play:hover {
-  color: #da4445;
+  color: #0e74d3;
   cursor: pointer;
 }
 .category-list-container .beats-list .beat .right {
@@ -100,7 +100,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #da4445;
+  background-color: #0e74d3;
   border: none;
   padding: 8px 14px;
   border-radius: 4px;
@@ -216,7 +216,7 @@
   margin-right: 12px;
 }
 .category-list-container .filter .filter-list li.active {
-  background-color: #da4445;
+  background-color: #0e74d3;
   color: whitesmoke;
 }
 .category-list-container .filter .filter-list li:hover {
@@ -248,7 +248,7 @@
           user-select: none;
 }
 .category-list-container .filter .filter-sub-category .sub li label.active {
-  background-color: #da4445;
+  background-color: #0e74d3;
   color: whitesmoke;
 }
 .category-list-container .filter .filter-sub-category .sub li label input {

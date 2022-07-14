@@ -48,8 +48,8 @@
   padding: 10px 12px;
   border-radius: 6px;
   border: none;
-  background-color: #da4445;
-  border: 1px solid #da4445;
+  background-color: #0e74d3;
+  border: 1px solid #0e74d3;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -81,5 +81,5 @@
   margin-top: 8px;
 }
 .login-container form .forgot-password:hover {
-  color: #da4445;
+  color: #0e74d3;
 }/*# sourceMappingURL=login.min.css.map */

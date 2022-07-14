@@ -1,12 +1,12 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import BeatCard from '../components/Beats/BeatCard';
-import '../style/dist/beatcard.min.css';
-import '../style/dist/searchpage.min.css';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import BeatCard from "../components/Beats/BeatCard";
+import "../style/dist/beatcard.min.css";
+import "../style/dist/searchpage.min.css";
 
 const SearchPage = () => {
     const [beat, setBeat] = useState([]);
-    const searched = window.location.pathname.split('/')[2];
+    const searched = window.location.pathname.split("/")[2].replaceAll("%20", " ");
 
     useEffect(() => {
         const getSearchResults = async () => {
@@ -23,10 +23,10 @@ const SearchPage = () => {
     }, []);
 
     return (
-        <div className='search-page-container'>
+        <div className="search-page-container">
             <h1>Search results for {searched}.</h1>
 
-            <div className='search-page-wrapper'>
+            <div className="search-page-wrapper">
                 {beat.map((beatEl, index) => (
                     <div key={index}>
                         <BeatCard beat={beatEl} />

@@ -117,7 +117,7 @@ header .navbar-inner .navigation-left .navigation-wrapper .navigation-list .navi
   }
 }
 header .navbar-inner .navigation-left .navigation-wrapper .navigation-list .navigation-link:hover {
-  color: #da4445;
+  color: #0e74d3;
 }
 header .navbar-inner .navigation-right {
   position: relative;
@@ -171,11 +171,8 @@ header .navbar-inner .navigation-right .element.auth {
     font-size: 1rem;
   }
 }
-header .navbar-inner .navigation-right .element.auth:hover {
-  text-decoration: underline;
-}
 header .navbar-inner .navigation-right .element:hover {
-  color: #da4445;
+  color: #0e74d3;
 }
 header .navbar-inner .navigation-right .icon {
   font-size: 1.7rem;
@@ -222,7 +219,7 @@ header .navbar-inner .navigation-right .search-bar .search-icon {
   cursor: pointer;
 }
 header .navbar-inner .navigation-right .search-bar .search-icon:hover {
-  color: #da4445;
+  color: #0e74d3;
 }
 header .navbar-inner .navigation-right .search-bar.active {
   width: 250px;
@@ -230,7 +227,7 @@ header .navbar-inner .navigation-right .search-bar.active {
   background-color: white;
 }
 header .navbar-inner .navigation-right .search-bar.active .search-icon {
-  color: #da4445;
+  color: #0e74d3;
 }
 header .navbar-inner .navigation-right .checkout-wrapper {
   position: relative;
@@ -287,10 +284,10 @@ header .navbar-inner .navigation-right .checkout-wrapper .cart:hover .money-in-c
   width: 98px;
   visibility: visible;
   transform: translateX(0);
-  color: #da4445;
+  color: #0e74d3;
 }
 header .navbar-inner .navigation-right .checkout-wrapper .cart:hover .icon {
-  color: #da4445;
+  color: #0e74d3;
 }
 header .navbar-inner .navigation-right .checkout-wrapper .cart .money-in-cart {
   visibility: hidden;

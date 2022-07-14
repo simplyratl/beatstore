@@ -71,7 +71,7 @@
   margin-top: 3px;
 }
 .register-container .register-wrapper form .terms-of-service .Mui-checked {
-  color: #da4445;
+  color: #0e74d3;
 }
 .register-container .register-wrapper form .terms-of-service span {
   text-align: left;
@@ -84,8 +84,8 @@
   padding: 10px 12px;
   border-radius: 6px;
   border: none;
-  background-color: #da4445;
-  border: 1px solid #da4445;
+  background-color: #0e74d3;
+  border: 1px solid #0e74d3;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;

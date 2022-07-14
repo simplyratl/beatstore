@@ -2,17 +2,26 @@
   position: relative;
   overflow: hidden;
 }
+.beat-card-container.active .beat-image img {
+  filter: brightness(0.4);
+}
+.beat-card-container.active .beat-image .play {
+  visibility: visible;
+  opacity: 1;
+}
 .beat-card-container .beat-image {
   position: relative;
   cursor: pointer;
   display: block;
 }
-.beat-card-container .beat-image:hover img {
-  filter: brightness(0.4);
-}
-.beat-card-container .beat-image:hover .play {
-  visibility: visible;
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .beat-card-container .beat-image:hover img {
+    filter: brightness(0.4);
+  }
+  .beat-card-container .beat-image:hover .play {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 .beat-card-container .beat-image img {
   display: block;
@@ -54,7 +63,7 @@
   font-size: 0.84rem;
 }
 .beat-card-container .bottom-bar .price {
-  color: #da4445;
+  color: #0e74d3;
   font-size: 1.1rem;
 }
 .beat-card-container .bottom-bar .title {
@@ -64,7 +73,7 @@
   color: #fff;
 }
 .beat-card-container .bottom-bar .title:hover {
-  color: #da4445;
+  color: #0e74d3;
 }
 
 .slick-list {

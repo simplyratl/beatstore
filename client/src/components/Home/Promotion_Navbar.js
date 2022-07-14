@@ -4,7 +4,9 @@ import { MdRemove } from "react-icons/md";
 
 const Promotion_Navbar = ({ navbarRef }) => {
     const [remove, setRemove] = useState(false);
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState(
+        `July Sale: Use Code "ratl20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`
+    );
 
     useEffect(() => {
         if (remove) {

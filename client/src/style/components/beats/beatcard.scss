@@ -4,12 +4,8 @@
     position: relative;
     overflow: hidden;
 
-    .beat-image {
-        position: relative;
-        cursor: pointer;
-        display: block;
-
-        &:hover {
+    &.active {
+        .beat-image {
             img {
                 filter: brightness(0.4);
             }
@@ -17,6 +13,25 @@
             .play {
                 visibility: visible;
                 opacity: 1;
+            }
+        }
+    }
+
+    .beat-image {
+        position: relative;
+        cursor: pointer;
+        display: block;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                img {
+                    filter: brightness(0.4);
+                }
+
+                .play {
+                    visibility: visible;
+                    opacity: 1;
+                }
             }
         }
 

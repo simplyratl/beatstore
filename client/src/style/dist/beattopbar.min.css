@@ -167,7 +167,7 @@
   margin-left: 28px;
   display: block;
   padding: 10px 20px;
-  background-color: #da4445;
+  background-color: #0e74d3;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -191,7 +191,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border: 2px solid #2f2f2f;
   background-color: #464646;
   border-radius: 8px;
   padding: 10px 8px;
@@ -208,12 +207,12 @@
   }
 }
 .top-bar-container .top-bar-wrapper .right .licence-container .licence.active {
-  border: 2px solid #db3535;
-  background-color: #da4445;
+  outline: 3px solid #0e74d3;
+  background-color: #081b39;
 }
 .top-bar-container .top-bar-wrapper .right .licence-container .licence.active:hover {
-  filter: brightness(1.16);
-  background-color: #da4445;
+  filter: brightness(1.1);
+  background-color: #0e74d3;
 }
 .top-bar-container .top-bar-wrapper .right .licence-container .licence:hover {
   transform: scale(1.02);

@@ -215,7 +215,6 @@
                     display: flex;
                     justify-content: center;
                     flex-direction: column;
-                    border: 2px solid $secondary;
                     background-color: $tertiary;
                     border-radius: 8px;
                     padding: 10px 8px;
@@ -231,11 +230,11 @@
                     }
 
                     &.active {
-                        border: 2px solid #db3535;
-                        background-color: $primary;
+                        outline: 3px solid $primary;
+                        background-color: $primary-secondary;
 
                         &:hover {
-                            filter: brightness(1.16);
+                            filter: brightness(1.1);
                             background-color: $primary;
                         }
                     }

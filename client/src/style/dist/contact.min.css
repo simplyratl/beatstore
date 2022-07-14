@@ -5,7 +5,7 @@
   padding: 8px 12px;
   color: #fff;
   border-radius: 4px;
-  background-color: #da4445;
+  background-color: #0e74d3;
 }
 
 .contact-container {
@@ -65,8 +65,8 @@
   }
 }
 .contact-container .contact-wrapper .left .email:hover {
-  border: 3px solid #da4445;
-  background-color: rgba(218, 68, 69, 0.1882352941);
+  border: 3px solid #0e74d3;
+  background-color: #081b39;
 }
 .contact-container .contact-wrapper .left .email .icon {
   font-size: 1.4rem;
@@ -96,7 +96,7 @@
   cursor: pointer;
 }
 .contact-container .contact-wrapper .left .social-media a .icon:hover {
-  background-color: #da4445;
+  background-color: #0e74d3;
   border-radius: 50%;
 }
 .contact-container .contact-wrapper form {
@@ -122,7 +122,7 @@
   border-radius: 8px;
 }
 .contact-container .contact-wrapper form .row input:focus {
-  border: 2px solid #da4445;
+  border: 2px solid #0e74d3;
 }
 .contact-container .contact-wrapper form .row textarea {
   font-size: 1rem;
@@ -132,13 +132,14 @@
   padding: 8px 12px;
 }
 .contact-container .contact-wrapper form .row textarea:focus {
-  border: 2px solid #da4445;
+  border: 2px solid #0e74d3;
 }
 .contact-container .contact-wrapper form .row button {
   color: #fff;
-  background-color: #da4445;
+  background-color: #0e74d3;
   padding: 8px 0;
   font-size: 1rem;
   border-radius: 6px;
+  border: none;
   cursor: pointer;
 }/*# sourceMappingURL=contact.min.css.map */

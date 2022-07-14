@@ -6,17 +6,16 @@ import { motion } from "framer-motion";
 import "../../style/dist/beatcard.min.css";
 
 const BeatCard = ({ beat, index }) => {
-    const { setCurrentBeat, setIsPlaying } = useContext(Context);
+    const { setCurrentBeat, setIsPlaying, isPlaying, currentBeat } = useContext(Context);
 
     return (
         <motion.div
-            className="beat-card-container"
+            className={`beat-card-container ${currentBeat._id === beat._id ? "active" : ""}`}
             key={index}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, stiffness: "50", type: "spring" }}
-            // style={{ width: search && '268px' }}
         >
             <motion.div className="beat-image">
                 <BsPlayFill className="play" />

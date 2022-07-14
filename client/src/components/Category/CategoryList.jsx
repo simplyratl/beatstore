@@ -36,8 +36,8 @@ const CategoryList = ({ rowTitle }) => {
             const getData = async () => {
                 try {
                     //192.168.1.18 ---- replace for testing on devices.
-                    const res = await axios.get("http://192.168.1.18:8800/beat");
-                    // const res = await axios.get("http://localhost:8800/beat");
+                    // const res = await axios.get("http://192.168.1.18:8800/beat");
+                    const res = await axios.get("http://localhost:8800/beat");
 
                     setBeats(getDataRow(res.data, rowTitle.charAt(0).toUpperCase() + rowTitle.slice(1)));
                     setFilteredBeats(
@@ -215,6 +215,7 @@ const CategoryList = ({ rowTitle }) => {
 
                                         <BsCart2 className="icon" />
                                         <p>
+                                            $
                                             {!beat?.basic_licence?.toString()?.includes(".")
                                                 ? `${beat?.basic_licence}.00`
                                                 : beat?.basic_licence}

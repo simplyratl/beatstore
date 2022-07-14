@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 .footer .footer-wrapper .top-bar .social .icon:hover {
-  background-color: #da4445;
+  background-color: #0e74d3;
 }
 .footer .footer-wrapper .bottom-bar {
   display: flex;
@@ -55,7 +55,7 @@
   font-size: 1.1rem;
 }
 .footer .footer-wrapper .bottom-bar .list .element a:hover {
-  color: #da4445;
+  color: #0e74d3;
 }
 .footer .footer-wrapper .bottom-bar .newsletter p {
   font-size: 1rem;

@@ -121,7 +121,7 @@ const Navbar = () => {
             setNavbarPos("-150px");
         } else {
             if (!document.querySelector(".promotion-bar")) setNavbarPos("0");
-            else setNavbarPos("44px");
+            else setNavbarPos("38px");
         }
     }, [hideNav]);
 

@@ -13,7 +13,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 const BeatRow = ({ title }) => {
     const [beats, setBeats] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [showArrows, setShowArrows] = useState(false);
+    const [showArrows, setShowArrows] = useState(true);
 
     const slider = React.useRef(null);
 
@@ -65,8 +65,8 @@ const BeatRow = ({ title }) => {
         const getBeats = async () => {
             try {
                 // 192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get("http://192.168.1.18:8800/beat");
-                // const res = await axios.get("http://localhost:8800/beat");
+                // const res = await axios.get("http://192.168.1.18:8800/beat");
+                const res = await axios.get("http://localhost:8800/beat");
 
                 // setBeats(getDataRow(res.data, title));
                 setBeats(getDataRow(res.data, title));
@@ -117,10 +117,7 @@ const BeatRow = ({ title }) => {
                 </h2>
 
                 {beats?.length > 0 ? (
-                    <div
-                        className="beats-container"
-                        style={{ padding: showArrows && beats?.length >= 6 ? "0 38px" : "0 4px" }}
-                    >
+                    <div className="beats-container" style={{ padding: showArrows ? "0 32px" : "0 4%" }}>
                         {showArrows && beats?.length >= 6 && (
                             <IoIosArrowBack
                                 className="arrow-slider left"

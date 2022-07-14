@@ -17,8 +17,8 @@ export const login = async (user, dispatch, setErrorDisplay) => {
     dispatch(loginStart());
 
     try {
-        // const res = await axios.post("http://localhost:8800/auth/login", user);
-        const res = await axios.post("http://192.168.1.18:8800/auth/login", user);
+        const res = await axios.post("http://localhost:8800/auth/login", user);
+        // const res = await axios.post("http://192.168.1.18:8800/auth/login", user);
         dispatch(loginSuccess(res.data));
 
         window.location.href = "/";
@@ -52,8 +52,8 @@ export const register = async (user, dispatch, setErrorDisplay, setSuccess) => {
     dispatch(registerStart());
 
     try {
-        // const res = await axios.post("http://localhost:8800/auth/register", user);
-        const res = await axios.post("http://192.168.1.18:8800/auth/register", user);
+        const res = await axios.post("http://localhost:8800/auth/register", user);
+        // const res = await axios.post("http://192.168.1.18:8800/auth/register", user);
         dispatch(registerSuccess(res.data));
 
         setTimeout(() => {

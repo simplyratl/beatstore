@@ -7,6 +7,9 @@ const userRoute = require("./routes/users");
 const beatsRoute = require("./routes/beats");
 const transactionRoute = require("./routes/transactions");
 const cors = require("cors");
+const path = "path";
+
+const PORT = process.env.PORT || 8800;
 
 dotenv.config();
 
@@ -26,6 +29,13 @@ app.use("/user", userRoute);
 app.use("/beat", beatsRoute);
 app.use("/transaction", transactionRoute);
 
-app.listen(8800, () => {
+//Serve static assets if in production
+app.use(express.static("client/build"));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
+app.listen(PORT, () => {
     console.log("Backend server is running.");
 });

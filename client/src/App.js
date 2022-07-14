@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { BrowserRouter as Router, Outlet, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import AudioPlayer from "./components/AudioPlayer";
-import { BrowserRouter as Router, Outlet, Route, Routes } from "react-router-dom";
 import Beats from "./pages/Beats";
 import Register from "./pages/Register";
 import CategoryPage from "./pages/CategoryPage";
 import BeatSingle from "./pages/BeatSingle";
 import Login from "./pages/Login";
-import { useContext, useEffect, useState } from "react";
 import { Context } from "./context/Context";
 import Checkout from "./pages/Checkout";
 import BoughtPage from "./pages/BoughtPage";
@@ -65,12 +64,6 @@ function App() {
             document.body.style.overflowY = "visible";
         }
     }, [loading]);
-
-    useEffect(() => {
-        const token = user?.token;
-
-        setUser(JSON.parse(localStorage.getItem("user")));
-    }, []);
 
     return (
         <Router>

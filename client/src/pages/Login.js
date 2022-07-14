@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { GoogleLogin } from "react-google-login";
-import { FcGoogle } from "react-icons/fc";
+// import { GoogleLogin } from "react-google-login";
+// import { FcGoogle } from "react-icons/fc";
 import { gapi } from "gapi-script";
 // import { useDispatch } from 'react-redux';
 import "../style/dist/login.min.css";
@@ -19,31 +19,30 @@ const Login = () => {
     const { isFetching, dispatch } = useContext(AuthContext);
 
     // const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const start = () => {
-            const clientID = "677222132956-7bc9o1s3vkt87bvh6iiurq6460tasrmk.apps.googleusercontent.com";
+    // useEffect(() => {
+    //     const start = () => {
+    //         const clientID = "677222132956-7bc9o1s3vkt87bvh6iiurq6460tasrmk.apps.googleusercontent.com";
 
-            gapi.client.init({
-                client: clientID,
-                scope: "",
-            });
-        };
+    //         gapi.client.init({
+    //             client: clientID,
+    //             scope: "",
+    //         });
+    //     };
 
-        gapi.load("client:auth2", start);
-    }, []);
+    //     gapi.load("client:auth2", start);
+    // }, []);
 
-    const googleSuccess = (res) => {
-        const result = res?.profileObj;
-        const token = res?.tokenId;
+    // const googleSuccess = (res) => {
+    //     const result = res?.profileObj;
+    //     const token = res?.tokenId;
 
-        loginGoogle({ result, token }, dispatch);
-    };
+    //     loginGoogle({ result, token }, dispatch);
+    // };
 
-    const googleFailure = (error) => {
-        console.log(error);
-    };
+    // const googleFailure = (error) => {
+    //     console.log(error);
+    // };
 
     const handleLogin = (e) => {
         login({ email, password }, dispatch, setErrorDisplay);
@@ -96,7 +95,7 @@ const Login = () => {
                     Login
                 </button>
 
-                <GoogleLogin
+                {/* <GoogleLogin
                     clientId="677222132956-7bc9o1s3vkt87bvh6iiurq6460tasrmk.apps.googleusercontent.com"
                     render={(renderProps) => (
                         <button
@@ -111,7 +110,7 @@ const Login = () => {
                     onSuccess={googleSuccess}
                     onFailure={googleFailure}
                     cookiePolicy="single_host_origin"
-                />
+                /> */}
 
                 <span className="forgot-password" onClick={() => setForgotPasswordModal(true)}>
                     You forgot your password?

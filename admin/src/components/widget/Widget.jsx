@@ -26,7 +26,7 @@ const Widget = ({ type }) => {
     useEffect(() => {
         const getStats = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/user/stats", {
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/user/stats", {
                     headers: {
                         token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                     },
@@ -48,7 +48,7 @@ const Widget = ({ type }) => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/user", {
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/user", {
                     headers: {
                         token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                     },

@@ -9,7 +9,7 @@ export const login = async (user, dispatch, setErrorDisplay) => {
             admin: true,
         };
 
-        const res = await axios.post("http://localhost:8800/auth/login", adminUser);
+        const res = await axios.post("https://elegant-mandarine-91231.herokuapp.com/auth/login", adminUser);
         res.data.isAdmin && dispatch(loginSuccess(res.data));
 
         setErrorDisplay("Uspjesno ulogovan.");

@@ -40,7 +40,7 @@ export const getBeats = async (dispatch) => {
     dispatch(getBeatStart());
 
     try {
-        const res = await axios.get("http://localhost:8800/beat", {
+        const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/beat", {
             // const res = await axios.get("http://192.168.1.18:8800/beat", {
             headers: {
                 token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -57,7 +57,7 @@ export const deleteBeats = async (id, dispatch, setDeleteSuccess) => {
     dispatch(deleteBeatStart());
 
     try {
-        await axios.delete("http://localhost:8800/beat/" + id, {
+        await axios.delete("https://elegant-mandarine-91231.herokuapp.com/beat/" + id, {
             headers: {
                 token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
             },

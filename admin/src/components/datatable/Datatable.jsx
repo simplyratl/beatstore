@@ -13,7 +13,7 @@ const Datatable = () => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/user?new=true", {
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/user?new=true", {
                     headers: {
                         token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                     },

@@ -24,7 +24,7 @@ const Chart = ({ aspect, title }) => {
         const getStats = async () => {
             try {
                 //192.168.1.18 ---- replace for testing on devices.
-                const res = await axios.get("http://localhost:8800/user/stats", {
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/user/stats", {
                     headers: {
                         token: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
                     },

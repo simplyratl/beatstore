@@ -16,11 +16,26 @@
     width: 90%;
   }
 }
+.register-container .go-back {
+  position: absolute;
+  top: 3.4%;
+  left: 1%;
+  color: #fff;
+  font-size: 3rem;
+}
+.register-container .go-back:hover {
+  color: #0e74d3;
+}
 .register-container .register-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+@media screen and (max-width: 640px) {
+  .register-container .register-wrapper {
+    padding-top: 10%;
+  }
 }
 .register-container .register-wrapper form {
   display: flex;
@@ -35,8 +50,7 @@
   margin-bottom: 20px;
 }
 .register-container .register-wrapper form .logo-container .logo {
-  width: 190px;
-  filter: invert(1);
+  width: 120px;
 }
 .register-container .register-wrapper form .row {
   margin: 8px 0;
@@ -88,6 +102,7 @@
   border: 1px solid #0e74d3;
   font-size: 1rem;
   font-weight: 600;
+  color: #fff;
   cursor: pointer;
 }
 .register-container .register-wrapper form .validate-password {

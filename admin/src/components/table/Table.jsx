@@ -16,7 +16,7 @@ const List = () => {
     useEffect(() => {
         const getTransactionDetails = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/transaction/", {
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/transaction/", {
                     headers: {
                         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
                     },

@@ -1,11 +1,24 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .login-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    .go-back {
+        position: absolute;
+        top: 3.4%;
+        left: 1%;
+        color: #fff;
+        font-size: 3rem;
+
+        &:hover {
+            color: $primary;
+        }
+    }
 
     form {
         display: flex;
@@ -20,8 +33,7 @@
             margin-bottom: 20px;
 
             .logo {
-                width: 190px;
-                filter: invert(1);
+                width: 120px;
             }
         }
 

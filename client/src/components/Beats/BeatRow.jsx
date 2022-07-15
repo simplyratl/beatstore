@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 import "../../style/dist/beatcard.min.css";
 import axios from "axios";
@@ -9,6 +9,7 @@ import SkeletonCard from "./SkeletonCard";
 import { Link } from "react-router-dom";
 import BeatCard from "./BeatCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import FetchLoading from "../FetchLoading";
 
 const BeatRow = ({ title }) => {
     const [beats, setBeats] = useState([]);
@@ -64,13 +65,20 @@ const BeatRow = ({ title }) => {
     useEffect(() => {
         const getBeats = async () => {
             try {
-                // 192.168.1.18 ---- replace for testing on devices.
-                // const res = await axios.get("http://192.168.1.18:8800/beat");
-                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/beat");
+                const res = await axios
+                    .get("https://elegant-mandarine-91231.herokuapp.com/beat", {
+                        onDownloadProgress: (progressEvent) => {
+                            let percentCompleted = Math.floor(
+                                (progressEvent.loaded / progressEvent.total) * 100
+                            );
 
-                // setBeats(getDataRow(res.data, title));
-                setBeats(getDataRow(res.data, title));
-                setLoading(false);
+                            setLoading(false);
+                        },
+                    })
+                    .then((res) => {
+                        setBeats(getDataRow(res.data, title));
+                        return res;
+                    });
 
                 return res;
             } catch (error) {
@@ -95,6 +103,15 @@ const BeatRow = ({ title }) => {
         return temp;
     };
 
+    //Testing whether to show arrows before painting of a page.
+    useLayoutEffect(() => {
+        if (window.innerWidth > 768) {
+            setShowArrows(true);
+        } else {
+            setShowArrows(false);
+        }
+    }, []);
+
     useEffect(() => {
         window.addEventListener("resize", () => {
             if (window.innerWidth > 768) {
@@ -106,46 +123,54 @@ const BeatRow = ({ title }) => {
     });
 
     return (
-        <div className="beat-row-container">
-            <div className="beat-row-wrapper">
-                <h2 style={{ marginLeft: 28, marginBottom: 10, display: "block" }}>
-                    <Link to={`/category/${title?.toLowerCase()}`} state={{ beats: beats }} className="title">
-                        {title}
+        <>
+            {loading && <FetchLoading finished={loading} />}
 
-                        <AiOutlineRight className="icon" />
-                    </Link>
-                </h2>
+            <div className="beat-row-container">
+                <div className="beat-row-wrapper">
+                    <h2 style={{ marginLeft: 28, marginBottom: 10, display: "block" }}>
+                        <Link
+                            to={`/category/${title?.toLowerCase()}`}
+                            state={{ beats: beats }}
+                            className="title"
+                        >
+                            {title}
 
-                {beats?.length > 0 ? (
-                    <div className="beats-container" style={{ padding: showArrows ? "0 32px" : "0 4%" }}>
-                        {showArrows && beats?.length >= 6 && (
-                            <IoIosArrowBack
-                                className="arrow-slider left"
-                                onClick={() => slider?.current?.slickPrev()}
-                            />
-                        )}
+                            <AiOutlineRight className="icon" />
+                        </Link>
+                    </h2>
 
-                        <Slider {...settings} ref={slider}>
-                            {!loading
-                                ? beats?.map((beat, index) => (
-                                      <div key={index}>
-                                          <BeatCard beat={beat} index={index} />
-                                      </div>
-                                  ))
-                                : displaySkeleton()}
-                        </Slider>
-                        {showArrows && beats?.length >= 6 && (
-                            <IoIosArrowForward
-                                className="arrow-slider right"
-                                onClick={() => slider?.current?.slickNext()}
-                            />
-                        )}
-                    </div>
-                ) : (
-                    <span className="not-found">Not found</span>
-                )}
+                    {beats?.length > 0 ? (
+                        <div className="beats-container" style={{ padding: showArrows ? "0 32px" : "0 4%" }}>
+                            {showArrows && beats?.length >= 6 && (
+                                <IoIosArrowBack
+                                    className="arrow-slider left"
+                                    onClick={() => slider?.current?.slickPrev()}
+                                />
+                            )}
+
+                            <Slider {...settings} ref={slider}>
+                                {!loading
+                                    ? beats?.map((beat, index) => (
+                                          <div key={index}>
+                                              <BeatCard beat={beat} index={index} />
+                                          </div>
+                                      ))
+                                    : displaySkeleton()}
+                            </Slider>
+                            {showArrows && beats?.length >= 6 && (
+                                <IoIosArrowForward
+                                    className="arrow-slider right"
+                                    onClick={() => slider?.current?.slickNext()}
+                                />
+                            )}
+                        </div>
+                    ) : (
+                        <span className="not-found">Not found</span>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

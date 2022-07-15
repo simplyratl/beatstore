@@ -3,7 +3,7 @@
   color: #fff;
   max-width: 1400px;
   margin: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .artists-container .artist-wrapper {
   position: relative;

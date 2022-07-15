@@ -1,11 +1,11 @@
-@use '../../util/colors.scss' as *;
+@use "../../util/colors.scss" as *;
 
 .artists-container {
     padding: 48px 4%;
     color: #fff;
     max-width: 1400px;
     margin: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
     .artist-wrapper {
         position: relative;

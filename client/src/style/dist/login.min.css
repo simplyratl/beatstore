@@ -1,8 +1,19 @@
 .login-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+.login-container .go-back {
+  position: absolute;
+  top: 3.4%;
+  left: 1%;
+  color: #fff;
+  font-size: 3rem;
+}
+.login-container .go-back:hover {
+  color: #0e74d3;
 }
 .login-container form {
   display: flex;
@@ -17,8 +28,7 @@
   margin-bottom: 20px;
 }
 .login-container form .logo-container .logo {
-  width: 190px;
-  filter: invert(1);
+  width: 120px;
 }
 .login-container form .row {
   margin: 8px 0;

@@ -1,5 +1,5 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .music-platforms-container {
     position: relative;
@@ -10,6 +10,10 @@
     background-color: $background-white;
     clip-path: polygon(0 16%, 100% 0, 100% 100%, 0% 100%);
     height: 700px;
+
+    @media screen and (max-width: 1149px) {
+        height: 750px;
+    }
 
     @include breakpoint-down(small) {
         height: 600px;
@@ -25,6 +29,19 @@
             text-align: center;
             margin-top: 148px;
         }
+
+        @media screen and (max-width: 980px) {
+            margin-top: 220px;
+        }
+
+        @include breakpoint-down(small) {
+            margin-top: 40%;
+            font-size: 2rem;
+        }
+
+        @media screen and (max-width: 400px) {
+            margin-top: 30%;
+        }
     }
 
     h4 {
@@ -33,6 +50,10 @@
         @include breakpoint-down(medium) {
             text-align: center;
             font-size: 3vw;
+        }
+
+        @include breakpoint-down(small) {
+            font-size: 1.2rem;
         }
     }
 
@@ -60,7 +81,7 @@
         }
 
         @include breakpoint-down(small) {
-            width: 90%;
+            width: 100%;
         }
     }
 
@@ -70,6 +91,14 @@
         bottom: 140px;
         width: 100%;
         overflow: hidden;
+
+        @media screen and (max-width: 1149px) {
+            bottom: 8% !important;
+        }
+
+        @media screen and (max-width: 640px) {
+            display: none;
+        }
 
         .infinite-scroll {
             .element {

@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 // import { GoogleLogin } from "react-google-login";
 // import { FcGoogle } from "react-icons/fc";
-import { gapi } from "gapi-script";
-// import { useDispatch } from 'react-redux';
+// import { gapi } from "gapi-script";
 import "../style/dist/login.min.css";
-import { useNavigate } from "react-router-dom";
 import { login, loginGoogle } from "../context/authContext/apiCalls";
 import { AuthContext } from "../context/authContext/AuthContext";
 import ForgottenPassword from "../components/ForgottenPassword";
 import { motion } from "framer-motion";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -57,9 +57,13 @@ const Login = () => {
             animate={{ opacity: 1, transform: "translateY(0%)" }}
             exit={{ opacity: 0, transform: "translateY(-20%)" }}
         >
+            <Link to="/">
+                <IoIosArrowBack className="go-back" />
+            </Link>
+
             <form>
                 <div className="logo-container">
-                    <img src={require("../assets/images/logo transparent.png")} className="logo" />
+                    <img src={require("../assets/images/logo_small.png")} className="logo" />
                 </div>
 
                 <h1 style={{ textAlign: "center" }}>Login</h1>
@@ -113,7 +117,7 @@ const Login = () => {
                 /> */}
 
                 <span className="forgot-password" onClick={() => setForgotPasswordModal(true)}>
-                    You forgot your password?
+                    Forgot your password?
                 </span>
             </form>
 

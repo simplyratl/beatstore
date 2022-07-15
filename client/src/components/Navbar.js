@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IoSearchOutline, IoSettingsOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import { BiHeart, BiLogOut } from "react-icons/bi";
@@ -53,6 +53,14 @@ const Navbar = () => {
 
         calculateTotal();
     }, [cart]);
+
+    useLayoutEffect(() => {
+        if (window.innerWidth < 1149) {
+            setShowHamburgerWidth(true);
+        } else {
+            setShowHamburgerWidth(false);
+        }
+    }, []);
 
     useEffect(() => {
         window.addEventListener("resize", () => {
@@ -127,7 +135,7 @@ const Navbar = () => {
 
     return (
         <header>
-            <Promotion_Navbar navbarRef={navbarRef} />
+            {/* <Promotion_Navbar navbarRef={navbarRef} /> */}
 
             <div
                 className={`${background ? "navbar-inner background" : "navbar-inner"}`}

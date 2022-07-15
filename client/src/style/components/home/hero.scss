@@ -1,5 +1,5 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .hero-container {
     position: relative;
@@ -57,6 +57,20 @@
 
             @media screen and (max-width: 1000px) {
                 height: 100%;
+            }
+        }
+
+        .big {
+            @media screen and (max-width: 820px) {
+                display: none;
+            }
+        }
+
+        .small {
+            display: none;
+
+            @media screen and (max-width: 820px) {
+                display: block;
             }
         }
     }

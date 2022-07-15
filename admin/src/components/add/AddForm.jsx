@@ -30,6 +30,8 @@ const AddForm = () => {
 
     const [status, setStatus] = useState("");
 
+    const [disableButton, setDisableButton] = useState(false);
+
     const { dispatch } = useContext(BeatContext);
 
     const handleChange = (e) => {
@@ -149,6 +151,8 @@ const AddForm = () => {
                         setUploaded((prev) => prev + 1);
                         setUploadLoading(false);
 
+                        setDisableButton(true);
+
                         setTimeout(() => {
                             setStatus("Beats uploaded to server successfuly.");
                         }, [2000]);
@@ -164,7 +168,12 @@ const AddForm = () => {
         e.preventDefault();
 
         if (!img || !mp3_tagged || !waw_untagged) {
-            alert("Morate dodati svako polje za upload.");
+            alert("You have to have all inputs filled.");
+            return;
+        }
+
+        if (imageUrl.length === 0) {
+            alert("Please upload added image then try again.");
             return;
         }
 
@@ -319,9 +328,11 @@ const AddForm = () => {
                     </div>
 
                     {uploaded >= 2 ? (
-                        <button type="button" onClick={handleSubmit} className="btn-primary">
-                            Add Beat
-                        </button>
+                        !disableButton && (
+                            <button type="button" onClick={handleSubmit} className="btn-primary">
+                                Add Beat
+                            </button>
+                        )
                     ) : (
                         <button type="button" onClick={handleUpload} className="btn-primary">
                             Upload

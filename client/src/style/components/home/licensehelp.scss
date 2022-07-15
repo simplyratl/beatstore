@@ -5,6 +5,7 @@
     padding: 0 4%;
     max-width: 2560px;
     margin: auto;
+    height: 100%;
 
     .license-wrapper {
         color: $text-color-bbg;
@@ -18,13 +19,13 @@
         .licences {
             display: flex;
             justify-content: space-between;
-            align-items: center;
 
             @include breakpoint-down(medium) {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 justify-content: flex-start;
                 gap: 12px;
+                row-gap: 32px;
             }
 
             .license {
@@ -33,9 +34,8 @@
                 padding: 18px 24px;
                 margin: 0 10px;
                 width: 400px;
-                height: 420px;
-                max-height: 420px;
-                overflow-y: auto;
+                min-height: 540px;
+                // overflow-y: auto;
 
                 &::-webkit-scrollbar {
                     width: 4px;

@@ -173,12 +173,13 @@
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 400;
+  color: #fff;
 }
 .top-bar-container .top-bar-wrapper .right .add-to-cart button .icon {
   margin-right: 4px;
 }
 .top-bar-container .top-bar-wrapper .right .add-to-cart button.incart {
-  background-color: #191919;
+  background-color: #464646;
   color: #b2b2b2;
 }
 .top-bar-container .top-bar-wrapper .right .licence-container {

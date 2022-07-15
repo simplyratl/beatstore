@@ -58,4 +58,17 @@
   .hero-container .hero-image-wrapper img {
     height: 100%;
   }
+}
+@media screen and (max-width: 820px) {
+  .hero-container .hero-image-wrapper .big {
+    display: none;
+  }
+}
+.hero-container .hero-image-wrapper .small {
+  display: none;
+}
+@media screen and (max-width: 820px) {
+  .hero-container .hero-image-wrapper .small {
+    display: block;
+  }
 }/*# sourceMappingURL=hero.min.css.map */

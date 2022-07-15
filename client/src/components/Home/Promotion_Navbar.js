@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "../../style/dist/promotionbar.min.css";
 import { MdRemove } from "react-icons/md";
 
@@ -13,6 +13,13 @@ const Promotion_Navbar = ({ navbarRef }) => {
             navbarRef.current.style.top = "0";
         } else navbarRef.current.style.top = "50px";
     }, [remove]);
+
+    //Testing is it on smaller device before painting started.
+    useLayoutEffect(() => {
+        if (window.innerWidth > 770)
+            setMessage(`July Sale: Use Code "ratl20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`);
+        else setMessage(`July Sale: Code "ratl20".`);
+    }, []);
 
     useEffect(() => {
         window.addEventListener("resize", () => {

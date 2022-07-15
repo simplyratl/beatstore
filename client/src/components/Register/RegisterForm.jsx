@@ -7,6 +7,8 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import zxcvbn from "zxcvbn";
 import { motion } from "framer-motion";
 import "../../style/dist/registerform.min.css";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
     const [email, setEmail] = useState("");
@@ -71,10 +73,14 @@ const RegisterForm = () => {
             animate={{ opacity: 1, transform: "translateY(0%)" }}
             exit={{ opacity: 0, transform: "translateY(-20%)" }}
         >
+            <Link to="/">
+                <IoIosArrowBack className="go-back" />
+            </Link>
+
             <div className="register-wrapper">
                 <form action="">
                     <div className="logo-container">
-                        <img src={require("../../assets/images/logo transparent.png")} className="logo" />
+                        <img src={require("../../assets/images/logo_small.png")} className="logo" />
                     </div>
 
                     <h1 style={{ textAlign: "center" }}>Sign up</h1>

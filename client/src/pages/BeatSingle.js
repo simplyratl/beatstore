@@ -26,7 +26,7 @@ const BeatSingle = () => {
     return (
         <>
             {loading && <FetchLoading finished={finished} />}
-            <BeatTopBar />
+            {!loading && <BeatTopBar />}
         </>
     );
 };

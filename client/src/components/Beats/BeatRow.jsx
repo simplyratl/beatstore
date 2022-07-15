@@ -71,12 +71,11 @@ const BeatRow = ({ title }) => {
                             let percentCompleted = Math.floor(
                                 (progressEvent.loaded / progressEvent.total) * 100
                             );
-
-                            setLoading(false);
                         },
                     })
                     .then((res) => {
                         setBeats(getDataRow(res.data, title));
+                        setLoading(false);
                         return res;
                     });
 
@@ -150,13 +149,14 @@ const BeatRow = ({ title }) => {
                             )}
 
                             <Slider {...settings} ref={slider}>
-                                {!loading
-                                    ? beats?.map((beat, index) => (
-                                          <div key={index}>
-                                              <BeatCard beat={beat} index={index} />
-                                          </div>
-                                      ))
-                                    : displaySkeleton()}
+                                {loading && displaySkeleton()}
+
+                                {!loading &&
+                                    beats?.map((beat, index) => (
+                                        <div key={index}>
+                                            <BeatCard beat={beat} index={index} />
+                                        </div>
+                                    ))}
                             </Slider>
                             {showArrows && beats?.length >= 6 && (
                                 <IoIosArrowForward

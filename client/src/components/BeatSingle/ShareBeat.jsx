@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { GrClose } from "react-icons/gr";
+import { IoClose } from "react-icons/io5";
 import "../../style/dist/sharebeats.min.css";
 
 const ShareBeat = ({ setClose }) => {
@@ -11,7 +11,7 @@ const ShareBeat = ({ setClose }) => {
             <div className="share-wrapper">
                 <div className="top">
                     <h4>Share</h4>
-                    <GrClose className="close" onClick={() => setClose(false)} />
+                    <IoClose className="close" onClick={() => setClose(false)} />
                 </div>
 
                 <div className="share-link">

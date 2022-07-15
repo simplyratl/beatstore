@@ -16,6 +16,7 @@
   border-radius: 8px;
   background-color: #464646;
   color: #fff;
+  margin: 0 4%;
 }
 .share-container .share-wrapper .top {
   display: flex;
@@ -27,7 +28,7 @@
 }
 .share-container .share-wrapper .top .close {
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 .share-container .share-wrapper .share-link {
@@ -35,6 +36,7 @@
   margin-top: 8px;
   background-color: #2f2f2f;
   padding: 12px 8px;
+  border-radius: 4px;
 }
 .share-container .share-wrapper .share-link input {
   width: 100%;

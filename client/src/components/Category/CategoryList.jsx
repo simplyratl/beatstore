@@ -35,9 +35,6 @@ const CategoryList = ({ rowTitle }) => {
         if (!location.state) {
             const getData = async () => {
                 try {
-                    //192.168.1.18 ---- replace for testing on devices.
-                    // const res = await axios.get("http://192.168.1.18:8800/beat");
-                    // const res = await axios.get("http://localhost:8800/beat");
                     const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/beat");
 
                     setBeats(getDataRow(res.data, rowTitle.charAt(0).toUpperCase() + rowTitle.slice(1)));
@@ -174,7 +171,7 @@ const CategoryList = ({ rowTitle }) => {
                 <AnimatePresence>
                     {filteredBeats.map((beat, index) => (
                         <motion.li
-                            className={`beat ${filteredBeats[index]._id === currentBeat._id && "active"}`}
+                            className={`beat ${filteredBeats[index]._id === currentBeat._id ? "active" : ""}`}
                             key={index}
                             layout
                             initial={{ opacity: 0, transform: "translateY(-20%)" }}

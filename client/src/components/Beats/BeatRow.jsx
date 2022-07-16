@@ -141,7 +141,7 @@ const BeatRow = ({ title }) => {
 
                     {beats?.length > 0 ? (
                         <div className="beats-container" style={{ padding: showArrows ? "0 32px" : "0 4%" }}>
-                            {showArrows && beats?.length >= 6 && (
+                            {showArrows && beats?.length > 6 && (
                                 <IoIosArrowBack
                                     className="arrow-slider left"
                                     onClick={() => slider?.current?.slickPrev()}
@@ -158,7 +158,7 @@ const BeatRow = ({ title }) => {
                                         </div>
                                     ))}
                             </Slider>
-                            {showArrows && beats?.length >= 6 && (
+                            {showArrows && beats?.length > 6 && (
                                 <IoIosArrowForward
                                     className="arrow-slider right"
                                     onClick={() => slider?.current?.slickNext()}

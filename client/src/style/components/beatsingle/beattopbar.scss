@@ -121,35 +121,43 @@
             }
 
             .beat-info {
+                position: relative;
                 color: whitesmoke;
                 margin-top: 8px;
                 cursor: default;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
 
                 span {
                     background-color: $tertiary;
                     border-radius: 4px;
                     padding: 4px 12px;
                     font-weight: 300;
-
-                    &:not(:first-child) {
-                        margin-left: 8px;
-                    }
                 }
             }
 
             .control-beat {
+                display: flex;
                 margin-top: 16px;
+                gap: 8px;
 
                 .icon {
                     font-size: 1.8rem;
                     cursor: pointer;
 
-                    &:not(:first-child) {
-                        margin-left: 10px;
-                    }
-
                     &:hover {
                         transform: scale(1.1);
+                    }
+                }
+
+                .likes {
+                    display: flex;
+                    align-items: center;
+
+                    .counter {
+                        margin-left: 2px;
+                        font-weight: 600;
                     }
                 }
             }

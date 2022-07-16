@@ -110,9 +110,13 @@
   }
 }
 .top-bar-container .top-bar-wrapper .left .beat-info {
+  position: relative;
   color: whitesmoke;
   margin-top: 8px;
   cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .top-bar-container .top-bar-wrapper .left .beat-info span {
   background-color: #464646;
@@ -120,21 +124,25 @@
   padding: 4px 12px;
   font-weight: 300;
 }
-.top-bar-container .top-bar-wrapper .left .beat-info span:not(:first-child) {
-  margin-left: 8px;
-}
 .top-bar-container .top-bar-wrapper .left .control-beat {
+  display: flex;
   margin-top: 16px;
+  gap: 8px;
 }
 .top-bar-container .top-bar-wrapper .left .control-beat .icon {
   font-size: 1.8rem;
   cursor: pointer;
 }
-.top-bar-container .top-bar-wrapper .left .control-beat .icon:not(:first-child) {
-  margin-left: 10px;
-}
 .top-bar-container .top-bar-wrapper .left .control-beat .icon:hover {
   transform: scale(1.1);
+}
+.top-bar-container .top-bar-wrapper .left .control-beat .likes {
+  display: flex;
+  align-items: center;
+}
+.top-bar-container .top-bar-wrapper .left .control-beat .likes .counter {
+  margin-left: 2px;
+  font-weight: 600;
 }
 .top-bar-container .top-bar-wrapper .right {
   margin-left: 18px;

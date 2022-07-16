@@ -16,6 +16,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { addToCart, removeFromCart } from "../../context/cartContext/apiCalls";
 import { CartContext } from "../../context/cartContext/CartContext";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import ShareBeat from "./ShareBeat";
 
 const BeatTopBar = () => {
@@ -25,6 +26,9 @@ const BeatTopBar = () => {
     const [usage, setUsage] = useState(false);
     const [selectedLicence, setSelectedLicence] = useState("basic");
     const [share, setShare] = useState(false);
+
+    const [liked, setLiked] = useState(false);
+    const [likeCounter, setLikeCounter] = useState(1);
 
     const { cart, dispatch } = useContext(CartContext);
     const { user } = useContext(AuthContext);
@@ -138,6 +142,35 @@ const BeatTopBar = () => {
 
     const { setIsPlaying, isPlaying, setCurrentBeat, currentBeat } = useContext(Context);
 
+    const beatUploadedDate = (uploadDate) => {
+        const now = new Date().getTime();
+        const countdownDate = new Date(uploadDate).getTime();
+        const distance = now - countdownDate;
+
+        const days = Math.floor(distance / (24 * 60 * 60 * 1000));
+        const hours = Math.floor((distance % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+        const seconds = Math.floor((distance % (60 * 1000)) / 1000);
+
+        if (days !== 0) {
+            return `${days} ${days === 1 ? "day" : "days"} ago`;
+        } else if (hours !== 0) {
+            return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+        } else if (minutes !== 0) {
+            return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+        } else {
+            return `${seconds} ${seconds === 1 ? "second" : "seconds"} ago`;
+        }
+    };
+
+    useEffect(() => {
+        if (liked) {
+            setLikeCounter(likeCounter + 1);
+        } else {
+            setLikeCounter(likeCounter - 1);
+        }
+    }, [liked]);
+
     return (
         <motion.div
             className="top-bar-container"
@@ -168,6 +201,7 @@ const BeatTopBar = () => {
                     <div className="beat-info">
                         <span className="bpm">{beat?.bpm} BPM</span>
                         <span className="key">{beat?.key}</span>
+                        <span className="key">{beatUploadedDate(beat?.createdAt)}</span>
                     </div>
 
                     <div className="control-beat">
@@ -176,6 +210,15 @@ const BeatTopBar = () => {
                             className="icon"
                             onClick={() => window.open(beat.mp3_tagged)}
                         />
+
+                        <div className="likes">
+                            {!liked ? (
+                                <IoIosHeartEmpty className="icon" onClick={() => setLiked(true)} />
+                            ) : (
+                                <IoIosHeart className="icon" onClick={() => setLiked(false)} />
+                            )}
+                            <span className="counter">{likeCounter}</span>
+                        </div>
                     </div>
                 </div>
 

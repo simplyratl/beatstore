@@ -87,14 +87,16 @@ export const tags = ["jack harlow", "hard type beat", "type beat", "afro trap"];
 
 const getKeys = (response, key) => {
     return response.filter((beat) => {
-        if (beat.key === key) {
-            return beat;
-        }
+        if (beat.key === key) return beat;
     });
 };
 
 const getGenres = (response, genre) => {
-    return response.filter((genreEl) => genreEl === genre);
+    return response
+        .filter((beat) => {
+            if (beat.primary_mood === genre || beat.secondary_mood === genre) return beat;
+        })
+        .sort();
 };
 
 export const getDataRow = (response, rowTitle) => {

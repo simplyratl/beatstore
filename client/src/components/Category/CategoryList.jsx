@@ -18,7 +18,6 @@ const CategoryList = ({ rowTitle }) => {
     const [filterOpenedMobile, setFilterOpenedMobile] = useState(false);
     const [beats, setBeats] = useState([]);
     const [filteredBeats, setFilteredBeats] = useState([]);
-    const [selectedFilter, setSelectedFilter] = useState("");
 
     const { setIsPlaying, currentBeat, setCurrentBeat } = useContext(Context);
 
@@ -46,18 +45,6 @@ const CategoryList = ({ rowTitle }) => {
             setFilteredBeats(location.state.beats);
         }
     }, [location.state]);
-
-    useEffect(() => {
-        const handleFilterMobile = () => {
-            if (window.innerWidth < 1149) {
-                setFilterOpenedMobile(true);
-            } else {
-                setFilterOpenedMobile(false);
-            }
-        };
-
-        handleFilterMobile();
-    }, [selectedFilter]);
 
     const handleAddToCart = (beat) => {
         if (!user) return;

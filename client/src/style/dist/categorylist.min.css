@@ -176,12 +176,17 @@
     flex: auto;
     margin: 0;
     margin-bottom: 16px;
-    height: 100px;
+    height: 114px;
     max-height: none;
-    overflow: hidden;
+    transition: 0.2s;
+  }
+  .category-list-container .filter .filter-sub-category {
+    overflow-y: scroll;
+    height: 240px;
   }
   .category-list-container .filter.active {
-    height: auto;
+    overflow: hidden;
+    height: 380px;
   }
   .category-list-container .filter h2 {
     display: flex;
@@ -190,7 +195,11 @@
   }
   .category-list-container .filter h2 .chevron {
     display: block !important;
-    font-size: 1.4em;
+    font-size: 1.8em;
+    transition: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .category-list-container .filter h2 .chevron.active {
+    transform: rotateX(-180deg);
   }
 }
 .category-list-container .filter h2 .chevron {
@@ -217,6 +226,7 @@
   color: #b2b2b2;
   cursor: pointer;
   margin-right: 12px;
+  text-align: center;
 }
 .category-list-container .filter .filter-list li.active {
   background-color: #0e74d3;
@@ -281,4 +291,16 @@
 .category-list-container .filter .input-container-bpm span {
   margin: 0 10px;
   color: #b2b2b2;
+}
+.category-list-container .filter .input-container-bpm .icon {
+  position: relative;
+  top: 6px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.category-list-container .filter .input-container-bpm .icon:hover path {
+  stroke: #0e74d3;
+}
+.category-list-container .filter .input-container-bpm svg path {
+  stroke: #fff;
 }/*# sourceMappingURL=categorylist.min.css.map */

@@ -135,7 +135,7 @@ const Navbar = () => {
 
     return (
         <header>
-            {/* <Promotion_Navbar navbarRef={navbarRef} /> */}
+            <Promotion_Navbar navbarRef={navbarRef} />
 
             <div
                 className={`${background ? "navbar-inner background" : "navbar-inner"}`}
@@ -146,9 +146,9 @@ const Navbar = () => {
                     className={`navigation-left ${hamburger ? "active" : showHamburgerWidth ? "hidden" : ""}`}
                 >
                     <div className="logo">
-                        <a href="/">
+                        <Link to="/">
                             <img src={require("../assets/images/logo_small.png")} />
-                        </a>
+                        </Link>
                     </div>
 
                     <ul className="navigation-wrapper">
@@ -178,9 +178,9 @@ const Navbar = () => {
                 <div className="navigation-right">
                     {showHamburgerWidth && (
                         <div className="logo">
-                            <a href="/">
+                            <Link to="/">
                                 <img src={require("../assets/images/logo_small.png")} />
-                            </a>
+                            </Link>
                         </div>
                     )}
 

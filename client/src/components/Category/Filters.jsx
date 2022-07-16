@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsPlayFill, BsFillPauseFill, BsCart2 } from "react-icons/bs";
+import { GrPowerReset } from "react-icons/gr";
 import { BiChevronDown } from "react-icons/bi";
 import { genres, keys, rows } from "../Beats/beatrowfilter";
 import { tags } from "./categoriesfilter";
@@ -83,20 +83,29 @@ const Filters = ({
                         setBpmHighest(e.target.value);
                     }}
                 />
+
+                <span
+                    className="reset"
+                    onClick={() => {
+                        setBpmHighest(250);
+                        setBpmLowest(0);
+                    }}
+                >
+                    <GrPowerReset className="icon" />
+                </span>
             </div>
         );
     };
 
     useEffect(() => {
         const filterBeats = () => {
-            if (filteredBeats.length === 0 && addedFilters.length === 0) return setFilteredBeats(beats);
+            if (bpmLowest === 0 && bpmHighest === 0 && addedFilters.length === 0)
+                return setFilteredBeats(beats);
 
             setFilteredBeats(
                 beats.filter((beat) => {
                     if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
-                        if (addedFilters.length === 0) {
-                            return beat;
-                        }
+                        if (addedFilters.length === 0) return beat;
 
                         return addedFilters.some((filter) =>
                             beat[filter.filter] === filter.element ? beat : null
@@ -107,14 +116,13 @@ const Filters = ({
         };
 
         filterBeats();
-        console.log("teswt");
     }, [addedFilters, bpmLowest, bpmHighest]);
 
     return (
         <div className={`filter ${filterOpenedMobile ? "active" : ""}`}>
             <div className="filter-wrapper">
                 <h2 onClick={() => setFilterOpenedMobile(!filterOpenedMobile)}>
-                    Filters <BiChevronDown className="chevron" />
+                    Filters <BiChevronDown className={`chevron ${filterOpenedMobile ? "active" : ""}`} />
                 </h2>
 
                 <ul className="filter-list">{renderButtonList()}</ul>

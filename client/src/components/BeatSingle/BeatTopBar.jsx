@@ -129,6 +129,13 @@ const BeatTopBar = () => {
         getRecommended();
     }, [recommended]);
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, [location]);
+
     const { setIsPlaying, isPlaying, setCurrentBeat, currentBeat } = useContext(Context);
 
     return (

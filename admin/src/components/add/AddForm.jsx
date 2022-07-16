@@ -30,7 +30,6 @@ const AddForm = () => {
 
     const [status, setStatus] = useState("");
 
-    const [disableButton, setDisableButton] = useState(false);
 
     const { dispatch } = useContext(BeatContext);
 
@@ -151,7 +150,6 @@ const AddForm = () => {
                         setUploaded((prev) => prev + 1);
                         setUploadLoading(false);
 
-                        setDisableButton(true);
 
                         setTimeout(() => {
                             setStatus("Beats uploaded to server successfuly.");
@@ -328,11 +326,9 @@ const AddForm = () => {
                     </div>
 
                     {uploaded >= 2 ? (
-                        !disableButton && (
-                            <button type="button" onClick={handleSubmit} className="btn-primary">
-                                Add Beat
-                            </button>
-                        )
+                        <button type="button" onClick={handleSubmit} className="btn-primary">
+                            Add Beat
+                        </button>
                     ) : (
                         <button type="button" onClick={handleUpload} className="btn-primary">
                             Upload

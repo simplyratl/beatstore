@@ -196,12 +196,18 @@
             flex: auto;
             margin: 0;
             margin-bottom: 16px;
-            height: 100px;
+            height: 114px;
             max-height: none;
-            overflow: hidden;
+            transition: 0.2s;
+
+            .filter-sub-category {
+                overflow-y: scroll;
+                height: 240px;
+            }
 
             &.active {
-                height: auto;
+                overflow: hidden;
+                height: 380px;
             }
 
             h2 {
@@ -210,7 +216,12 @@
                 align-items: center;
                 .chevron {
                     display: block !important;
-                    font-size: 1.4em;
+                    font-size: 1.8em;
+                    transition: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                    &.active {
+                        transform: rotateX(-180deg);
+                    }
                 }
             }
         }
@@ -241,6 +252,7 @@
                 color: $text-color-gray-light;
                 cursor: pointer;
                 margin-right: 12px;
+                text-align: center;
 
                 &.active {
                     background-color: $primary;
@@ -315,6 +327,23 @@
             span {
                 margin: 0 10px;
                 color: $text-color-gray-light;
+            }
+
+            .icon {
+                position: relative;
+                top: 6px;
+                font-size: 1.4rem;
+                cursor: pointer;
+
+                &:hover {
+                    path {
+                        stroke: $primary;
+                    }
+                }
+            }
+
+            svg path {
+                stroke: #fff;
             }
         }
     }

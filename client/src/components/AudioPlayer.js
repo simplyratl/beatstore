@@ -128,7 +128,7 @@ const AudioPlayer = () => {
             animate={{ transform: "translateY(0%)" }}
             exit={{ transform: "translateY(100%)" }}
         >
-            <div className="audio-player-wrapper">
+            <div className={`audio-player-wrapper ${Object.keys(currentBeat).length === 0 && "stopped"}`}>
                 <div className="left-side">
                     <img src={currentBeat?.img} alt="" />
 

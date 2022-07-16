@@ -39,7 +39,7 @@ export const rows = [
     "BMaj",
 ];
 
-const genres = [
+export const genres = [
     "Popular",
     "Recommended",
     "Trap",
@@ -56,7 +56,7 @@ const genres = [
     "Relaxed",
 ];
 
-const keys = [
+export const keys = [
     "Cm",
     "C#m",
     "Dm",
@@ -82,6 +82,8 @@ const keys = [
     "A#Maj",
     "BMaj",
 ];
+
+export const tags = ["jack harlow", "hard type beat", "type beat", "afro trap"];
 
 const getKeys = (response, key) => {
     return response.filter((beat) => {

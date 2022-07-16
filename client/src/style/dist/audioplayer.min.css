@@ -26,6 +26,11 @@
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 39.9375em) {
+  .audio-player-container .audio-player-wrapper.stopped {
+    justify-content: center;
+  }
+}
 .audio-player-container .audio-player-wrapper .left-side {
   display: flex;
   align-items: center;

@@ -3,6 +3,7 @@
   padding: 0 4%;
   margin-top: 14px;
   display: flex;
+  gap: 24px;
 }
 @media (max-width: 71.8125em) {
   .category-list-container {
@@ -10,6 +11,7 @@
   }
 }
 .category-list-container .beats-list {
+  position: relative;
   list-style: none;
   flex: 2;
 }
@@ -160,12 +162,12 @@
   background-color: #2f2f2f;
 }
 .category-list-container .filter {
+  position: relative;
   flex: 1;
   background-color: #2f2f2f;
-  max-height: 400px;
+  height: 400px;
   padding: 14px;
   border-radius: 8px;
-  margin-left: 14px;
   overflow-y: auto;
 }
 @media (max-width: 71.8125em) {

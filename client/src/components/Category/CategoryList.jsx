@@ -11,20 +11,14 @@ import { Context } from "../../context/Context";
 import { addToCart, removeFromCart } from "../../context/cartContext/apiCalls";
 import { CartContext } from "../../context/cartContext/CartContext";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import Filters from "./Filters";
 
 const CategoryList = ({ rowTitle }) => {
     const location = useLocation();
     const [filterOpenedMobile, setFilterOpenedMobile] = useState(false);
-    const [checkPlaying, setCheckPlaying] = useState(false);
     const [beats, setBeats] = useState([]);
     const [filteredBeats, setFilteredBeats] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState("");
-    const [addedFilters, setAddedFilters] = useState([]);
-    const [keyCategory, setKeyCategory] = useState(new Array(key.length).fill(false));
-    const [moodCategory, setMoodCategory] = useState(new Array(mood.length).fill(false));
-    const [tagCategory, setTagCategory] = useState(new Array(tags.length).fill(false));
-    const [bpmLowest, setBpmLowest] = useState(0);
-    const [bpmHighest, setBpmHighest] = useState(250);
 
     const { setIsPlaying, currentBeat, setCurrentBeat } = useContext(Context);
 
@@ -53,108 +47,17 @@ const CategoryList = ({ rowTitle }) => {
         }
     }, [location.state]);
 
-    const handleChangeFilter = (position, category) => {
-        if (category === "key") {
-            const updatedCheckState = keyCategory.map((item, index) => (index === position ? !item : item));
-
-            setKeyCategory(updatedCheckState);
-        } else if (category === "mood") {
-            const updatedCheckState = moodCategory.map((item, index) => (index === position ? !item : item));
-
-            setMoodCategory(updatedCheckState);
-        } else if (category === "tags") {
-            const updatedCheckState = tagCategory.map((item, index) => (index === position ? !item : item));
-
-            setTagCategory(updatedCheckState);
-        }
-    };
-
-    const handleFilterElement = (filterName, active, filter) => {
-        if (active) {
-            setAddedFilters([...addedFilters, filter]);
-
-            if (filterName === "tags") {
-                setFilteredBeats(
-                    beats.filter((beat) => {
-                        beat.tags.filter((beatTag) => {
-                            if (beatTag === filter) {
-                                return beat;
-                            }
-                        });
-                    })
-                );
-
-                return;
-            }
-
-            setFilteredBeats(
-                beats.filter((beat) => {
-                    for (let i = 0; i < addedFilters.length; i++) {
-                        if (beat[filterName] === addedFilters[i]) {
-                            if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
-                                return true;
-                            }
-                        }
-                    }
-                })
-            );
-        } else {
-            setAddedFilters(
-                addedFilters.filter((filterEl) => {
-                    return filterEl !== filter;
-                })
-            );
-
-            if (addedFilters.length === 0) {
-                setFilteredBeats(
-                    beats.filter((beat) => {
-                        if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
-                            return true;
-                        }
-                    })
-                );
-                return;
-            }
-
-            setFilteredBeats(
-                beats.filter((beat) => {
-                    for (let i = 0; i < addedFilters.length; i++) {
-                        if (beat[filterName] === addedFilters[i]) {
-                            if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
-                                return true;
-                            }
-                        }
-                    }
-                })
-            );
-        }
-    };
-
     useEffect(() => {
-        const bpmFilter = () => {
-            if (bpmLowest === 0 && bpmHighest === 250) {
-                return;
+        const handleFilterMobile = () => {
+            if (window.innerWidth < 1149) {
+                setFilterOpenedMobile(true);
+            } else {
+                setFilterOpenedMobile(false);
             }
-
-            setFilteredBeats(
-                beats.filter((beat) => {
-                    if (parseInt(beat.bpm) >= bpmLowest && parseInt(beat.bpm) <= bpmHighest) {
-                        return beat;
-                    }
-                })
-            );
         };
 
-        bpmFilter();
-    }, [bpmHighest, bpmLowest]);
-
-    const handleFilterMobile = () => {
-        if (window.innerWidth < 1149) {
-            setFilterOpenedMobile(true);
-        } else {
-            setFilterOpenedMobile(false);
-        }
-    };
+        handleFilterMobile();
+    }, [selectedFilter]);
 
     const handleAddToCart = (beat) => {
         if (!user) return;
@@ -242,157 +145,14 @@ const CategoryList = ({ rowTitle }) => {
                 </AnimatePresence>
             </ul>
 
-            <div className={`filter ${filterOpenedMobile && "active"}`}>
-                <div className="filter-wrapper">
-                    <h2 onClick={() => setFilterOpenedMobile(!filterOpenedMobile)}>
-                        Filters <BiChevronDown className="chevron" />
-                    </h2>
-
-                    <ul className="filter-list">
-                        <li
-                            onClick={() => {
-                                setSelectedFilter("key");
-                                handleFilterMobile();
-                            }}
-                            className={selectedFilter === "key" && "active"}
-                        >
-                            KEY
-                        </li>
-                        <li
-                            onClick={() => {
-                                setSelectedFilter("bpm");
-                                handleFilterMobile();
-                            }}
-                            className={selectedFilter === "bpm" && "active"}
-                        >
-                            BPM
-                        </li>
-                        <li
-                            onClick={() => {
-                                setSelectedFilter("mood");
-                                handleFilterMobile();
-                            }}
-                            className={selectedFilter === "mood" && "active"}
-                        >
-                            MOOD
-                        </li>
-                        <li
-                            onClick={() => {
-                                setSelectedFilter("tags");
-                                handleFilterMobile();
-                            }}
-                            className={selectedFilter === "tags" && "active"}
-                        >
-                            TAGS
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="filter-sub-category">
-                    {selectedFilter === "key" && (
-                        <>
-                            <h5 style={{ marginBottom: 12 }}>FILTERS FOR KEY</h5>
-
-                            <ul className="sub">
-                                {key.map((key, index) => (
-                                    <li key={index}>
-                                        <label
-                                            className={keyCategory[index] ? "active" : ""}
-                                            onClick={() => {
-                                                handleFilterElement("key", !keyCategory[index], key);
-                                            }}
-                                        >
-                                            {key}
-                                            <input
-                                                type="checkbox"
-                                                onChange={() => handleChangeFilter(index, "key")}
-                                            />
-                                        </label>
-                                    </li>
-                                ))}
-                            </ul>
-                        </>
-                    )}
-
-                    {selectedFilter === "bpm" && (
-                        <>
-                            <h5 style={{ marginBottom: 12 }}>FILTERS FOR BPM</h5>
-
-                            <div className="input-container-bpm">
-                                <input
-                                    type="number"
-                                    value={bpmLowest}
-                                    onChange={(e) => {
-                                        setBpmLowest(e.target.value);
-                                    }}
-                                />
-                                <span>to</span>
-                                <input
-                                    type="number"
-                                    value={bpmHighest}
-                                    onChange={(e) => {
-                                        setBpmHighest(e.target.value);
-                                    }}
-                                />
-                            </div>
-                        </>
-                    )}
-
-                    {selectedFilter === "mood" && (
-                        <>
-                            <h5 style={{ marginBottom: 12 }}>FILTERS FOR MOOD</h5>
-
-                            <ul className="sub">
-                                {mood.map((mood, index) => (
-                                    <li key={index}>
-                                        <label
-                                            className={moodCategory[index] ? "active" : ""}
-                                            onClick={() => {
-                                                handleFilterElement(
-                                                    "primary_mood",
-                                                    !moodCategory[index],
-                                                    mood
-                                                );
-                                            }}
-                                        >
-                                            {mood}
-                                            <input
-                                                type="checkbox"
-                                                onChange={() => handleChangeFilter(index, "mood")}
-                                            />
-                                        </label>
-                                    </li>
-                                ))}
-                            </ul>
-                        </>
-                    )}
-
-                    {selectedFilter === "tags" && (
-                        <>
-                            <h5 style={{ marginBottom: 12 }}>FILTERS FOR KEY</h5>
-
-                            <ul className="sub">
-                                {tags.map((tag, index) => (
-                                    <li key={index}>
-                                        <label
-                                            className={tagCategory[index] ? "active" : ""}
-                                            onClick={() => {
-                                                handleFilterElement("tags", !tagCategory[index], tag);
-                                            }}
-                                        >
-                                            {tag}
-                                            <input
-                                                type="checkbox"
-                                                onChange={() => handleChangeFilter(index, "tags")}
-                                            />
-                                        </label>
-                                    </li>
-                                ))}
-                            </ul>
-                        </>
-                    )}
-                </div>
-            </div>
+            <Filters
+                filterOpenedMobile={filterOpenedMobile}
+                setFilterOpenedMobile={setFilterOpenedMobile}
+                beats={beats}
+                setBeats={setBeats}
+                filteredBeats={filteredBeats}
+                setFilteredBeats={setFilteredBeats}
+            />
         </div>
     );
 };

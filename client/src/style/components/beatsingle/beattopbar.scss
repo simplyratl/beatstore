@@ -35,7 +35,12 @@
 
             h2 {
                 margin-top: 6px;
+                font-size: 2.4rem;
                 font-weight: 800;
+
+                @include breakpoint-down(small) {
+                    font-size: 3rem;
+                }
             }
 
             .beat-image-container {
@@ -112,14 +117,6 @@
                 }
             }
 
-            h2 {
-                font-size: 2rem;
-
-                @include breakpoint-down(small) {
-                    font-size: 3rem;
-                }
-            }
-
             .beat-info {
                 position: relative;
                 color: whitesmoke;
@@ -133,6 +130,7 @@
                     background-color: $tertiary;
                     border-radius: 4px;
                     padding: 4px 12px;
+                    font-size: 1.04rem;
                     font-weight: 300;
                 }
             }
@@ -145,6 +143,10 @@
                 .icon {
                     font-size: 2.4rem;
                     cursor: pointer;
+
+                    &.liked {
+                        fill: $primary;
+                    }
 
                     &:hover {
                         transform: scale(1.1);

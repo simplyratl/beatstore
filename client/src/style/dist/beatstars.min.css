@@ -14,11 +14,11 @@
   font-weight: 500;
 }
 .beatstars-container .heading h4 a {
-  color: #0e74d3;
+  color: #c7493a;
   text-decoration: none;
 }
 .beatstars-container .heading h4 a:hover {
-  color: #0e74d3;
+  color: #c7493a;
 }
 .beatstars-container .bulk-deals {
   margin-top: 24px;
@@ -31,5 +31,5 @@
   margin: 0 6px;
 }
 .beatstars-container .bulk-deals h2 {
-  color: #0e74d3;
+  color: #c7493a;
 }/*# sourceMappingURL=beatstars.min.css.map */

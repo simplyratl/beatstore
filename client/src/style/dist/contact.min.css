@@ -5,7 +5,7 @@
   padding: 8px 12px;
   color: #fff;
   border-radius: 4px;
-  background-color: #0e74d3;
+  background-color: #c7493a;
 }
 
 .contact-container {
@@ -65,8 +65,8 @@
   }
 }
 .contact-container .contact-wrapper .left .email:hover {
-  border: 3px solid #0e74d3;
-  background-color: #081b39;
+  border: 3px solid #c7493a;
+  background-color: #a33327;
 }
 .contact-container .contact-wrapper .left .email .icon {
   font-size: 1.4rem;
@@ -96,7 +96,7 @@
   cursor: pointer;
 }
 .contact-container .contact-wrapper .left .social-media a .icon:hover {
-  background-color: #0e74d3;
+  background-color: #c7493a;
   border-radius: 50%;
 }
 .contact-container .contact-wrapper form {
@@ -122,7 +122,7 @@
   border-radius: 8px;
 }
 .contact-container .contact-wrapper form .row input:focus {
-  border: 2px solid #0e74d3;
+  border: 2px solid #c7493a;
 }
 .contact-container .contact-wrapper form .row textarea {
   font-size: 1rem;
@@ -132,11 +132,11 @@
   padding: 8px 12px;
 }
 .contact-container .contact-wrapper form .row textarea:focus {
-  border: 2px solid #0e74d3;
+  border: 2px solid #c7493a;
 }
 .contact-container .contact-wrapper form .row button {
   color: #fff;
-  background-color: #0e74d3;
+  background-color: #c7493a;
   padding: 8px 0;
   font-size: 1rem;
   border-radius: 6px;

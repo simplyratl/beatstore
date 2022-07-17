@@ -47,9 +47,14 @@
     h4 {
         font-weight: 400;
 
+        @media screen and (max-width: 1240px) {
+            max-width: 50%;
+        }
+
         @include breakpoint-down(medium) {
             text-align: center;
             font-size: 3vw;
+            max-width: 100%;
         }
 
         @include breakpoint-down(small) {
@@ -65,13 +70,14 @@
         position: absolute;
         right: 42px;
         top: 48px;
-        width: 40%;
+        width: 600px;
         z-index: -1;
         pointer-events: none;
 
         @include breakpoint-down(medium) {
             top: 10%;
             left: 50%;
+            width: 40%;
             transform: translateX(-50%);
         }
 
@@ -88,7 +94,7 @@
     .infinite-scroll-container {
         position: absolute;
         left: 0;
-        bottom: 140px;
+        bottom: 110px;
         width: 100%;
         overflow: hidden;
 

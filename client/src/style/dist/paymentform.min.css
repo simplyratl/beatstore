@@ -47,7 +47,7 @@
   filter: brightness(1.2);
 }
 .payment-container .confirmation .confirmation-wrapper .buttons .no {
-  background-color: #0e74d3;
+  background-color: #c7493a;
 }
 .payment-container .payment-wrapper {
   position: relative;
@@ -57,7 +57,7 @@
 }
 .payment-container .payment-wrapper .remove {
   display: inline-block;
-  color: #0e74d3;
+  color: #c7493a;
   text-decoration: none;
   cursor: pointer;
   margin: 10px 0 18px 0;

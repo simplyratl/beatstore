@@ -82,7 +82,7 @@
   outline: none;
   border: none;
   padding: 6px 10px;
-  background-color: #0e74d3;
+  background-color: #c7493a;
   margin-left: 8px;
   border-radius: 6px;
   display: flex;
@@ -183,7 +183,7 @@
   }
 }
 .audio-player-container .audio-player-wrapper .middle .controls .icon:hover {
-  fill: #0e74d3;
+  fill: #c7493a;
 }
 @media (max-width: 39.9375em) {
   .audio-player-container .audio-player-wrapper .middle .controls .remove {
@@ -231,7 +231,7 @@
   visibility: hidden;
   -webkit-appearance: none;
           appearance: none;
-  background-color: #0e74d3;
+  background-color: #c7493a;
   width: 10px;
   height: 10px;
   cursor: pointer;
@@ -239,7 +239,7 @@
   z-index: 99;
 }
 .audio-player-container .audio-player-wrapper .middle .play-time .progress-bar-range .progress-bar {
-  background-color: #0e74d3;
+  background-color: #c7493a;
   left: 0;
   height: 3px;
   display: block;
@@ -266,7 +266,7 @@
   align-items: center;
 }
 .audio-player-container .audio-player-wrapper .right-side:hover .volume-slider {
-  background-color: #0e74d3;
+  background-color: #c7493a;
 }
 @media (max-width: 39.9375em) {
   .audio-player-container .audio-player-wrapper .right-side {
@@ -302,7 +302,7 @@
   visibility: hidden;
   -webkit-appearance: none;
           appearance: none;
-  background-color: #0e74d3;
+  background-color: #c7493a;
   width: 10px;
   height: 10px;
   cursor: pointer;
@@ -310,7 +310,7 @@
   z-index: 99;
 }
 .audio-player-container .audio-player-wrapper .right-side .progress-bar-range .progress-bar {
-  background-color: #0e74d3;
+  background-color: #c7493a;
   left: 0;
   height: 3px;
   display: block;

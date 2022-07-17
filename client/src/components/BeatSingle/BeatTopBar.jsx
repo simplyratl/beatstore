@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { AiOutlineCloudDownload, AiOutlineShareAlt, AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { AiOutlineCloudDownload, AiOutlineShareAlt, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoMdMicrophone } from "react-icons/io";
 import { BiMicrophone, BiChevronDown } from "react-icons/bi";
 import { BsCart2, BsSpotify } from "react-icons/bs";
@@ -253,7 +253,7 @@ const BeatTopBar = () => {
                         <div className="likes">
                             {!user && <div className="login-error">You must login to like the beat.</div>}
                             {liked ? (
-                                <AiTwotoneHeart className="icon" onClick={() => handleLike()} />
+                                <AiFillHeart className="icon liked" onClick={() => handleLike()} />
                             ) : (
                                 <AiOutlineHeart className="icon" onClick={() => handleLike()} />
                             )}

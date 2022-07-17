@@ -24,7 +24,7 @@
   font-size: 3rem;
 }
 .register-container .go-back:hover {
-  color: #0e74d3;
+  color: #c7493a;
 }
 .register-container .register-wrapper {
   display: flex;
@@ -42,7 +42,7 @@
   flex-direction: column;
   color: #fff;
   max-width: 400px;
-  margin: 6px 10px;
+  margin: 6px 4%;
 }
 .register-container .register-wrapper form .logo-container {
   display: flex;
@@ -85,7 +85,7 @@
   margin-top: 3px;
 }
 .register-container .register-wrapper form .terms-of-service .Mui-checked {
-  color: #0e74d3;
+  color: #c7493a;
 }
 .register-container .register-wrapper form .terms-of-service span {
   text-align: left;
@@ -98,8 +98,8 @@
   padding: 10px 12px;
   border-radius: 6px;
   border: none;
-  background-color: #0e74d3;
-  border: 1px solid #0e74d3;
+  background-color: #c7493a;
+  border: 1px solid #c7493a;
   font-size: 1rem;
   font-weight: 600;
   color: #fff;

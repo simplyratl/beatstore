@@ -34,7 +34,13 @@
 }
 .top-bar-container .top-bar-wrapper .left h2 {
   margin-top: 6px;
+  font-size: 2.4rem;
   font-weight: 800;
+}
+@media (max-width: 39.9375em) {
+  .top-bar-container .top-bar-wrapper .left h2 {
+    font-size: 3rem;
+  }
 }
 .top-bar-container .top-bar-wrapper .left .beat-image-container {
   position: relative;
@@ -101,14 +107,6 @@
     border-radius: 0px;
   }
 }
-.top-bar-container .top-bar-wrapper .left h2 {
-  font-size: 2rem;
-}
-@media (max-width: 39.9375em) {
-  .top-bar-container .top-bar-wrapper .left h2 {
-    font-size: 3rem;
-  }
-}
 .top-bar-container .top-bar-wrapper .left .beat-info {
   position: relative;
   color: whitesmoke;
@@ -122,6 +120,7 @@
   background-color: #464646;
   border-radius: 4px;
   padding: 4px 12px;
+  font-size: 1.04rem;
   font-weight: 300;
 }
 .top-bar-container .top-bar-wrapper .left .control-beat {
@@ -132,6 +131,9 @@
 .top-bar-container .top-bar-wrapper .left .control-beat .icon {
   font-size: 2.4rem;
   cursor: pointer;
+}
+.top-bar-container .top-bar-wrapper .left .control-beat .icon.liked {
+  fill: #c7493a;
 }
 .top-bar-container .top-bar-wrapper .left .control-beat .icon:hover {
   transform: scale(1.1);
@@ -211,7 +213,7 @@
   margin-left: 28px;
   display: block;
   padding: 10px 20px;
-  background-color: #0e74d3;
+  background-color: #c7493a;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -252,12 +254,12 @@
   }
 }
 .top-bar-container .top-bar-wrapper .right .licence-container .licence.active {
-  outline: 3px solid #0e74d3;
-  background-color: #081b39;
+  outline: 3px solid #c7493a;
+  background-color: #a33327;
 }
 .top-bar-container .top-bar-wrapper .right .licence-container .licence.active:hover {
   filter: brightness(1.1);
-  background-color: #0e74d3;
+  background-color: #c7493a;
 }
 .top-bar-container .top-bar-wrapper .right .licence-container .licence:hover {
   transform: scale(1.02);

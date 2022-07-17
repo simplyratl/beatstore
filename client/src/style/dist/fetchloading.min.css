@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   height: 2px;
-  background-color: #0e74d3;
+  background-color: #c7493a;
 }
 .loading-fetch-top.end {
   animation: load 0.58s reverse;

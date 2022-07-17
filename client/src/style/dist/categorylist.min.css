@@ -91,7 +91,7 @@
   left: 100%;
 }
 .category-list-container .beats-list .beat .left .info .title .play:hover {
-  color: #0e74d3;
+  color: #c7493a;
   cursor: pointer;
 }
 .category-list-container .beats-list .beat .right {
@@ -103,7 +103,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0e74d3;
+  background-color: #c7493a;
   border: none;
   padding: 8px 14px;
   border-radius: 4px;
@@ -229,7 +229,7 @@
   text-align: center;
 }
 .category-list-container .filter .filter-list li.active {
-  background-color: #0e74d3;
+  background-color: #c7493a;
   color: whitesmoke;
 }
 .category-list-container .filter .filter-list li:hover {
@@ -261,7 +261,7 @@
           user-select: none;
 }
 .category-list-container .filter .filter-sub-category .sub li label.active {
-  background-color: #0e74d3;
+  background-color: #c7493a;
   color: whitesmoke;
 }
 .category-list-container .filter .filter-sub-category .sub li label input {
@@ -299,7 +299,7 @@
   cursor: pointer;
 }
 .category-list-container .filter .input-container-bpm .icon:hover path {
-  stroke: #0e74d3;
+  stroke: #c7493a;
 }
 .category-list-container .filter .input-container-bpm svg path {
   stroke: #fff;

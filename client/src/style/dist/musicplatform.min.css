@@ -50,10 +50,16 @@
 .music-platforms-container h4 {
   font-weight: 400;
 }
+@media screen and (max-width: 1240px) {
+  .music-platforms-container h4 {
+    max-width: 50%;
+  }
+}
 @media (max-width: 71.8125em) {
   .music-platforms-container h4 {
     text-align: center;
     font-size: 3vw;
+    max-width: 100%;
   }
 }
 @media (max-width: 39.9375em) {
@@ -68,7 +74,7 @@
   position: absolute;
   right: 42px;
   top: 48px;
-  width: 40%;
+  width: 600px;
   z-index: -1;
   pointer-events: none;
 }
@@ -76,6 +82,7 @@
   .music-platforms-container .laptop {
     top: 10%;
     left: 50%;
+    width: 40%;
     transform: translateX(-50%);
   }
 }
@@ -93,7 +100,7 @@
 .music-platforms-container .infinite-scroll-container {
   position: absolute;
   left: 0;
-  bottom: 140px;
+  bottom: 110px;
   width: 100%;
   overflow: hidden;
 }

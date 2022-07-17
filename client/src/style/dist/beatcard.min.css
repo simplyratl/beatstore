@@ -61,10 +61,12 @@
   margin-left: 8px;
   color: #707070;
   font-size: 0.84rem;
+  font-size: 0.94rem;
 }
 .beat-card-container .bottom-bar .price {
-  color: #0e74d3;
-  font-size: 1.1rem;
+  color: #c7493a;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .beat-card-container .bottom-bar .title {
   font-size: 1.2rem;
@@ -73,7 +75,7 @@
   color: #fff;
 }
 .beat-card-container .bottom-bar .title:hover {
-  color: #0e74d3;
+  color: #c7493a;
 }
 
 .slick-list {

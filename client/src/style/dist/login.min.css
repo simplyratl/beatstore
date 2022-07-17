@@ -13,13 +13,13 @@
   font-size: 3rem;
 }
 .login-container .go-back:hover {
-  color: #0e74d3;
+  color: #c7493a;
 }
 .login-container form {
   display: flex;
   flex-direction: column;
   color: #fff;
-  margin: 6px 10px;
+  margin: 6px 4%;
   width: 400px;
 }
 .login-container form .logo-container {
@@ -58,8 +58,8 @@
   padding: 10px 12px;
   border-radius: 6px;
   border: none;
-  background-color: #0e74d3;
-  border: 1px solid #0e74d3;
+  background-color: #c7493a;
+  border: 1px solid #c7493a;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -91,5 +91,5 @@
   margin-top: 8px;
 }
 .login-container form .forgot-password:hover {
-  color: #0e74d3;
+  color: #c7493a;
 }/*# sourceMappingURL=login.min.css.map */

@@ -176,7 +176,9 @@ const BeatTopBar = () => {
         }
 
         try {
-            const res = await axios.put(`http://localhost:8800/beat/likes/${beat._id}/${user._id}`);
+            const res = await axios.put(
+                `https://elegant-mandarine-91231.herokuapp.com/likes/${beat._id}/${user._id}`
+            );
 
             setBeat(res.data);
 

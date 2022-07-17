@@ -54,6 +54,7 @@ const Beats = () => {
             {/* {loading && <FetchLoading finished={finished} />} */}
             <div style={{ marginTop: 150 }}>
                 <BeatRow title="Latest" />
+                <BeatRow title="Popular" />
                 {rowsCategory.map((row, index) => (
                     <div className="beat-row" key={index}>
                         <BeatRow title={row} />

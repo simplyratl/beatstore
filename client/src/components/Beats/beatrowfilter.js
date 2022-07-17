@@ -92,11 +92,17 @@ const getKeys = (response, key) => {
 };
 
 const getGenres = (response, genre) => {
-    return response
-        .filter((beat) => {
-            if (beat.primary_mood === genre || beat.secondary_mood === genre) return beat;
-        })
-        .sort();
+    if (genre === "Popular") {
+        return response
+            .sort((a, b) => {
+                return b.likes.length - a.likes.length;
+            })
+            .slice(0, 10);
+    }
+
+    return response.filter((beat) => {
+        if (beat.primary_mood === genre || beat.secondary_mood === genre) return beat;
+    });
 };
 
 export const getDataRow = (response, rowTitle) => {

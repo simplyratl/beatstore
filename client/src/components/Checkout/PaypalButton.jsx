@@ -10,7 +10,6 @@ const PaypalButton = ({ total }) => {
     const { cart } = useContext(CartContext);
     const navigate = useNavigate();
     const [transaction, setTransaction] = useState({});
-    const [download, setDownload] = useState([]);
 
     useEffect(() => {
         if (transaction.status === "COMPLETED") {

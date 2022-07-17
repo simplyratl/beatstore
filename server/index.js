@@ -6,8 +6,8 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const beatsRoute = require("./routes/beats");
 const transactionRoute = require("./routes/transactions");
+const couponRoute = require("./routes/coupons");
 const cors = require("cors");
-const path = require("path");
 
 const PORT = process.env.PORT || 8800;
 
@@ -28,6 +28,7 @@ app.use("/auth", authRoute);
 app.use("/user", userRoute);
 app.use("/beat", beatsRoute);
 app.use("/transaction", transactionRoute);
+app.use("/coupon", couponRoute);
 
 //Serve static assets if in production
 // app.use(express.static("app/client/build"));

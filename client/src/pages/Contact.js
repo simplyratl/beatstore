@@ -88,7 +88,7 @@ const Contact = (e) => {
                             </a>
 
                             <div className="social-media">
-                                <a href="#">
+                                <a href="https://www.instagram.com/prod.ratlx/" target="_blank">
                                     <AiOutlineInstagram className="icon" />
                                 </a>
                                 <a href="#">

@@ -1,10 +1,11 @@
-@use '../../util/colors.scss' as *;
-@use '../../util/breakpoints.scss' as *;
+@use "../../util/colors.scss" as *;
+@use "../../util/boilerplate.scss" as *;
+@use "../../util/breakpoints.scss" as *;
 
 .checkout-added-container {
     background-color: $secondary;
     width: 440px;
-    max-height: 400px;
+    // max-height: 450px;
     color: $text-color-bbg;
     padding: 22px;
     border-radius: 8px;
@@ -35,5 +36,46 @@
 
     .status {
         color: $primary;
+    }
+
+    .error {
+        font-size: 0.9rem;
+    }
+
+    .discount {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        input {
+            padding: 8px 14px;
+            font-size: 1.4rem;
+            border-radius: 4px;
+            border: 2px solid $primary;
+            outline: none;
+            background: none;
+            color: #fff;
+            transition: 0.2s ease;
+            font-family: $font-secondary;
+
+            &:focus {
+                outline: 3px solid $primary;
+            }
+        }
+
+        .discount-submit {
+            font-size: 1.3rem;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            background-color: $primary;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $primary-secondary;
+            }
+        }
     }
 }

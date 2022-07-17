@@ -68,7 +68,8 @@
 }
 .license-help-container .license-wrapper .licences .license .license-title {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
+  font-family: Roboto, Poppins, Helvetica Neue, sans-serif;
 }
 .license-help-container .license-wrapper .licences .license .license-title.price {
   font-size: 1.5rem;

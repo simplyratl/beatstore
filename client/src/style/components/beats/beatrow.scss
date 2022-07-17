@@ -1,18 +1,30 @@
 @use "../../util/colors.scss" as *;
+@use "../../util/boilerplate.scss" as *;
 
 .beat-row-container {
     margin-top: 20px;
 
     .beat-row-wrapper {
-        .title {
+        .title-category {
             margin: 8px 0;
             margin-left: 2px;
             color: $text-color-bbg;
             text-decoration: none;
+            letter-spacing: 1.04px;
+            font-size: 1.6rem;
             transition: 0.2s ease;
             display: inline-flex;
             align-items: center;
             overflow: hidden;
+
+            @media screen and (max-width: 640px) {
+                margin-left: -6px;
+            }
+
+            @media screen and (max-width: 360px) {
+                font-size: 2rem;
+                margin-left: -12px;
+            }
 
             .icon {
                 position: relative;

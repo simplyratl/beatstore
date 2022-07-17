@@ -192,7 +192,7 @@ const BeatTopBar = () => {
         if (lockLike) {
             setTimeout(() => {
                 setLockLike(false);
-            }, [600]);
+            }, [800]);
         }
     }, [lockLike]);
 

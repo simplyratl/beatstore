@@ -2,16 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
     margin: 0;
     font-synthesis: none;
-    /* font-family: "Roboto", sans-serif; */
-    font-family: "Poppins", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* background-color: #191919; */
+    font-family: Poppins, Roboto, Helvetica Neue, sans-serif;
     background-color: #141414;
     padding-bottom: 80px;
     overflow-x: hidden;

@@ -28,7 +28,7 @@ const BeatRow = ({ title }) => {
         swipe: false,
         responsive: [
             {
-                breakpoint: 1000,
+                breakpoint: 1100,
                 settings: {
                     slidesToShow: 4,
                     slidesToScroll: 4,
@@ -131,7 +131,7 @@ const BeatRow = ({ title }) => {
                         <Link
                             to={`/category/${title?.toLowerCase()}`}
                             state={{ beats: beats }}
-                            className="title"
+                            className="title-category"
                         >
                             {title}
 

@@ -16,8 +16,8 @@ export const createBeat = async (beat, dispatch, setStatus) => {
 
     try {
         setStatus("Adding...");
-        const res = await axios.post("https://elegant-mandarine-91231.herokuapp.com/beat", beat, {
-            // const res = await axios.post("http://192.168.1.18:8800/beat", beat, {
+        // const res = await axios.post("https://elegant-mandarine-91231.herokuapp.com/beat", beat, {
+        const res = await axios.post("http://192.168.1.18:8800/beat", beat, {
             headers: {
                 token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
             },

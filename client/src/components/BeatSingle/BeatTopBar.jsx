@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { FiShare } from "react-icons/fi";
-import { AiOutlineCloudDownload } from "react-icons/ai";
+import { AiOutlineCloudDownload, AiOutlineShareAlt, AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { IoMdMicrophone } from "react-icons/io";
 import { BiMicrophone, BiChevronDown } from "react-icons/bi";
 import { BsCart2, BsSpotify } from "react-icons/bs";
@@ -16,7 +15,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { addToCart, removeFromCart } from "../../context/cartContext/apiCalls";
 import { CartContext } from "../../context/cartContext/CartContext";
 import { AuthContext } from "../../context/authContext/AuthContext";
-import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import ShareBeat from "./ShareBeat";
 
 const BeatTopBar = () => {
@@ -28,10 +26,12 @@ const BeatTopBar = () => {
     const [share, setShare] = useState(false);
 
     const [liked, setLiked] = useState(false);
-    const [likeCounter, setLikeCounter] = useState(1);
+    const [likeCounter, setLikeCounter] = useState(0);
+    const [lockLike, setLockLike] = useState(false);
 
     const { cart, dispatch } = useContext(CartContext);
     const { user } = useContext(AuthContext);
+    const { setIsPlaying, isPlaying, setCurrentBeat, currentBeat } = useContext(Context);
 
     let settings = {
         infinite: recommended.length > 6 ? true : false,
@@ -76,8 +76,8 @@ const BeatTopBar = () => {
     };
 
     useEffect(() => {
-        if (!location.state || location.pathname.split("/")[2] !== location.state.beat.title.toLowerCase()) {
-            const getData = async () => {
+        const getData = async () => {
+            if (!location.state) {
                 const locationArr = location.pathname.split("/");
                 const getID = locationArr[locationArr.length - 1];
 
@@ -87,17 +87,19 @@ const BeatTopBar = () => {
                     );
 
                     setBeat(res.data);
+                    setLikeCounter(res.data.likes.length);
                     return res;
                 } catch (error) {
                     console.log(error);
                 }
-            };
+            } else {
+                setBeat(location.state.beat);
+                setLikeCounter(location.state.beat.likes.length);
+            }
+        };
 
-            getData();
-        } else {
-            setBeat(location.state.beat);
-        }
-    }, [location]);
+        getData();
+    }, []);
 
     const handleAddToCart = (beat) => {
         addToCart(beat, dispatch);
@@ -131,7 +133,7 @@ const BeatTopBar = () => {
         };
 
         getRecommended();
-    }, [recommended]);
+    }, []);
 
     useEffect(() => {
         window.scrollTo({
@@ -139,8 +141,6 @@ const BeatTopBar = () => {
             behavior: "smooth",
         });
     }, [location]);
-
-    const { setIsPlaying, isPlaying, setCurrentBeat, currentBeat } = useContext(Context);
 
     const beatUploadedDate = (uploadDate) => {
         const now = new Date().getTime();
@@ -163,13 +163,50 @@ const BeatTopBar = () => {
         }
     };
 
-    useEffect(() => {
+    const handleLike = async () => {
+        if (!user || !beat.likes || lockLike) return;
+
+        setLockLike(true);
+        setLiked(!liked);
+
         if (liked) {
-            setLikeCounter(likeCounter + 1);
-        } else {
             setLikeCounter(likeCounter - 1);
+        } else {
+            setLikeCounter(likeCounter + 1);
         }
-    }, [liked]);
+
+        try {
+            const res = await axios.put(`http://localhost:8800/beat/likes/${beat._id}/${user._id}`);
+
+            setBeat(res.data);
+
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        if (lockLike) {
+            setTimeout(() => {
+                setLockLike(false);
+            }, [600]);
+        }
+    }, [lockLike]);
+
+    useEffect(() => {
+        const getIfLiked = () => {
+            if (beat && user) {
+                if (beat?.likes?.filter((like) => like.toString() === user._id.toString()).length > 0) {
+                    setLiked(true);
+                } else {
+                    setLiked(false);
+                }
+            }
+        };
+
+        getIfLiked();
+    }, [beat]);
 
     return (
         <motion.div
@@ -205,17 +242,18 @@ const BeatTopBar = () => {
                     </div>
 
                     <div className="control-beat">
-                        <FiShare className="icon" onClick={() => setShare(true)} />
+                        <AiOutlineShareAlt className="icon" onClick={() => setShare(true)} />
                         <AiOutlineCloudDownload
                             className="icon"
                             onClick={() => window.open(beat.mp3_tagged)}
                         />
 
                         <div className="likes">
-                            {!liked ? (
-                                <IoIosHeartEmpty className="icon" onClick={() => setLiked(true)} />
+                            {!user && <div className="login-error">You must login to like the beat.</div>}
+                            {liked ? (
+                                <AiTwotoneHeart className="icon" onClick={() => handleLike()} />
                             ) : (
-                                <IoIosHeart className="icon" onClick={() => setLiked(false)} />
+                                <AiOutlineHeart className="icon" onClick={() => handleLike()} />
                             )}
                             <span className="counter">{likeCounter}</span>
                         </div>

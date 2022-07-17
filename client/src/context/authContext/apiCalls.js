@@ -13,7 +13,7 @@ import {
     updateUser,
 } from "./AuthActions";
 
-export const login = async (user, dispatch, setErrorDisplay) => {
+export const login = async (user, dispatch, setErrorDisplay, url) => {
     dispatch(loginStart());
 
     try {
@@ -21,9 +21,9 @@ export const login = async (user, dispatch, setErrorDisplay) => {
         // const res = await axios.post("http://192.168.1.18:8800/auth/login", user);
         dispatch(loginSuccess(res.data));
 
-        window.location.href = "/";
-
         setErrorDisplay("Login success.");
+
+        window.location.href = url;
     } catch (error) {
         dispatch(loginFailure());
         switch (error.response.status) {

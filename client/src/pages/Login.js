@@ -8,7 +8,7 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import ForgottenPassword from "../components/ForgottenPassword";
 import { motion } from "framer-motion";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const Login = () => {
 
     const { isFetching, dispatch } = useContext(AuthContext);
 
-    // const dispatch = useDispatch();
+    const location = useLocation();
 
     // useEffect(() => {
     //     const start = () => {
@@ -45,7 +45,7 @@ const Login = () => {
     // };
 
     const handleLogin = (e) => {
-        login({ email, password }, dispatch, setErrorDisplay);
+        login({ email, password }, dispatch, setErrorDisplay, location.state.url);
     };
 
     const openForgotModal = () => {};

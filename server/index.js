@@ -37,5 +37,5 @@ app.use("/transaction", transactionRoute);
 // });
 
 app.listen(PORT, () => {
-    console.log("Backend server is running.");
+    console.log("Backend server is running on port " + PORT + ".");
 });

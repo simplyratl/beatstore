@@ -5,7 +5,7 @@
   height: 74px;
   background-color: #191919;
   box-shadow: 0;
-  z-index: 99;
+  z-index: 999;
   box-shadow: 0px -7px 13px 0px rgba(0, 0, 0, 0.4);
   padding: 8px 4%;
 }

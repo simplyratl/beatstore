@@ -126,23 +126,59 @@
 }
 .top-bar-container .top-bar-wrapper .left .control-beat {
   display: flex;
-  margin-top: 16px;
-  gap: 8px;
+  margin-top: 20px;
+  gap: 12px;
 }
 .top-bar-container .top-bar-wrapper .left .control-beat .icon {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   cursor: pointer;
 }
 .top-bar-container .top-bar-wrapper .left .control-beat .icon:hover {
   transform: scale(1.1);
 }
 .top-bar-container .top-bar-wrapper .left .control-beat .likes {
+  position: relative;
   display: flex;
   align-items: center;
 }
+.top-bar-container .top-bar-wrapper .left .control-beat .likes:hover .login-error {
+  opacity: 1;
+  visibility: visible;
+}
 .top-bar-container .top-bar-wrapper .left .control-beat .likes .counter {
+  font-size: 1.24rem;
   margin-left: 2px;
   font-weight: 600;
+  cursor: default;
+}
+.top-bar-container .top-bar-wrapper .left .control-beat .likes .login-error {
+  position: absolute;
+  left: 35%;
+  top: -120%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: #464646;
+  width: 110px;
+  padding: 7px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+}
+.top-bar-container .top-bar-wrapper .left .control-beat .likes .login-error::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 106%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #464646;
 }
 .top-bar-container .top-bar-wrapper .right {
   margin-left: 18px;

@@ -205,10 +205,18 @@ const Navbar = () => {
                                 </span>
                             ) : (
                                 <>
-                                    <Link to={"/register"} className="element auth">
+                                    <Link
+                                        to={"/register"}
+                                        className="element auth"
+                                        state={{ url: window.location.href }}
+                                    >
                                         Sign up
                                     </Link>
-                                    <Link to={"/login"} className="element auth">
+                                    <Link
+                                        to={"/login"}
+                                        className="element auth"
+                                        state={{ url: window.location.href }}
+                                    >
                                         Sign In
                                     </Link>
                                 </>

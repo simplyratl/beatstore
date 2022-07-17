@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Beat = require("../models/Beat");
 const CryptoJS = require("crypto-js");
 const verify = require("../verifyToken");
+const User = require("../models/Users");
 
 //CREATE
 router.post("/", verify, async (req, res) => {
@@ -105,6 +106,26 @@ router.get("/", async (req, res) => {
         const beats = await Beat.find();
 
         res.status(200).json(beats);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+//UPDATE LIKES
+router.put("/likes/:id/:userID", async (req, res) => {
+    try {
+        const beat = await Beat.findById(req.params.id);
+
+        if (beat.likes.filter((like) => like.toString() === req.params.userID.toString()).length === 0) {
+            beat.likes.unshift(req.params.userID);
+        } else {
+            const removeIndex = beat.likes.indexOf(req.params.userID);
+
+            beat.likes.splice(removeIndex, 1);
+        }
+
+        await beat.save();
+        return res.status(200).json(beat);
     } catch (error) {
         res.status(500).json(error);
     }

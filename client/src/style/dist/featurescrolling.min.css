@@ -12,7 +12,7 @@
 }
 @media (max-width: 39.9375em) {
   .features-container {
-    height: 100vh;
+    height: 60vh;
   }
 }
 .features-container .features-wrapper {

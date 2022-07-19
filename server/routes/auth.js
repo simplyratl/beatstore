@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
         //za brisanje password iz res
         const { password: passwordInfo, ...info } = user._doc;
 
-        res.status(200).json({ ...info, accessToken });
+        return res.status(200).json({ ...info, accessToken });
     } catch (error) {
         res.status(500).json({ message: "Something went wrong." });
     }

@@ -13,7 +13,7 @@
     }
 
     @include breakpoint-down(small) {
-        height: 100vh;
+        height: 60vh;
     }
 
     .features-wrapper {

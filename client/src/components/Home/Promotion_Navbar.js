@@ -4,9 +4,7 @@ import { MdRemove } from "react-icons/md";
 
 const Promotion_Navbar = ({ navbarRef }) => {
     const [remove, setRemove] = useState(false);
-    const [message, setMessage] = useState(
-        `July Sale: Use Code "ratl20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`
-    );
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         if (remove) {
@@ -17,17 +15,17 @@ const Promotion_Navbar = ({ navbarRef }) => {
     //Testing is it on smaller device before painting started.
     useLayoutEffect(() => {
         if (window.innerWidth > 770)
-            setMessage(`July Sale: Use Code "ratl20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`);
-        else setMessage(`July Sale: Code "ratl20".`);
+            setMessage(`July Sale: Use Code "RATL20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`);
+        else setMessage(`July Sale: Code "RATL20".`);
     }, []);
 
     useEffect(() => {
         window.addEventListener("resize", () => {
             if (window.innerWidth > 770)
                 setMessage(
-                    `July Sale: Use Code "ratl20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`
+                    `July Sale: Use Code "RALT20" For 20% Off Your Order. Ends July 21st At 11:59 P.M.`
                 );
-            else setMessage(`July Sale: Code "ratl20".`);
+            else setMessage(`July Sale: Code "RALT20".`);
         });
     });
 

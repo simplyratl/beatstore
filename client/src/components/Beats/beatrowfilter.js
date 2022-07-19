@@ -94,6 +94,11 @@ const getKeys = (response, key) => {
 const getGenres = (response, genre) => {
     if (genre === "Popular") {
         return response
+            .filter((beat) => {
+                if (beat.likes.length > 0) {
+                    return beat;
+                }
+            })
             .sort((a, b) => {
                 return b.likes.length - a.likes.length;
             })

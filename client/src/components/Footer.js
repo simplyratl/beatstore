@@ -29,13 +29,13 @@ const Footer = () => {
                 <div className="bottom-bar">
                     <ul className="list">
                         <li className="element">
-                            <a href="#">Sign in</a>
+                            <Link to="/login">Sign in</Link>
                         </li>
                         <li className="element">
-                            <a href="#">Beats</a>
+                            <Link to="/beats">Beats</Link>
                         </li>
                         <li className="element">
-                            <a href="#">Contact</a>
+                            <Link to="/contact">Contact</Link>
                         </li>
                     </ul>
 

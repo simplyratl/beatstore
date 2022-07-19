@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../../style/dist/featurescrolling.min.css";
 import Picture from "../../assets/images/illustrations/undraw_post_online_re_1b82.svg";
-import { AiOutlineGift } from "react-icons/ai";
+import { AiOutlineGift, AiOutlineDownload } from "react-icons/ai";
 import { IoShareSocialOutline } from "react-icons/io5";
-import { MdOutlineSecurity } from "react-icons/md";
+import { BiMicrophone } from "react-icons/bi";
+import { BsSoundwave, BsPaypal } from "react-icons/bs";
 import { AnimatePresence, motion, useScroll } from "framer-motion";
-import { Parallax } from "react-scroll-parallax";
 
 const FeaturesScrolling = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -32,7 +32,7 @@ const FeaturesScrolling = () => {
 
                                 <div className="text">
                                     <h3>Bulk Deals</h3>
-                                    <p>Buy from this site and get bulk deals</p>
+                                    <p>Buy beats and get bulk deals</p>
                                 </div>
                             </motion.div>
                         )}
@@ -45,7 +45,7 @@ const FeaturesScrolling = () => {
                                 animate={{ opacity: 1, transform: "translateY(0%)" }}
                                 exit={{ opacity: 0, transform: "translateY(-20%)" }}
                             >
-                                <MdOutlineSecurity className="icon" />
+                                <BsPaypal className="icon" />
 
                                 <div className="text">
                                     <h3>Transactions</h3>
@@ -89,11 +89,11 @@ const FeaturesScrolling = () => {
                                 animate={{ opacity: 1, transform: "translateY(0%)" }}
                                 exit={{ opacity: 0, transform: "translateY(-20%)" }}
                             >
-                                <AiOutlineGift className="icon" />
+                                <AiOutlineDownload className="icon" />
 
                                 <div className="text">
-                                    <h3>Bulk Deals</h3>
-                                    <p>Buy from this site and get bulk deals</p>
+                                    <h3>Instant Download</h3>
+                                    <p>Just buy beats and download immediately.</p>
                                 </div>
                             </motion.div>
                         )}
@@ -107,11 +107,11 @@ const FeaturesScrolling = () => {
                                 animate={{ opacity: 1, transform: "translateY(0%)" }}
                                 exit={{ opacity: 0, transform: "translateY(-20%)" }}
                             >
-                                <MdOutlineSecurity className="icon" />
+                                <BiMicrophone className="icon" />
 
                                 <div className="text">
-                                    <h3>Transactions</h3>
-                                    <p>Fast transactions and cheap prices.</p>
+                                    <h3>Record</h3>
+                                    <p>Record music with any license.</p>
                                 </div>
                             </motion.div>
                         )}
@@ -125,11 +125,11 @@ const FeaturesScrolling = () => {
                                 animate={{ opacity: 1, transform: "translateY(0%)" }}
                                 exit={{ opacity: 0, transform: "translateY(-20%)" }}
                             >
-                                <IoShareSocialOutline className="icon" />
+                                <BsSoundwave className="icon" />
 
                                 <div className="text">
-                                    <h3>Share</h3>
-                                    <p>Share your music everywhere with beats you bought.</p>
+                                    <h3>High Quality Beats</h3>
+                                    <p>Anything more to say?</p>
                                 </div>
                             </motion.div>
                         )}

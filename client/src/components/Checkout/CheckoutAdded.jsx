@@ -35,11 +35,14 @@ const CheckoutAdded = () => {
         setCouponError("");
 
         try {
-            const res = await axios.get(`http://localhost:8800/coupon/${discountName}`, {
-                headers: {
-                    token: `Bearer ${user.accessToken}`,
-                },
-            });
+            const res = await axios.get(
+                `https://elegant-mandarine-91231.herokuapp.com/coupon/${discountName}`,
+                {
+                    headers: {
+                        token: `Bearer ${user.accessToken}`,
+                    },
+                }
+            );
 
             if (!res.data[0]?.percent) return setCouponError("The coupon you entered is not valid.");
 

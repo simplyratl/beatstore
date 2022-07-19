@@ -17,6 +17,8 @@ import Profile from "./pages/Profile";
 import Loading from "./components/Loading";
 import { AnimatePresence } from "framer-motion";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import { AuthContext } from "./context/authContext/AuthContext";
+import { logoutStart } from "./context/authContext/AuthActions";
 
 const Defaults = () => {
     const { currentBeat } = useContext(Context);
@@ -37,6 +39,7 @@ const Defaults = () => {
 
 function App() {
     const { user, setUser } = useContext(Context);
+    const { dispatch } = useContext(AuthContext);
     const [loading, setLoading] = useState(true);
     const [finished, setFinished] = useState(false);
 
@@ -64,6 +67,23 @@ function App() {
             document.body.style.overflowY = "visible";
         }
     }, [loading]);
+
+    useEffect(() => {
+        const parseJWT = (token) => {
+            try {
+                return JSON.parse(atob(token.split(".")[1]));
+            } catch (error) {
+                return null;
+            }
+        };
+
+        if (user) {
+            const decodeJWT = parseJWT(user.accessToken);
+            if (decodeJWT.exp * 1000 < Date.now()) {
+                logoutStart(dispatch);
+            }
+        }
+    }, []);
 
     return (
         <Router>

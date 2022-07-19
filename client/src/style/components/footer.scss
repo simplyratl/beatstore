@@ -1,4 +1,4 @@
-@use '../util/colors.scss' as *;
+@use "../util/colors.scss" as *;
 
 .footer {
     position: relative;
@@ -7,6 +7,11 @@
     height: 360px;
     clip-path: polygon(0 0, 100% 28%, 100% 100%, 0% 100%);
 
+    @media screen and (max-width: 660px) {
+        clip-path: none;
+        padding: 8em 0;
+    }
+
     .footer-wrapper {
         display: flex;
         justify-content: center;
@@ -14,11 +19,6 @@
         align-items: center;
         padding: 0 4%;
         height: 100%;
-
-        @media screen and (max-width: 620px) {
-            justify-content: center;
-            flex-direction: column;
-        }
 
         .top-bar {
             display: flex;
@@ -48,11 +48,30 @@
             align-items: center;
             margin-top: 32px;
 
+            @media screen and (max-width: 660px) {
+                flex-direction: column;
+            }
+
             .list {
                 list-style: none;
                 margin-right: 14px;
                 border-right: 2px solid $tertiary;
                 padding-right: 8px;
+
+                @media screen and (max-width: 660px) {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                    border: none;
+
+                    .element {
+                        a {
+                            font-size: 1.3rem !important;
+                        }
+                    }
+                }
 
                 .element {
                     a {
@@ -70,6 +89,17 @@
             .newsletter {
                 p {
                     font-size: 1rem;
+                }
+
+                @media screen and (max-width: 660px) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    p {
+                        text-align: center;
+                    }
                 }
 
                 .newsletter-input {

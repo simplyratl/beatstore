@@ -1,0 +1,17 @@
+.filter-rows {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0 4%;
+}
+.filter-rows .icon {
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+.filter-rows .icon.active {
+  color: #c7493a;
+}
+.filter-rows .icon:hover {
+  color: #c7493a;
+}/*# sourceMappingURL=beats.min.css.map */

@@ -1,0 +1,22 @@
+@use "../../util/colors.scss" as *;
+
+.filter-rows {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0 4%;
+
+    .icon {
+        color: #fff;
+        font-size: 1.6rem;
+        cursor: pointer;
+
+        &.active {
+            color: $primary;
+        }
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}

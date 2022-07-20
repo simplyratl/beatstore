@@ -3,11 +3,59 @@
 
 .beat-row-container {
     margin-top: 20px;
+    padding: 0 4%;
+
+    &.all {
+        padding: 0 4%;
+
+        .beats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px;
+            row-gap: 38px;
+
+            @media screen and (max-width: 400px) {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            width: 40%;
+            background: #fbfbfb;
+            margin-bottom: 18px;
+            border-radius: 20px;
+            padding: 4px 8px;
+
+            @media screen and (max-width: 800px) {
+                width: 100%;
+            }
+
+            .search-input {
+                background: none;
+                outline: none;
+                border: none;
+                width: 100%;
+                font-size: 1.14rem;
+                padding: 4px 0;
+                margin-left: 4px;
+            }
+
+            .icon {
+                font-size: 1.7rem;
+                cursor: pointer;
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
 
     .beat-row-wrapper {
         .title-category {
-            margin: 8px 0;
-            margin-left: 2px;
+            margin: 12px 0;
             color: $text-color-bbg;
             text-decoration: none;
             letter-spacing: 1.04px;
@@ -17,13 +65,8 @@
             align-items: center;
             overflow: hidden;
 
-            @media screen and (max-width: 640px) {
-                margin-left: -6px;
-            }
-
             @media screen and (max-width: 360px) {
                 font-size: 2rem;
-                margin-left: -12px;
             }
 
             .icon {
@@ -52,13 +95,12 @@
 
         .beats-container {
             position: relative;
-            overflow: hidden;
+            // overflow: hidden;
         }
     }
     .not-found {
         color: #fff;
         font-size: 1.2rem;
-        margin-left: 30px;
         font-weight: 400;
         color: $text-color-gray-light;
     }
@@ -83,10 +125,10 @@
     }
 
     &.left {
-        left: -4px;
+        left: -38px;
     }
 
     &.right {
-        right: -4px;
+        right: -38px;
     }
 }

@@ -11,16 +11,21 @@ import BeatCard from "./BeatCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import FetchLoading from "../FetchLoading";
 
-const BeatRow = ({ title }) => {
-    const [beats, setBeats] = useState([]);
-    const [loading, setLoading] = useState(true);
+const BeatRow = ({ title, beats, loading }) => {
+    const [beatsRow, setBeatsRow] = useState([]);
     const [showArrows, setShowArrows] = useState(true);
 
     const slider = React.useRef(null);
 
+    useEffect(() => {
+        if (beats) {
+            setBeatsRow(getDataRow(beats, title));
+        }
+    }, [beats]);
+
     let settings = {
         dots: true,
-        infinite: beats?.length >= 6 ? true : false,
+        infinite: beatsRow?.length >= 6 ? true : false,
         arrows: false,
         speed: 500,
         slidesToShow: 6,
@@ -62,32 +67,6 @@ const BeatRow = ({ title }) => {
         ],
     };
 
-    useEffect(() => {
-        const getBeats = async () => {
-            try {
-                const res = await axios
-                    .get("https://elegant-mandarine-91231.herokuapp.com/beat", {
-                        onDownloadProgress: (progressEvent) => {
-                            let percentCompleted = Math.floor(
-                                (progressEvent.loaded / progressEvent.total) * 100
-                            );
-                        },
-                    })
-                    .then((res) => {
-                        setBeats(getDataRow(res.data, title));
-                        setLoading(false);
-                        return res;
-                    });
-
-                return res;
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        getBeats();
-    }, []);
-
     const displaySkeleton = () => {
         let temp = [];
 
@@ -127,10 +106,10 @@ const BeatRow = ({ title }) => {
 
             <div className="beat-row-container">
                 <div className="beat-row-wrapper">
-                    <h2 style={{ marginLeft: 28, marginBottom: 10, display: "block" }}>
+                    <h2>
                         <Link
                             to={`/category/${title?.toLowerCase()}`}
-                            state={{ beats: beats }}
+                            state={{ beats: beatsRow }}
                             className="title-category"
                         >
                             {title}
@@ -139,9 +118,9 @@ const BeatRow = ({ title }) => {
                         </Link>
                     </h2>
 
-                    {beats?.length > 0 ? (
-                        <div className="beats-container" style={{ padding: showArrows ? "0 32px" : "0 4%" }}>
-                            {showArrows && beats?.length > 6 && (
+                    {beatsRow?.length > 0 ? (
+                        <div className="beats-container">
+                            {showArrows && beatsRow?.length > 6 && (
                                 <IoIosArrowBack
                                     className="arrow-slider left"
                                     onClick={() => slider?.current?.slickPrev()}
@@ -152,13 +131,13 @@ const BeatRow = ({ title }) => {
                                 {loading && displaySkeleton()}
 
                                 {!loading &&
-                                    beats?.map((beat, index) => (
+                                    beatsRow?.map((beat, index) => (
                                         <div key={index}>
                                             <BeatCard beat={beat} index={index} />
                                         </div>
                                     ))}
                             </Slider>
-                            {showArrows && beats?.length > 6 && (
+                            {showArrows && beatsRow?.length > 6 && (
                                 <IoIosArrowForward
                                     className="arrow-slider right"
                                     onClick={() => slider?.current?.slickNext()}

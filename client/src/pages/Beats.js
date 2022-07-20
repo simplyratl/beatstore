@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
 import BeatRow from "../components/Beats/BeatRow";
 import { rows } from "../components/Beats/beatrowfilter";
-import FetchLoading from "../components/FetchLoading";
+import { BsFillGrid3X3GapFill, BsGrid3X2GapFill } from "react-icons/bs";
+import "../style/dist/beats.min.css";
+import BeatAll from "../components/Beats/BeatAll";
+import axios from "axios";
 
 const Beats = () => {
     const [rowsCategory, setRowsCategory] = useState([]);
+    const [gridLayout, setGridLayout] = useState(1);
+    const [beats, setBeats] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [finished, setFinished] = useState(false);
 
     useEffect(() => {
-        const onPageLoad = () => {
-            setFinished(true);
+        const getBeats = async () => {
+            try {
+                const res = await axios.get("https://elegant-mandarine-91231.herokuapp.com/beat");
 
-            setTimeout(() => {
+                setBeats(res.data);
                 setLoading(false);
-            }, 600);
+                return res;
+            } catch (error) {
+                console.log(error);
+            }
         };
 
-        if (document.readyState === "complete") {
-            onPageLoad();
-        } else {
-            window.addEventListener("load", onPageLoad);
-            return () => window.removeEventListener("load", onPageLoad);
-        }
+        getBeats();
     }, []);
 
     useEffect(() => {
@@ -49,17 +52,39 @@ const Beats = () => {
         getRows();
     }, []);
 
-    return (
-        <>
-            {/* {loading && <FetchLoading finished={finished} />} */}
-            <div style={{ marginTop: 150 }}>
-                <BeatRow title="Latest" />
-                <BeatRow title="Popular" />
+    const layoutRow = () => {
+        return (
+            <>
+                <BeatRow title="Latest" beats={beats} loading={loading} />
+                <BeatRow title="Popular" beats={beats} loading={loading} />
                 {rowsCategory.map((row, index) => (
                     <div className="beat-row" key={index}>
-                        <BeatRow title={row} />
+                        <BeatRow title={row} beats={beats} loading={loading} />
                     </div>
                 ))}
+            </>
+        );
+    };
+
+    const layoutAll = () => {
+        return <BeatAll beats={beats} loading={loading} />;
+    };
+
+    return (
+        <>
+            <div style={{ marginTop: 150 }}>
+                <div className="filter-rows">
+                    <BsGrid3X2GapFill
+                        className={`icon ${gridLayout === 1 ? "active" : ""}`}
+                        onClick={() => setGridLayout(1)}
+                    />
+                    <BsFillGrid3X3GapFill
+                        className={`icon ${gridLayout === 2 ? "active" : ""}`}
+                        onClick={() => setGridLayout(2)}
+                    />
+                </div>
+
+                {gridLayout === 1 ? layoutRow() : layoutAll()}
             </div>
         </>
     );

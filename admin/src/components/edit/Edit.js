@@ -6,20 +6,20 @@ import axios from "axios";
 
 const Edit = ({ setOpened, beat }) => {
     const [beatState, setBeatState] = useState(null);
-    const [title, setTitle] = useState(null);
-    const [tags, setTags] = useState(null);
-    const [img, setImg] = useState(null);
+    const [title, setTitle] = useState(beat?.title);
+    const [tags, setTags] = useState(beat?.tags);
+    const [img, setImg] = useState(beat?.img);
     const [imageUrl, setImageUrl] = useState("");
-    const [bpm, setBpm] = useState(null);
-    const [key, setKey] = useState(null);
-    const [primary_mood, setPrimary_Mood] = useState(null);
-    const [secondary_mood, setSecondary_Mood] = useState(null);
-    const [mp3_tagged, setmp3_tagged] = useState(null);
-    const [waw_untagged, setWaw_untagged] = useState(null);
-    const [stems, setStems] = useState(null);
-    const [basic_price, setBasic_Price] = useState(null);
-    const [premium_price, setPremium_Price] = useState(null);
-    const [vip_price, setVip_Price] = useState(null);
+    const [bpm, setBpm] = useState(beat?.bpm);
+    const [key, setKey] = useState(beat?.key);
+    const [primary_mood, setPrimary_Mood] = useState(beat?.primary_mood);
+    const [secondary_mood, setSecondary_Mood] = useState(beat?.secondary_mood);
+    const [mp3_tagged, setmp3_tagged] = useState(beat?.mp3_tagged);
+    const [waw_untagged, setWaw_untagged] = useState(beat?.waw_untagged);
+    const [stems, setStems] = useState(beat?.stems);
+    const [basic_price, setBasic_Price] = useState(beat?.basic_licence);
+    const [premium_price, setPremium_Price] = useState(beat?.premium_licence);
+    const [vip_price, setVip_Price] = useState(beat?.vip_licence);
 
     const [notification, setNotification] = useState(false);
     const [notificationText, setNotificationText] = useState("");
@@ -52,7 +52,7 @@ const Edit = ({ setOpened, beat }) => {
                 setNotification(false);
             }, 2500);
 
-            setNotificationText("Profile updated succesffuly.");
+            setNotificationText("Beat updated succesffuly.");
             setNotification(true);
 
             return res;
@@ -176,7 +176,7 @@ const Edit = ({ setOpened, beat }) => {
                     </div>
 
                     <div className="row">
-                        <button type="button" onSubmit={() => updateBeat()}>
+                        <button type="button" onClick={() => updateBeat()}>
                             Update
                         </button>
                     </div>
